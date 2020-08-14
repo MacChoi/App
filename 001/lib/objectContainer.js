@@ -46,6 +46,12 @@ class ObjectContainer{
         } 
         e.preventDefault();
     }
+
+    onTouchmove(e){
+        for(var i =0; i<this.OBJECT.length; i++){
+            if(this.OBJECT[i].onTouchmove)this.OBJECT[i].onTouchmove(e);
+        } 
+    }
   
     setpixelated(context){
         context['imageSmoothingEnabled'] = false;       /* standard */

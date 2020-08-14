@@ -36,11 +36,13 @@ class Screen {
         this.canvas.style.top = this.y + 'px';
         this.scale = this.width * 0.00196;
 
+        this.canvas.addEventListener("touchmove", onTouchmove, false);
         this.canvas.addEventListener("mousemove", onMousemove, false);
-        this.canvas.addEventListener("mousedown", onMousedown, false);
-        this.canvas.addEventListener("mouseup", onMouseup, false);      
-        // this.canvas.addEventListener("touchstart", onMousedown);
-        // this.canvas.addEventListener("touchend", onMouseup);
+        this.canvas.addEventListener("click", onMousedown, false);
+        this.canvas.addEventListener("mousedown", onMouseup, false); 
+        this.canvas.addEventListener("mouseup", onMouseup, false); 
+        this.canvas.addEventListener("touchstart", onMousedown);
+        this.canvas.addEventListener("touchend", onMouseup);
         window.addEventListener('keydown', onKeydown);
     }
 
@@ -81,5 +83,11 @@ function onMousedown(e) {
 function onKeydown(e) {
     for (let index = 0; index < Screen.container.length; index++) {
         Screen.container[index].onKeydown(e);
+    }
+}
+
+function onTouchmove(e){
+    for (let index = 0; index < Screen.container.length; index++) {
+        Screen.container[index].onTouchmove(e);
     }
 }

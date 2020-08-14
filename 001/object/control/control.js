@@ -77,8 +77,9 @@ class CONTROL extends Frame {
     constructor(id,state,x,y,images){
         super(id,state,x,y,images);
         this.isOffset = false;
+        this.isClick = null;
     }
-    onKeydown = function(e) { 
+    onKeydown(e) { 
         console.log("e.onKey: ID.CONTROL " + e.keyCode);
         switch (e.keyCode){
             case KEY.LEFT:
@@ -119,8 +120,8 @@ class CONTROL extends Frame {
         
         if(this.collision.isCheckRect(this,mouseFrame)){
             this.isClick = this.getKeyboardEvent(this.id);
-            this.lightup = 2; 
-        } 
+            objects.onKeydown(this.isClick);
+        }
     }
 
     onMouseup(e) {
@@ -130,9 +131,50 @@ class CONTROL extends Frame {
     onDraw() {
         if(this.isClick){
             objects.onKeydown(this.isClick);
+            //this.isClick = null;
             this.lightup = 2; 
         }
     }
+
+    onMousemove(e) {
+        var mouseFrame = new Frame();
+        mouseFrame.x=e.offsetX / screen.scale;
+        mouseFrame.y=e.offsetY / screen.scale;
+        mouseFrame.w = 10;
+        mouseFrame.h = 10;
+
+        //console.log(this.id , this.x ,this.y , this.image.width , this.image.height);
+        //console.log(mouseFrame.x,mouseFrame.y , mouseFrame.w , mouseFrame.h);
+        
+        if(this.collision.isCheckRect(this,mouseFrame)){
+            this.isClick = this.getKeyboardEvent(this.id);
+            objects.onKeydown(this.isClick);
+        }else{
+            this.isClick = null;
+        }
+    }
+
+    onTouchmove(e) {
+        var touches = e.changedTouches;
+        for (var i = 0; i < touches.length; i++) {
+            var mouseFrame = new Frame();
+            mouseFrame.x=(touches[i].clientX-10) / screen.scale;
+            mouseFrame.y=(touches[i].clientY-10) / screen.scale;
+            mouseFrame.w = 10;
+            mouseFrame.h = 10;
+            console.log(e);
+            //console.log(this.id , this.x ,this.y , this.image.width , this.image.height);
+            //console.log(mouseFrame.x,mouseFrame.y , mouseFrame.w , mouseFrame.h);
+            
+            if(this.collision.isCheckRect(this,mouseFrame)){console.log()
+                this.isClick = this.getKeyboardEvent(this.id);
+               // objects.onKeydown(this.isClick);
+            }else{
+                this.isClick = null;
+            }
+        }
+    }
+    
 
     getKeyboardEvent(keycode){
         return new KeyboardEvent("keydown", {
