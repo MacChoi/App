@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+
+.wrap {
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  background:url(
+    data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAPklEQVQYV2O8dOnSfwYg0NPTYwTRuAAj0QqxmYBNM1briFaIzRbi3UiRZ75uNgUHGbfvabgfsHqGaIXYPAMAD8wgC/DOrZ4AAAAASUVORK5CYII=
+     ) repeat;
+      height: 100%;
+}
+
+.top {
+  height: 270px;
+  padding: 50px;
+}
+
+.top_title {
+  width: 185px;
+  height: 200px;
+  background: #ccc;
+  margin: 0 0 20px 0;
+  border-radius: 10%;
+}
+
+.hero {
+  width: 185px;
+  height: 180px;
+  background: #ccc;
+  margin: 0 0 20px 0;
+  border-radius: 10%
+}
+
+main {
+  padding: 0 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 0 50px 0;
+
+}
+
+#myInput {
+  background-image: url('/search.png');
+  background-position: 0px 5px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  /* border: 1px solid #ddd; */
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myTop a {
+  /* border: 1px solid #ddd; */
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+header {
+  background: #f5b335;
+  height: 40px;
+  position: fixed;
+  top: 0;
+  transition: top 0.2s ease-in-out;
+  width: 100%;
+}
+
+footer {
+  position:fixed; 
+  left:0px; 
+  bottom:0px; 
+  height:30px; 
+  width:100%; 
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background:  #ddd;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 0px;
+}
+
+.hc { width:200px; left:0; right:0; margin-left:auto; margin-right:auto; } /* 가로 중앙 정렬 */ 
+.vc { height:40px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto; } /* 세로 중앙 정렬 */
+
