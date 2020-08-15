@@ -9,17 +9,16 @@ function main() {
 
 	new MAP(objects);
 	new ControlPad(pad);
-	var player = new PLAYER(ID.player,PLAYER.NEW,0,0,-1);
+	var player = new PLAYER(ID.player,PLAYER.NEW,0,0,1);
 	objects.add(player);
 
-	var player2 =new PLAYER(2,PLAYER.NEW,100,10,-1);
+	var player2 =new PLAYER(2,PLAYER.NEW,100,80,1);
 	player2.onKeydown = null;
-	player2.onDraw = null;
+
 	objects.add(player2);
 
-	var player3 =new PLAYER(3,PLAYER.NEW,100,80,-1);
+	var player3 =new PLAYER(3,PLAYER.NEW,100,410,1);
 	player3.onKeydown = null;
-	player3.onDraw = null;
 	objects.add(player3);
 	
 	update();

@@ -14,6 +14,7 @@ class ObjectContainer{
     }
 
     add(frame){
+        frame.screen = this.screen = screen;
         frame.OBJECT = this.OBJECT;
         frame.idx_obj = this.OBJECT.push(frame); 
     }
@@ -103,8 +104,7 @@ class Frame{
                 var rect = this.collision.getCheckRect(objA,objB);
                 if(this.collision.isCheckPixel(objA,objB,rect)){
                     if(objA.onCollision)objA.onCollision({objA:objA,objB:objB});
-                    //isCollision=true;
-                    return true;
+                    isCollision=true;
                 }
             }
         }
@@ -121,8 +121,8 @@ class Frame{
             if(objA.id == objB.id)continue;
             if(!objB.onCollision)continue;
             if(this.collision.isCheckRect(objA, objB)) {
-                //isCollision=true;
-                return true;
+                if(objA.onCollision)objA.onCollision({objA:objA,objB:objB});
+                isCollision=true;
             }
         }
         return isCollision;
@@ -148,21 +148,20 @@ class Frame{
         }
         
         this.image = this.images[Math.abs(this.idx_img)];
-        this.w = this.image.width;
-        this.h = this.image.height;
-        this.centerX = this.x + this.w/2;
-        this.centerY = this.y + this.h/2;
-
+        this.width = this.image.width;
+        this.height = this.image.height;
+        this.centerX = this.x + this.width/2;
+        this.centerY = this.y + this.height/2;
         context.save();
-        //scale
+        //Scale
         context.scale(this.scale,this.scale);
         //Alpha
         if(this.state.alpha)context.globalAlpha = this.state.alpha[this.idx_frame];
-        //rotate
+        //Rotate
         context.translate(this.centerX,this.centerY);
         context.rotate(this.radToDag(this.rotate));
         context.translate(-this.centerX,-this.centerY);
-        //lightup
+        //Lightup
         if(this.lightup > 0){
             if((this.lightup % 2)==0){
                 context.filter = 'hue-rotate(120deg) grayscale(10%) brightness(150%)';
@@ -173,10 +172,25 @@ class Frame{
         if(this.isDrawCollision == true)
         context.strokeRect(this.collisionX,this.collisionY,5,5);
 
-        if(this.idx_img < 0)
-            this.flipHorizontally(context,this.image,this.x,this.y); 
-        else
-            context.drawImage(this.image,this.x,this.y);
+
+        var frm_Screen = new Frame();
+        frm_Screen.x= -this.offsetX;
+        frm_Screen.y= -this.offsetY ;
+        frm_Screen.width = this.screen.width;
+        frm_Screen.height = this.screen.height;
+        console.log(frm_Screen.x,frm_Screen.y,frm_Screen.width,frm_Screen.height);
+
+        //onOutOfScreen
+        if(this.collision.isCheckRect(this,frm_Screen)){
+            if(this.idx_img < 0)
+                this.flipHorizontally(context,this.image,this.x,this.y); 
+            else
+                context.drawImage(this.image,this.x,this.y);
+            
+        }
+        else if(this.onOutOfScreen)this.onOutOfScreen(this);
+
+   
         context.restore();
 
         context.globalAlpha = 1.0;
@@ -207,13 +221,6 @@ class Frame{
     radToDag(angle){
         return angle * Math.PI/180;
     }
-
-    // onMouse(e){}
-    // onKey(e){}
-    // onDraw(e){}
-    // nextFrame(e){}
-    // endFrame(e){}
-    // onCollision(e){}
 }
 
 class Collision{
@@ -232,10 +239,10 @@ class Collision{
         var rect1Right,rect1Bottom,rect2Right,rect2Bottom;
         var rect3Left,rect3Top,rect3Right,rect3Bottom;
         try {
-            rect1Right = Frame1.x + Frame1.w;
-            rect1Bottom = Frame1.y + Frame1.h;
-            rect2Right = Frame2.x + Frame2.w;
-            rect2Bottom = Frame2.y + Frame2.h;
+            rect1Right = Frame1.x + Frame1.width;
+            rect1Bottom = Frame1.y + Frame1.height;
+            rect2Right = Frame2.x + Frame2.width;
+            rect2Bottom = Frame2.y + Frame2.height;
             rect3Left = Math.max(Frame1.x, Frame2.x);
             rect3Top = Math.max(Frame1.y, Frame2.y);
             rect3Right = Math.min(rect1Right, rect2Right);
@@ -254,15 +261,15 @@ class Collision{
     isCheckRect(Frame1, Frame2) {
         var rect2CenterX,rect2CenterY,rect1CenterX,rect1CenterY;
         try {
-            rect2CenterX = Frame2.x + Frame2.w/2;
-            rect2CenterY = Frame2.y + Frame2.h/2;
-            rect1CenterX = Frame1.x + Frame1.w/2;
-            rect1CenterY = Frame1.y + Frame1.h/2;
+            rect2CenterX = Frame2.x + Frame2.width/2;
+            rect2CenterY = Frame2.y + Frame2.height/2;
+            rect1CenterX = Frame1.x + Frame1.width/2;
+            rect1CenterY = Frame1.y + Frame1.height/2;
         } catch (error) {
             return false;
         }
-        if((Math.abs(rect2CenterX - rect1CenterX) < Frame1.w / 2 + Frame2.w / 2) &&
-            Math.abs(rect2CenterY - rect1CenterY) < Frame1.h / 2 + Frame2.h / 2) {
+        if((Math.abs(rect2CenterX - rect1CenterX) < Frame1.width / 2 + Frame2.width / 2) &&
+            Math.abs(rect2CenterY - rect1CenterY) < Frame1.height / 2 + Frame2.height / 2) {
             return true
         } else {
             return false
@@ -291,8 +298,8 @@ class Collision{
         var height = 0;
         for(var i = 3, len = imgData1Data.length; i < len; i += 4) {
             if(imgData1Data[i] > 0 && imgData2Data[i] > 0) {
-                Frame1.collisionX = (checkRect.left + width) * Frame1.scale;
-                Frame1.collisionY = (checkRect.top + height) * Frame1.scale;
+                Frame1.collisionX = (checkRect.left + width) ;
+                Frame1.collisionY = (checkRect.top + height);
                 //isCheck = true;
                 return true;
             }

@@ -80,7 +80,7 @@ class CONTROL extends Frame {
         this.isClick = null;
     }
     onKeydown(e) { 
-        console.log("e.onKey: ID.CONTROL " + e.keyCode);
+        //console.log("e.onKey: ID.CONTROL " + e.keyCode);
         switch (e.keyCode){
             case KEY.LEFT:
                 if(e.state == CONTROL.LEFT)this.lightup = 2;
@@ -112,11 +112,11 @@ class CONTROL extends Frame {
         var mouseFrame = new Frame();
         mouseFrame.x=e.offsetX / screen.scale;
         mouseFrame.y=e.offsetY / screen.scale;
-        mouseFrame.w = 10;
-        mouseFrame.h = 10;
+        mouseFrame.width = 10;
+        mouseFrame.height = 10;
 
         //console.log(this.id , this.x ,this.y , this.image.width , this.image.height);
-        //console.log(mouseFrame.x,mouseFrame.y , mouseFrame.w , mouseFrame.h);
+        //console.log(mouseFrame.x,mouseFrame.y , mouseFrame.width , mouseFrame.height);
         
         if(this.collision.isCheckRect(this,mouseFrame)){
             this.isClick = this.getKeyboardEvent(this.id);
@@ -140,11 +140,11 @@ class CONTROL extends Frame {
         var mouseFrame = new Frame();
         mouseFrame.x=e.offsetX / screen.scale;
         mouseFrame.y=e.offsetY / screen.scale;
-        mouseFrame.w = 10;
-        mouseFrame.h = 10;
+        mouseFrame.width = 10;
+        mouseFrame.height = 10;
 
         //console.log(this.id , this.x ,this.y , this.image.width , this.image.height);
-        //console.log(mouseFrame.x,mouseFrame.y , mouseFrame.w , mouseFrame.h);
+        //console.log(mouseFrame.x,mouseFrame.y , mouseFrame.width , mouseFrame.height);
         
         if(this.collision.isCheckRect(this,mouseFrame)){
             this.isClick = this.getKeyboardEvent(this.id);
@@ -158,13 +158,13 @@ class CONTROL extends Frame {
         var touches = e.changedTouches;
         for (var i = 0; i < touches.length; i++) {
             var mouseFrame = new Frame();
-            mouseFrame.x=(touches[i].clientX-10) / screen.scale;
-            mouseFrame.y=(touches[i].clientY-10) / screen.scale;
-            mouseFrame.w = 10;
-            mouseFrame.h = 10;
-            console.log(e);
+            mouseFrame.x=(touches[i].clientX-25) / screen.scale;
+            mouseFrame.y=(touches[i].clientY-20) / screen.scale;
+            mouseFrame.width = 25;
+            mouseFrame.height = 20;
+            //console.log(e);
             //console.log(this.id , this.x ,this.y , this.image.width , this.image.height);
-            //console.log(mouseFrame.x,mouseFrame.y , mouseFrame.w , mouseFrame.h);
+            //console.log(mouseFrame.x,mouseFrame.y , mouseFrame.width , mouseFrame.height);
             
             if(this.collision.isCheckRect(this,mouseFrame)){console.log()
                 this.isClick = this.getKeyboardEvent(this.id);

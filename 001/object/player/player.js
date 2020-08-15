@@ -82,10 +82,10 @@ class PLAYER extends Frame {
         objects.offsetY -= (this.y -this.py);
     //console.log("e.onDraw: ID.PLAYER " + e);
     }
-    nextFrame(e) {
-        //console.log("e.nextFrame: ID.PLAYER " + e);
+    onOutOfScreen(e){
+        console.log("e.onOutOfScreen: ID.PLAYER " +e.idx);
     }
     onCollision(e) {
-        //console.log("e.onCollision: ID.PLAYER " +e.objA.id +" " + e.objB.idx);
+        //console.log("e.onCollision: ID.PLAYER " +e.objA.idx +" " + e.objB.idx);
     }
 }

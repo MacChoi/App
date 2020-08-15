@@ -14,8 +14,6 @@ class Screen {
         this.ratio_h = ratio_h;
         this.ratio_v = ratio_v;
         this.init();
-
-
     }
 
     init() {
