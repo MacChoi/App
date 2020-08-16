@@ -1,20 +1,20 @@
 class ControlPad{
     constructor(objectContainer){
         var images = new File().loadImages("object/control/image",5);
-        var imgW = 60;
-        var imgH = 60;
-        var sX = imgW *2;
-        var sY = imgH *12;
+        var imgW = 47;
+        var imgH = 48;
+        var sX = imgW*1.5;
+        var sY = imgH*10;
    
         objectContainer.add(new CONTROL(KEY.UP,CONTROL.UP,sX,sY,images));
         objectContainer.add(new CONTROL(KEY.LEFT,CONTROL.LEFT,sX-imgW,sY+imgH,images));
         objectContainer.add(new CONTROL(KEY.RIGHT,CONTROL.RIGHT,sX +imgW,sY+imgH,images));
         objectContainer.add(new CONTROL(KEY.DOWN,CONTROL.DOWN,sX,sY+imgH*2,images));
 
-        var keyImgW = 70;
-        var keyImgH = 70;
-        var keyX = keyImgW *4;
-        var keyY = keyImgH *10.3;
+        var keyImgW = 55;
+        var keyImgH = 55;
+        var keyX = keyImgW*3.2;
+        var keyY = keyImgH*8.8;
 
         objectContainer.add(new CONTROL(KEY.X,CONTROL.X,keyX,keyY,images));
         objectContainer.add(new CONTROL(KEY.Y,CONTROL.Y,keyX,keyY+keyImgH+imgW/2,images));

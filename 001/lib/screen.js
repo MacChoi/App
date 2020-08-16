@@ -32,8 +32,8 @@ class Screen {
         this.canvas.style.position = 'absolute';
         this.canvas.style.left = this.x + 'px';
         this.canvas.style.top = this.y + 'px';
-        this.scale = this.width * 0.00196;
-
+       // this.scale = this.width * 0.00196;
+        this.scale = this.width * 0.003;
         this.canvas.addEventListener("touchmove", onTouchmove, false);
         this.canvas.addEventListener("mousemove", onMousemove, false);
         this.canvas.addEventListener("click", onMousedown, false);

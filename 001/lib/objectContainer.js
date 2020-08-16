@@ -65,8 +65,8 @@ class ObjectContainer{
     draw(){
         this.setpixelated(this.context);
         this.context.save();
-        this.context.scale(this.screen.scale,this.screen.scale);
         this.context.translate(this.offsetX,this.offsetY);
+        this.context.scale(this.screen.scale,this.screen.scale);
         for(var i=0; i<this.OBJECT.length; i++){
             if(this.OBJECT[i] == null)continue;
             this.OBJECT[i].idx = i;
@@ -88,6 +88,7 @@ class Frame{
         this.images = images;
         this.setState(state,x,y,1);
         this.collision = new Collision();
+        this.scale = 1;
     }
 
     checkCollision(object){
@@ -153,8 +154,6 @@ class Frame{
         this.centerX = this.x + this.width/2;
         this.centerY = this.y + this.height/2;
         context.save();
-        //Scale
-        context.scale(this.scale,this.scale);
         //Alpha
         if(this.state.alpha)context.globalAlpha = this.state.alpha[this.idx_frame];
         //Rotate
@@ -172,25 +171,21 @@ class Frame{
         if(this.isDrawCollision == true)
         context.strokeRect(this.collisionX,this.collisionY,5,5);
 
-
         var frm_Screen = new Frame();
         frm_Screen.x= -this.offsetX;
-        frm_Screen.y= -this.offsetY ;
-        frm_Screen.width = this.screen.width;
-        frm_Screen.height = this.screen.height;
-        console.log(frm_Screen.x,frm_Screen.y,frm_Screen.width,frm_Screen.height);
-
+        frm_Screen.y= -this.offsetY;
+        frm_Screen.width = this.screen.width / this.screen.scale;
+        frm_Screen.height = this.screen.height/ this.screen.scale;
+        // console.log(frm_Screen.x,frm_Screen.y,frm_Screen.width,frm_Screen.height);
+       
         //onOutOfScreen
         if(this.collision.isCheckRect(this,frm_Screen)){
             if(this.idx_img < 0)
                 this.flipHorizontally(context,this.image,this.x,this.y); 
             else
                 context.drawImage(this.image,this.x,this.y);
-            
         }
         else if(this.onOutOfScreen)this.onOutOfScreen(this);
-
-   
         context.restore();
 
         context.globalAlpha = 1.0;

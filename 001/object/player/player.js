@@ -36,10 +36,9 @@ class PLAYER extends Frame {
     
     constructor(id,state,x,y,flip){
         super(id,state,x,y,image_player);
-        this.scale = 2;
         this.flip = flip;
+        this.scale =2;
         //this.lightup = 100;
-
         this.isDrawCollision =true;
     }
     onKeydown(e) {  
@@ -77,12 +76,16 @@ class PLAYER extends Frame {
         //console.log("e.endFrame: ID.PLAYER " + e);
     }
     onDraw(e) {
-        //console.log("camera : " + this.x ,this.y);
-        objects.offsetX -= (this.x -this.px);
-        objects.offsetY -= (this.y -this.py);
-    //console.log("e.onDraw: ID.PLAYER " + e);
+        //console.log("camera : " + this.x ,this.y);  
+        if(this.x >120 && this.x <850){
+            objects.offsetX -= (this.x -this.px);
+        }
+        if(this.y >220 && this.y <850){
+            objects.offsetY -= (this.y -this.py);
+        }
     }
     onOutOfScreen(e){
+        e.lightup =50;
         console.log("e.onOutOfScreen: ID.PLAYER " +e.idx);
     }
     onCollision(e) {
