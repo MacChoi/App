@@ -4,7 +4,7 @@ class ControlPad{
         var imgW = 47;
         var imgH = 48;
         var sX = imgW*1.5;
-        var sY = imgH*10;
+        var sY = imgH*9;
    
         objectContainer.add(new CONTROL(KEY.UP,CONTROL.UP,sX,sY,images));
         objectContainer.add(new CONTROL(KEY.LEFT,CONTROL.LEFT,sX-imgW,sY+imgH,images));
@@ -14,7 +14,7 @@ class ControlPad{
         var keyImgW = 55;
         var keyImgH = 55;
         var keyX = keyImgW*3.2;
-        var keyY = keyImgH*8.8;
+        var keyY = keyImgH*7.9;
 
         objectContainer.add(new CONTROL(KEY.X,CONTROL.X,keyX,keyY,images));
         objectContainer.add(new CONTROL(KEY.Y,CONTROL.Y,keyX,keyY+keyImgH+imgW/2,images));
@@ -83,28 +83,28 @@ class CONTROL extends Frame {
         //console.log("e.onKey: ID.CONTROL " + e.keyCode);
         switch (e.keyCode){
             case KEY.LEFT:
-                if(e.state == CONTROL.LEFT)this.lightup = 2;
+                if(e.state == CONTROL.LEFT)this.glow = 2;
                 break;
             case KEY.RIGHT:
-                if(e.state == CONTROL.RIGHT)this.lightup = 2;
+                if(e.state == CONTROL.RIGHT)this.glow = 2;
                 break;
             case KEY.UP:
-                if(e.state == CONTROL.UP)this.lightup = 2;
+                if(e.state == CONTROL.UP)this.glow = 2;
             break;    
             case KEY.DOWN:
-                if(e.state == CONTROL.DOWN)this.lightup = 2;
+                if(e.state == CONTROL.DOWN)this.glow = 2;
             break;
             case KEY.X:
-                if(e.state == CONTROL.X)this.lightup = 2;
+                if(e.state == CONTROL.X)this.glow = 2;
             break; 
             case KEY.Y:
-                if(e.state == CONTROL.Y)this.lightup = 2;
+                if(e.state == CONTROL.Y)this.glow = 2;
             break; 
             case KEY.A:
-                if(e.state == CONTROL.A)this.lightup = 2;
+                if(e.state == CONTROL.A)this.glow = 2;
             break;
             case KEY.B:
-                if(e.state == CONTROL.B)this.lightup = 2; 
+                if(e.state == CONTROL.B)this.glow = 2; 
             break;          
         }
     }
@@ -132,7 +132,7 @@ class CONTROL extends Frame {
         if(this.isClick){
             objects.onKeydown(this.isClick);
             //this.isClick = null;
-            this.lightup = 2; 
+            this.glow = 2; 
         }
     }
 

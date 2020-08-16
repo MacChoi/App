@@ -88,7 +88,6 @@ class Frame{
         this.images = images;
         this.setState(state,x,y,1);
         this.collision = new Collision();
-        this.scale = 1;
     }
 
     checkCollision(object){
@@ -136,16 +135,16 @@ class Frame{
         this.px = this.x;
         this.py = this.y;
         this.x += this.state.x[this.idx_frame] * this.flip;
-        if(this.checkCollisionRect(this))this.x = this.px;
+        if(this.checkCollision(this))this.x = this.px;
         this.y += this.state.y[this.idx_frame];
-        if(this.checkCollisionRect(this))this.y = this.py;
+        if(this.checkCollision(this))this.y = this.py;
        
         if(this.state.rotate)this.rotate = this.state.rotate[this.idx_frame] * this.flip;
         else this.rotate = 0;
 
         if(this.state.weight){
             this.y += this.state.weight[this.idx_frame];
-            if(this.checkCollisionRect(this))this.y = this.py;
+            if(this.checkCollision(this))this.y = this.py;
         }
         
         this.image = this.images[Math.abs(this.idx_img)];
@@ -160,23 +159,23 @@ class Frame{
         context.translate(this.centerX,this.centerY);
         context.rotate(this.radToDag(this.rotate));
         context.translate(-this.centerX,-this.centerY);
-        //Lightup
-        if(this.lightup > 0){
-            if((this.lightup % 2)==0){
+        //Glow up
+        if(this.glow > 0){
+            if((this.glow % 2)==0){
                 context.filter = 'hue-rotate(120deg) grayscale(10%) brightness(150%)';
             }
-            this.lightup-=1;
+            this.glow-=1;
         }
 
         if(this.isDrawCollision == true)
         context.strokeRect(this.collisionX,this.collisionY,5,5);
 
         var frm_Screen = new Frame();
-        frm_Screen.x= -this.offsetX;
-        frm_Screen.y= -this.offsetY;
+        frm_Screen.x= -this.offsetX/ this.screen.scale;
+        frm_Screen.y= -this.offsetY/ this.screen.scale;
         frm_Screen.width = this.screen.width / this.screen.scale;
         frm_Screen.height = this.screen.height/ this.screen.scale;
-        // console.log(frm_Screen.x,frm_Screen.y,frm_Screen.width,frm_Screen.height);
+        //context.strokeRect(frm_Screen.x,frm_Screen.y,frm_Screen.width,frm_Screen.height);
        
         //onOutOfScreen
         if(this.collision.isCheckRect(this,frm_Screen)){

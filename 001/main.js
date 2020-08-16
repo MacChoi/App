@@ -1,5 +1,5 @@
 var UPDATE_DELAY = 100;
-var screen = new Screen(1,2);
+var screen = new Screen(1.12,2);
 var objects = new ObjectContainer(screen,["player","map"]);
 var pad = new ObjectContainer(screen,["control"]);
 function main() {

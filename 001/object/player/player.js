@@ -39,7 +39,7 @@ class PLAYER extends Frame {
         this.flip = flip;
         this.scale =2;
         //this.lightup = 100;
-        this.isDrawCollision =true;
+        //this.isDrawCollision =true;
     }
     onKeydown(e) {  
         //console.log("e.keyCode: ID.PLAYER " + e.keyCode);
@@ -85,7 +85,7 @@ class PLAYER extends Frame {
         }
     }
     onOutOfScreen(e){
-        e.lightup =50;
+        e.glow =50;
         console.log("e.onOutOfScreen: ID.PLAYER " +e.idx);
     }
     onCollision(e) {
