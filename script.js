@@ -1,15 +1,6 @@
 const list =[
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
-  {title:"최신 업데이트",img:"http://2.bp.blogspot.com/--5yqttOEAsw/Urr9mw2ptsI/AAAAAAAADME/uR7L1d-5y50/s1600/howways-logo2-94x94.png",url:"http://daum.net"},
- 
+  {title:"최신 업데이트",img:"https://macchoi.github.io/App/AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
+
 ]
 
 const img_loding = "URL(loading.gif)";
