@@ -1,9 +1,7 @@
 const list =[
   {title:"최신 업데이트",img:"https://macchoi.github.io/App/AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
-  {title:"최신 업데이트",img:"https://macchoi.github.io/App/AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
-  {title:"최신 업데이트",img:"https://macchoi.github.io/App/AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
-  {title:"최신 업데이트",img:"https://macchoi.github.io/App/AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
-
+  {title:"Analog Clock",img:"https://macchoi.github.io/App/AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
+ 
 ]
 
 const img_loding = "URL(loading.gif)";
@@ -26,14 +24,14 @@ function main(){
   // }
   // $("div.lazyload").lazyload();
 
-  const text_top ='<div onclick=location.href="'+ element_top.url +'"; class="top_title hc" style="background-size:cover;'+
+  const text_top ='<div onclick=location.href="'+ element_top.url +'"; class="top_title hc" style="background-size:100% 100%;'+
   'background-image:URL('+list[0].img+'); background-repeat:no-repeat;" data-src='+list[0].img+ ';>'+
   '<a href="#">'+ element_top.title +'</a></div>';
   top.append(text_top);
   
   for (let index = 1; index < list.length; index++) {
     const element = list[index];
-    const text_add = '<li><div onclick=location.href="'+ element.url +'"; class="lazyload hero" style="background-size:cover;'+
+    const text_add = '<li><div onclick=location.href="'+ element.url +'"; class="lazyload hero" style="background-size:100% 100%;'+
     'background-image:URL('+list[index].img+'); background-repeat:no-repeat;" data-src='+list[index].img+ ';>'+ 
     '<a href="#">'+ element.title +'</a></div></li>';
     ul_list.append(text_add);
