@@ -131,15 +131,15 @@ class Frame{
     draw(context){
         this.context =context;
         if(this.state.image.length-1 < this.idx_frame)this.idx_frame = 0;
-        this.idx_img = this.state.image[this.idx_frame] * this.flip;
+        this.idx_img = this.state.image[this.idx_frame] * this.reversal;
         this.px = this.x;
         this.py = this.y;
-        this.x += this.state.x[this.idx_frame] * this.flip;
+        this.x += this.state.x[this.idx_frame] * this.reversal;
         if(this.checkCollision(this))this.x = this.px;
         this.y += this.state.y[this.idx_frame];
         if(this.checkCollision(this))this.y = this.py;
        
-        if(this.state.rotate)this.rotate = this.state.rotate[this.idx_frame] * this.flip;
+        if(this.state.rotate)this.rotate = this.state.rotate[this.idx_frame] * this.reversal;
         else this.rotate = 0;
 
         if(this.state.weight){
@@ -198,10 +198,10 @@ class Frame{
         context.setTransform(1,0,0,1,0,0);
     }
 
-    setState(state,x,y,flip){
+    setState(state,x,y,reversal){
         //if(this.state == state)return;
         this.state = state;
-        this.flip = flip;
+        this.reversal = reversal;
         this.x = x;
         this.y = y
         this.idx_frame = 0;

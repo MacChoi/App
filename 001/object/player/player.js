@@ -34,9 +34,9 @@ class PLAYER extends Frame {
        // weight : [5,5,5,5,5,5,5,5],
     }
     
-    constructor(id,state,x,y,flip){
+    constructor(id,state,x,y,reversal){
         super(id,state,x,y,image_player);
-        this.flip = flip;
+        this.reversal = reversal;
         this.scale =2;
         //this.lightup = 100;
         //this.isDrawCollision =true;
@@ -52,10 +52,10 @@ class PLAYER extends Frame {
                 this.setState(PLAYER.RIGHT,this.x,this.y,1);
                 break;
             case KEY.UP:
-                this.setState(PLAYER.UP,this.x,this.y,this.flip);
+                this.setState(PLAYER.UP,this.x,this.y,this.reversal);
             break;    
             case KEY.DOWN:
-                this.setState(PLAYER.DOWN,this.x,this.y,this.flip);
+                this.setState(PLAYER.DOWN,this.x,this.y,this.reversal);
             break;          
         }
         //console.log("collision >>" + collision.isCheckRect(OBJECT[0],OBJECT[1])); 
@@ -67,10 +67,10 @@ class PLAYER extends Frame {
             case this.UP:
             case this.DOWN:
             case this.LEFT:
-             //   this.setState(PLAYER.NEW,this.x,this.y,this.flip);
+             //   this.setState(PLAYER.NEW,this.x,this.y,this.reversal);
             break;
             case this.RIGHT:
-            //    this.setState(PLAYER.NEW,this.x,this.y,this.flip);
+            //    this.setState(PLAYER.NEW,this.x,this.y,this.reversal);
             break;
         }
         //console.log("e.endFrame: ID.PLAYER " + e);

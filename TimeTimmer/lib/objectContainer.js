@@ -1,6 +1,6 @@
 let ID = null;
 class ObjectContainer{
-    constructor(screen,names) {
+    constructor(screen,names,fileCount) {
         this.offsetX = 0;
         this.offsetY = 0;
         this.OBJECT = new Array();
@@ -11,6 +11,8 @@ class ObjectContainer{
         for(var i =0; i<ID.length; i++){
             new File().include("object/" + names[i] + "/" + names[i] + ".js");
         }
+
+        File.appendLoading(fileCount);
     }
 
     add(frame){
@@ -310,9 +312,15 @@ class Collision{
 
 class File{
     static fileCount = 0;
+    static fileCountMax = 0;
     static img_loading = null;
     static onLoading =null;
-    static appendLoading(){
+    static appendLoading(fileCountMax){
+        if(File.fileCountMax != 0){
+            File.fileCountMax+=fileCountMax;
+            return;
+        }
+        File.fileCountMax = fileCountMax;
         File.img_loading = document.createElement('img'); 
         File.img_loading.src = 'lib/Spinner.gif';
         File.img_loading.style = 'position:absolute;max-width:100%; max-height:100%;width:auto;height:auto;margin:auto;top:0; bottom:0; left:0; right:0;';
@@ -384,6 +392,11 @@ class File{
         return imagePieces;
     }
 }
+
+File.onLoading = function (count){
+	if(count==File.fileCountMax)File.removeLoading();
+	//console.log("onLoading :" +count ,File.fileCountMax);
+};
 
 class Enum{
     constructor(constantsList){
