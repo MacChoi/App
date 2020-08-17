@@ -1,6 +1,6 @@
 const list =[
-  {title:"최신 업데이트",img:"https://macchoi.github.io/App/AnalogClock/DigitalClock.png",url:"DigitalClock/index.html"},
-  {title:"Digital Clock",img:"https://macchoi.github.io/App/AnalogClock/DigitalClock.png",url:"DigitalClock/index.html"},
+  {title:"최신 업데이트",img:"https://macchoi.github.io/App/DigitalClock/DigitalClock.png",url:"DigitalClock/index.html"},
+  {title:"Digital Clock",img:"https://macchoi.github.io/App/DigitalClock/DigitalClock.png",url:"DigitalClock/index.html"},
   {title:"Analog Clock",img:"https://macchoi.github.io/App/AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
  
 ]
