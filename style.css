@@ -48,7 +48,7 @@ main {
 }
 
 #myInput {
-  background-image: url('/search.png');
+  background-image: url('App/search.png');
   background-position: 0px 5px;
   background-repeat: no-repeat;
   width: 100%;

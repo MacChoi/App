@@ -1,5 +1,5 @@
 const list =[
-  {title:"최신 업데이트",img:"AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
+  {title:"최신 업데이트",img:"App/AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
 
 ]
 
