@@ -65,7 +65,9 @@ main {
 }
 
 #myUL li a {
-  /* border: 1px solid #ddd; */
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
   padding: 12px;
   text-decoration: none;
   font-size: 18px;
@@ -74,7 +76,9 @@ main {
 }
 
 #myTop a {
-  /* border: 1px solid #ddd; */
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
   padding: 12px;
   text-decoration: none;
   font-size: 18px;
@@ -83,12 +87,14 @@ main {
 }
 
 header {
-  background: #f5b335;
-  height: 40px;
-  position: fixed;
-  top: 0;
-  transition: top 0.2s ease-in-out;
-  width: 100%;
+   border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
 }
 
 footer {
