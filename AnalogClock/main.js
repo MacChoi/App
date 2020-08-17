@@ -36,3 +36,9 @@ function update() {
 window.onresize = function(event) {
 	screen.init();
 }
+
+File.appendLoading();
+File.onLoading = function (count){
+	if(count==4)File.removeLoading();
+	// console.log("onLoading :" +count);
+};
