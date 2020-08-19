@@ -363,14 +363,16 @@ class File{
         return IMAGES;
     }
 
-    loadSounds(soundPath,soundCount,volume ){
+    loadSounds(soundPath,soundCount,volume){
         var count = 0;
-        var SOUNDS = new Array(soundCount+1);
-        for(var i = 1; i<soundCount+1; i++){
+        var SOUNDS = new Array(soundCount);
+        for(var i = 0; i<soundCount; i++){
             count++;
             SOUNDS[i] = new Audio(soundPath + "/" + i + ".mp3");
             SOUNDS[i].volume = volume ;
-            //console.log("SOUND[" + i + "].src: " + soundPath + "/" + (i) + ".mp3");
+            if(File.onLoading)File.onLoading(++File.fileCount);
+
+            console.log("SOUND[" + i + "].src: " + soundPath + "/" + (i) + ".mp3");
         }
         //console.log("loadSounds: " + soundPath +" "+ count);
         return SOUNDS;
