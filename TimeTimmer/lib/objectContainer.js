@@ -155,9 +155,9 @@ class Frame{
         this.idx_img = this.state.image[this.idx_frame] * this.reversal;
         this.px = this.x;
         this.py = this.y;
-        this.x += this.state.x[this.idx_frame] * this.reversal;
+        if(this.state.x)this.x += this.state.x[this.idx_frame] * this.reversal;
         if(this.checkCollision(this))this.x = this.px;
-        this.y += this.state.y[this.idx_frame];
+        if(this.state.x)this.y += this.state.y[this.idx_frame];
         if(this.checkCollision(this))this.y = this.py;
        
         if(this.state.rotate)this.rotate = this.state.rotate[this.idx_frame] * this.reversal;
@@ -466,16 +466,15 @@ class Random{
 
 class Angle{
     //angle
-    get(cx, cy, cx2, cy2) {
-        var dy = cy2 - cy;
-        var dx = cx2 - cx;
+    get(frame1,frame2) {
+        var dy = frame2.centerY - frame1.centerY;
+        var dx = frame2.centerX - frame1.centerX;
         var theta = Math.atan2(dy, dx);
         theta *= 180 / Math.PI; 
         //return theta;
-
         return theta >= 360 ? theta - 360 : theta < 0 ? theta + 360 : theta;
     }
-    
+
     getCircleXY(radius,angle,angleGap){
         var arrayPosX = new Array(0);
         var arrayPosY = new Array(0);

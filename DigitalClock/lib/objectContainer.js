@@ -466,9 +466,9 @@ class Random{
 
 class Angle{
     //angle
-    get(cx, cy, cx2, cy2) {
-        var dy = cy2 - cy;
-        var dx = cx2 - cx;
+    get(frame1,frame2) {
+        var dy = frame2.y - frame1.y;
+        var dx = frame2.x - frame1.x;
         var theta = Math.atan2(dy, dx);
         theta *= 180 / Math.PI; 
         //return theta;
