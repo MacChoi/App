@@ -1,6 +1,7 @@
 var UPDATE_DELAY = 100;
-var screen = new Screen(2,1.12);
-var objects = new ObjectContainer(screen,["clock"]);
+var UPDATE_DELAY = 100;
+var screen = new Screen(2,1.12,3,"block");//ratio_h, ratio_v, scale, backgroundColor
+var objects = new ObjectContainer(screen,["clock"],10);//screen , objects,  fileCount
 
 var clock_hour,clock_minute,clock_second;
 var obj_time;
@@ -43,9 +44,3 @@ function update() {
 window.onresize = function(event) {
 	screen.init();
 }
-
-File.appendLoading();
-File.onLoading = function (count){
-	if(count==10)File.removeLoading();
-	// console.log("onLoading :" +count);
-};

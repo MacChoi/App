@@ -48,8 +48,7 @@ class Screen {
 
     draw(){
         for (let index = 0; index < Screen.container.length; index++) {
-            const element = Screen.container[index];
-            element.draw();
+            Screen.container[index].draw();
         }
 
         this.context.drawImage(this.bufferCanvas,0,0);

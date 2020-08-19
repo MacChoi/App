@@ -90,6 +90,8 @@ class Frame{
         this.images = images;
         this.setState(state,x,y,1);
         this.collision = new Collision();
+        this.offsetX=0;
+        this.offsetY=0;
     }
 
     checkCollision(object){
@@ -131,6 +133,23 @@ class Frame{
     }
 
     draw(context){
+        this.image = this.images[Math.abs(this.idx_img)];
+        this.width = this.image.width;
+        this.height = this.image.height;
+        this.centerX = this.x + this.width/2;
+        this.centerY = this.y + this.height/2;
+        //onOutOfScreen
+        var frm_Screen = new Frame();
+        frm_Screen.x= -this.offsetX/ this.screen.scale;
+        frm_Screen.y= -this.offsetY/ this.screen.scale;
+        frm_Screen.width = this.screen.width / this.screen.scale;
+        frm_Screen.height = this.screen.height/ this.screen.scale;
+        context.strokeRect(frm_Screen.x,frm_Screen.y,frm_Screen.width,frm_Screen.height);
+        if(!this.collision.isCheckRect(this,frm_Screen)){    
+            if(this.onOutOfScreen)this.onOutOfScreen(this);
+            return; 
+        }
+    
         this.context =context;
         if(this.state.image.length-1 < this.idx_frame)this.idx_frame = 0;
         this.idx_img = this.state.image[this.idx_frame] * this.reversal;
@@ -149,11 +168,6 @@ class Frame{
             if(this.checkCollision(this))this.y = this.py;
         }
         
-        this.image = this.images[Math.abs(this.idx_img)];
-        this.width = this.image.width;
-        this.height = this.image.height;
-        this.centerX = this.x + this.width/2;
-        this.centerY = this.y + this.height/2;
         context.save();
         //Alpha
         if(this.state.alpha)context.globalAlpha = this.state.alpha[this.idx_frame];
@@ -171,22 +185,12 @@ class Frame{
 
         if(this.isDrawCollision == true)
         context.strokeRect(this.collisionX,this.collisionY,5,5);
-
-        var frm_Screen = new Frame();
-        frm_Screen.x= -this.offsetX/ this.screen.scale;
-        frm_Screen.y= -this.offsetY/ this.screen.scale;
-        frm_Screen.width = this.screen.width / this.screen.scale;
-        frm_Screen.height = this.screen.height/ this.screen.scale;
-        //context.strokeRect(frm_Screen.x,frm_Screen.y,frm_Screen.width,frm_Screen.height);
-       
-        //onOutOfScreen
-        if(this.collision.isCheckRect(this,frm_Screen)){
-            if(this.idx_img < 0)
-                this.flipHorizontally(context,this.image,this.x,this.y); 
-            else
-                context.drawImage(this.image,this.x,this.y);
-        }
-        else if(this.onOutOfScreen)this.onOutOfScreen(this);
+    
+        if(this.idx_img < 0)
+            this.flipHorizontally(context,this.image,this.x,this.y); 
+        else
+            context.drawImage(this.image,this.x,this.y);
+    
         context.restore();
 
         context.globalAlpha = 1.0;

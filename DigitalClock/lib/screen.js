@@ -1,6 +1,6 @@
 class Screen {
     static container = new Array();
-    constructor(ratio_h,ratio_v) {
+    constructor(ratio_h,ratio_v,scale,color) {
         this.canvas = document.createElement( 'Canvas' );
         this.bufferCanvas = document.createElement( 'Canvas' );
         this.context= this.canvas.getContext('2d');
@@ -13,6 +13,8 @@ class Screen {
         this.canvas.style.margin  = '0 auto';
         this.ratio_h = ratio_h;
         this.ratio_v = ratio_v;
+        this.scale_unit = scale /1000;
+        this.backgroundColor = color;
         this.init();
     }
 
@@ -33,7 +35,7 @@ class Screen {
         this.canvas.style.left = this.x + 'px';
         this.canvas.style.top = this.y + 'px';
        // this.scale = this.width * 0.00196;
-        this.scale = this.width * 0.003;
+        this.scale = this.width * this.scale_unit;
         this.canvas.addEventListener("touchmove", onTouchmove, false);
         this.canvas.addEventListener("mousemove", onMousemove, false);
         this.canvas.addEventListener("click", onMousedown, false);
@@ -46,12 +48,11 @@ class Screen {
 
     draw(){
         for (let index = 0; index < Screen.container.length; index++) {
-            const element = Screen.container[index];
-            element.draw();
+            Screen.container[index].draw();
         }
 
         this.context.drawImage(this.bufferCanvas,0,0);
-        //this.bufferContext.fillStyle = "green";
+        this.bufferContext.fillStyle = this.backgroundColor;
         this.bufferContext.fillRect(0, 0, this.width, this.height);
     }
 
