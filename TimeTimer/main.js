@@ -1,8 +1,9 @@
 var UPDATE_DELAY = 100;
-var screen = new Screen(1,1,4,"block");//ratio_h, ratio_v, scale, backgroundColor
+var screen = new Screen(1,1);//ratio_h, ratio_v
 var objects = new ObjectContainer(screen,["timer","arrow"],4);//screen , objects,  fileCount
 var minute =new Array(360);
 function main() {
+    screen.setScale(4);
 	screen.init();
     screen.addContainer(objects);
     var board = new Timer(ID.timer,Timer.BOARD,0,0,1);
