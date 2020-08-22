@@ -12,7 +12,16 @@ document.write(
 '</html>'
 );
 
+let SCREEN;
+function update() {
+	var start = new Date().getTime();
+	SCREEN.draw();
+    var delay = new Date().getTime() - start ; 
+    setTimeout(update, Screen.updateDelay - delay);
+}
+
 class Screen {
+    static updateDelay = 100;
     static container = new Array();
     constructor(ratio_h,ratio_v) {
         this.canvas = document.createElement( 'Canvas' );
@@ -30,6 +39,12 @@ class Screen {
         this.scale_unit = 1 /1000;
         this.backgroundColor = "block";
         this.init();
+
+        SCREEN = this;
+        window.onresize = function(event) {
+            SCREEN.init();
+        }
+        update();
     }
 
     setScale(scale){
@@ -58,14 +73,14 @@ class Screen {
         this.canvas.style.top = this.y + 'px';
        // this.scale = this.width * 0.00196;
         this.scale = this.width * this.scale_unit;
-        this.canvas.addEventListener("touchmove", onTouchmove, false);
-        this.canvas.addEventListener("mousemove", onMousemove, false);
-        this.canvas.addEventListener("click", onMousedown, false);
-        this.canvas.addEventListener("mousedown", onMouseup, false); 
-        this.canvas.addEventListener("mouseup", onMouseup, false); 
-        this.canvas.addEventListener("touchstart", onMousedown);
-        this.canvas.addEventListener("touchend", onMouseup);
-        window.addEventListener('keydown', onKeydown);
+        this.canvas.addEventListener("touchmove", onTouchMove, false);
+        this.canvas.addEventListener("mousemove", onMouseMove, false);
+        this.canvas.addEventListener("click", onMouseDown, false);
+        this.canvas.addEventListener("mousedown", onMouseUp, false); 
+        this.canvas.addEventListener("mouseup", onMouseUp, false); 
+        this.canvas.addEventListener("touchstart", onMouseDown);
+        this.canvas.addEventListener("touchend", onMouseUp);
+        window.addEventListener('keydown', onKeyDown);
     }
 
     draw(){
@@ -83,33 +98,33 @@ class Screen {
     }
 }
 
-function onMousemove(e) {
+function onMouseMove(e) {
     for (let index = 0; index < Screen.container.length; index++) {
-        Screen.container[index].onMousemove(e);
+        Screen.container[index].onMouseMove(e);
     }
 }
 
-function onMouseup(e) {
+function onMouseUp(e) {
     for (let index = 0; index < Screen.container.length; index++) {
-        Screen.container[index].onMouseup(e);
+        Screen.container[index].onMouseUp(e);
     }
 }
 
-function onMousedown(e) {
+function onMouseDown(e) {
     for (let index = 0; index < Screen.container.length; index++) {
-        Screen.container[index].onMousedown(e);
+        Screen.container[index].onMouseDown(e);
     }
 }
 
-function onKeydown(e) {
+function onKeyDown(e) {
     for (let index = 0; index < Screen.container.length; index++) {
-        Screen.container[index].onKeydown(e);
+        Screen.container[index].onKeyDown(e);
     }
 }
 
-function onTouchmove(e){
+function onTouchMove(e){
     for (let index = 0; index < Screen.container.length; index++) {
-        Screen.container[index].onTouchmove(e);
+        Screen.container[index].onTouchMove(e);
     }
 }
 
@@ -140,34 +155,34 @@ class ObjectContainer{
         this.OBJECT.splice(idx_frame,1);
     }
 
-    onMousemove(e){
+    onMouseMove(e){
         for(var i =0; i<this.OBJECT.length; i++){
-            if(this.OBJECT[i].onMousemove)this.OBJECT[i].onMousemove(e);
+            if(this.OBJECT[i].onMouseMove)this.OBJECT[i].onMouseMove(e);
         } 
     }
-    onMousedown(e){
+    onMouseDown(e){
         for(var i =0; i<this.OBJECT.length; i++){
-            if(this.OBJECT[i].onMousedown)this.OBJECT[i].onMousedown(e);
+            if(this.OBJECT[i].onMouseDown)this.OBJECT[i].onMouseDown(e);
         } 
     }
-    onMouseup(e){
+    onMouseUp(e){
         for(var i =0; i<this.OBJECT.length; i++){
-            if(this.OBJECT[i].onMouseup)this.OBJECT[i].onMouseup(e);
+            if(this.OBJECT[i].onMouseUp)this.OBJECT[i].onMouseUp(e);
         } 
     }
 
-    onKeydown(e) {
+    onKeyDown(e) {
         for(var i =0; i<this.OBJECT.length; i++){
             e.id = this.OBJECT[i].id;
             e.state = this.OBJECT[i].state;
-            if(this.OBJECT[i].onKeydown)this.OBJECT[i].onKeydown(e);
+            if(this.OBJECT[i].onKeyDown)this.OBJECT[i].onKeyDown(e);
         } 
         e.preventDefault();
     }
 
-    onTouchmove(e){
+    onTouchMove(e){
         for(var i =0; i<this.OBJECT.length; i++){
-            if(this.OBJECT[i].onTouchmove)this.OBJECT[i].onTouchmove(e);
+            if(this.OBJECT[i].onTouchMove)this.OBJECT[i].onTouchMove(e);
         } 
     }
   
@@ -433,7 +448,7 @@ class File{
     static fileCount = 0;
     static fileCountMax = 0;
     static img_loading = null;
-    static onLoading =null;
+    static onLoading = null;
     static appendLoading(fileCountMax){
         if(File.fileCountMax != 0){
             File.fileCountMax+=fileCountMax;
@@ -461,6 +476,7 @@ class File{
         var image = new Image();
         image.src = imagePath;
         if(File.onLoading)image.onload = File.onLoading(++File.fileCount);
+        console.log("loadImage: " + imagePath +" " + 1);
         return image;
     }
 
@@ -487,9 +503,9 @@ class File{
             SOUNDS[i].volume = volume ;
             if(File.onLoading)File.onLoading(++File.fileCount);
 
-            console.log("SOUND[" + i + "].src: " + soundPath + "/" + (i) + ".mp3");
+            //console.log("SOUND[" + i + "].src: " + soundPath + "/" + (i) + ".mp3");
         }
-        //console.log("loadSounds: " + soundPath +" "+ count);
+        console.log("loadSounds: " + soundPath +" "+ count);
         return SOUNDS;
     }
 
