@@ -23,8 +23,8 @@ class Arrow extends Frame {
 
     onMouseDown(e) {
         var mouseFrame = new Frame();
-        mouseFrame.centerX = e.offsetX / screen.scale;
-        mouseFrame.centerY = e.offsetY / screen.scale;
+        mouseFrame.centerX = e.mouseX;
+        mouseFrame.centerY = e.mouseY;
 
         var a = new Angle();
         var b= 270-a.get(this,mouseFrame);

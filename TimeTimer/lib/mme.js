@@ -120,7 +120,6 @@ function onMouseDown(e) {
     for (let index = 0; index < Screen.container.length; index++) {
         e.mouseX=e.offsetX / Screen.container[index].scale;
         e.mouseY=e.offsetY / Screen.container[index].scale;
-        console.log(Screen.container[index].scale)
         Screen.container[index].onMouseDown(e);
     }
 }
