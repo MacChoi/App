@@ -11,7 +11,7 @@ class Arrow extends Frame {
         this.sound = new File().loadSounds("object/arrow/sound",1,1.0);
     }
 
-    onDraw(){
+    onDraw(e){
         var now = (this.time_finish - new Date().getTime())/ 1000;
         for (let index = 0; index < now; index++) {
             minute[index].glow =2;
@@ -23,10 +23,8 @@ class Arrow extends Frame {
 
     onMouseDown(e) {
         var mouseFrame = new Frame();
-        mouseFrame.x=e.offsetX / screen.scale;
-        mouseFrame.y=e.offsetY / screen.scale;
-        mouseFrame.centerX = mouseFrame.x;
-        mouseFrame.centerY = mouseFrame.y;
+        mouseFrame.centerX = e.offsetX / screen.scale;
+        mouseFrame.centerY = e.offsetY / screen.scale;
 
         var a = new Angle();
         var b= 270-a.get(this,mouseFrame);

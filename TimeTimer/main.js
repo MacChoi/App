@@ -1,10 +1,11 @@
 var screen = new Screen(1,1);//ratio_h, ratio_v
-var objects = new ObjectContainer(screen,["timer","arrow"],4);//screen , objects,  fileCount
+var objects = new ObjectContainer(screen,["timer","arrow",],4);//screen , objects,  fileCount
 var minute =new Array(360);
 function main() {
     screen.setScale(4);
 	screen.init();
     screen.addContainer(objects);
+
     var board = new Timer(ID.timer,Timer.BOARD,0,0);
     var arrow = new Arrow(ID.arrow,Arrow.NEW,0,0);
     objects.add(board);

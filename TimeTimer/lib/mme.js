@@ -64,6 +64,7 @@ class Screen {
         }
         this.x = (window.innerWidth - this.width)/2;
         this.y = (window.innerHeight - this.height)/2;
+
         this.canvas.width=this.width;
         this.canvas.height=this.height;
         this.bufferCanvas.width=this.width;
@@ -71,16 +72,22 @@ class Screen {
         this.canvas.style.position = 'absolute';
         this.canvas.style.left = this.x + 'px';
         this.canvas.style.top = this.y + 'px';
-       // this.scale = this.width * 0.00196;
+
         this.scale = this.width * this.scale_unit;
-        this.canvas.addEventListener("touchmove", onTouchMove, false);
-        this.canvas.addEventListener("mousemove", onMouseMove, false);
         this.canvas.addEventListener("click", onMouseDown, false);
+        this.canvas.addEventListener("mousemove", onMouseMove, false);
         this.canvas.addEventListener("mousedown", onMouseUp, false); 
         this.canvas.addEventListener("mouseup", onMouseUp, false); 
-        this.canvas.addEventListener("touchstart", onMouseDown);
-        this.canvas.addEventListener("touchend", onMouseUp);
+        this.canvas.addEventListener("touchmove", onTouchMove, false);
+        this.canvas.addEventListener("touchstart", onTouchStart);
+        this.canvas.addEventListener("touchend", onTouchEnd);
         window.addEventListener('keydown', onKeyDown);
+
+        for (let index = 0; index < Screen.container.length; index++) {
+            Screen.container[index].scale = this.scale;
+            Screen.container[index].x = this.x;
+            Screen.container[index].y = this.y;
+        }
     }
 
     draw(){
@@ -94,25 +101,35 @@ class Screen {
     }
 
     addContainer(container){
+        container.scale = this.scale;
+        container.x = this.x;
+        container.y = this.y;
         Screen.container.push(container);
     }
 }
 
 function onMouseMove(e) {
     for (let index = 0; index < Screen.container.length; index++) {
+        e.mouseX=e.offsetX / Screen.container[index].scale;
+        e.mouseY=e.offsetY / Screen.container[index].scale;
         Screen.container[index].onMouseMove(e);
-    }
-}
-
-function onMouseUp(e) {
-    for (let index = 0; index < Screen.container.length; index++) {
-        Screen.container[index].onMouseUp(e);
     }
 }
 
 function onMouseDown(e) {
     for (let index = 0; index < Screen.container.length; index++) {
+        e.mouseX=e.offsetX / Screen.container[index].scale;
+        e.mouseY=e.offsetY / Screen.container[index].scale;
+        console.log(Screen.container[index].scale)
         Screen.container[index].onMouseDown(e);
+    }
+}
+
+function onMouseUp(e) {
+    for (let index = 0; index < Screen.container.length; index++) {
+        e.mouseX=e.offsetX / Screen.container[index].scale;
+        e.mouseY=e.offsetY / Screen.container[index].scale;
+        Screen.container[index].onMouseUp(e);
     }
 }
 
@@ -124,7 +141,25 @@ function onKeyDown(e) {
 
 function onTouchMove(e){
     for (let index = 0; index < Screen.container.length; index++) {
-        Screen.container[index].onTouchMove(e);
+        e.mouseX=(e.changedTouches[0].clientX / Screen.container[index].scale)-(Screen.container[index].x / Screen.container[index].scale);
+        e.mouseY=(e.changedTouches[0].clientY / Screen.container[index].scale)-(Screen.container[index].y / Screen.container[index].scale);
+        Screen.container[index].onMouseMove(e);
+    }
+}
+
+function onTouchStart(e){
+    for (let index = 0; index < Screen.container.length; index++) {
+        e.mouseX=(e.changedTouches[0].clientX / Screen.container[index].scale)-(Screen.container[index].x / Screen.container[index].scale);
+        e.mouseY=(e.changedTouches[0].clientY / Screen.container[index].scale)-(Screen.container[index].y / Screen.container[index].scale);
+        Screen.container[index].onMouseDown(e);
+    }
+}
+
+function onTouchEnd(e){
+    for (let index = 0; index < Screen.container.length; index++) {
+        e.mouseX=(e.changedTouches[0].clientX / Screen.container[index].scale)-(Screen.container[index].x / Screen.container[index].scale);
+        e.mouseY=(e.changedTouches[0].clientY / Screen.container[index].scale)-(Screen.container[index].y / Screen.container[index].scale);
+        Screen.container[index].onMouseUp(e);
     }
 }
 
@@ -180,12 +215,6 @@ class ObjectContainer{
         e.preventDefault();
     }
 
-    onTouchMove(e){
-        for(var i =0; i<this.OBJECT.length; i++){
-            if(this.OBJECT[i].onTouchMove)this.OBJECT[i].onTouchMove(e);
-        } 
-    }
-  
     setpixelated(context){
         context['imageSmoothingEnabled'] = false;       /* standard */
         context['mozImageSmoothingEnabled'] = false;    /* Firefox */
