@@ -27,7 +27,8 @@ function update() {
     setTimeout(this.update, UPDATE_DELAY - delay);
     
     var date = new Date();
-    clock_hour.state.rotate = [date.getHours()*6];
+    var hour = date.getHours() > 12 ? date.getHours()-12 : date.getHours();
+    clock_hour.state.rotate = [(hour * (360/12) + (date.getMinutes()/6)*3)];
     clock_minute.state.rotate = [date.getMinutes()*6];
     clock_second.state.rotate = [date.getSeconds()*6];
 }
