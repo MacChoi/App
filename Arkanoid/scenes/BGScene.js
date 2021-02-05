@@ -9,12 +9,12 @@ class BGScene extends Phaser.Scene {
     }
     
     preload(){
-        // this.load.setPath('./../assets/images');
+        this.load.setPath('./assets/images');
         
-        this.load.image('bg', './assets/images/bg/bg.png');
-        this.load.image('player', './assets/images/player/player.png');
-        this.load.image('ball', './assets/images/ball/ball.png');
-        this.load.image('block', './assets/images/block/block.png');
+        this.load.image('bg', 'bg/bg.png');
+        this.load.image('player', 'player/player.png');
+        this.load.image('ball', 'ball/ball.png');
+        this.load.image('block', 'block/block.png');
     }
 
     create (){
