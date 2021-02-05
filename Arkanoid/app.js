@@ -1,4 +1,4 @@
-import BGScene from "./scenes/BGScene.js";
+// import BGScene from "./scenes/BGScene.js";
 
 var config = {
     type: Phaser.AUTO,
