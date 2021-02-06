@@ -35,6 +35,20 @@ class BGScene extends Phaser.Scene {
             gridAlign: { width:9, cellWidth: 15, cellHeight: 7, x: 30, y: 30 }
         });
 
+        var i=0;
+        var colors = [ 0xffff00, 0xff0000, 0x00ff00, 0x0000ff ];
+        this.block.children.iterate(function (child) {
+            this.tweens.add({
+                targets: child,
+                ease: 'Sine.easeInOut',
+                tint: colors[i]
+            });
+            i++;
+            if (i % 4 === 0){
+                i = 0;
+            }
+        }, this);
+
         this.physics.add.collider(this.ball, this.player, this.playerHit, null, this);
         this.physics.add.collider(this.ball, this.block, this.blockHit, null, this);
     }
