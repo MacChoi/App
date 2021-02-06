@@ -18,6 +18,20 @@ class BGScene extends Phaser.Scene {
     }
 
     create (){
+        var config_height = this.game.config.height;
+        this.physics.world.setBoundsCollision(true, true, true, false);
+        this.physics.world.on("worldbounds", function (body) {
+            if (body) {
+                if (body.gameObject.texture.key === 'ball') {
+                    if (config_height <= body.position.y) {
+                        body.setVelocity(-300, -150);
+                        body.gameObject.setPosition(90, 180);
+                        console.log('Game Over ' +config_height  + " " +body.position.y);
+                    }
+                }
+            }
+        });
+
         this.add.image(0, 0, 'bg').setOrigin(0, 0);
         this.player = this.physics.add.image(90, 200, 'player').setImmovable();
         this.input.on('pointermove', pointer => {
@@ -28,6 +42,8 @@ class BGScene extends Phaser.Scene {
         .setCollideWorldBounds(true)
         .setBounce(1)
         .setVelocity(-300, -150);
+        this.ball.body.setCollideWorldBounds(true);
+        this.ball.body.onWorldBounds = true;
         
         this.block = this.physics.add.staticGroup({
             key: 'block',
@@ -35,18 +51,9 @@ class BGScene extends Phaser.Scene {
             gridAlign: { width:9, cellWidth: 15, cellHeight: 7, x: 30, y: 30 }
         });
 
-        var i=0;
-        var colors = [ 0xffff00, 0xff0000, 0x00ff00, 0x0000ff ];
-        this.block.children.iterate(function (child) {
-            this.tweens.add({
-                targets: child,
-                ease: 'Sine.easeInOut',
-                tint: colors[i]
-            });
-            i++;
-            if (i % 4 === 0){
-                i = 0;
-            }
+        const HSV = Phaser.Display.Color.HSVColorWheel();
+        this.block.children.iterate(function (child, index) {
+            child.setTint(HSV[5 * index].color);
         }, this);
 
         this.physics.add.collider(this.ball, this.player, this.playerHit, null, this);
