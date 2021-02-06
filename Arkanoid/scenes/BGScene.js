@@ -1,6 +1,5 @@
 // export default 
 class BGScene extends Phaser.Scene {
-    
     constructor () {
         super({
             key:'BGScene',
@@ -26,7 +25,7 @@ class BGScene extends Phaser.Scene {
                     if (config_height <= body.position.y) {
                         body.setVelocity(-300, -150);
                         body.gameObject.setPosition(90, 180);
-                        console.log('Game Over ' +config_height  + " " +body.position.y);
+                        // console.log('Game Over ' +config_height  + " " +body.position.y);
                     }
                 }
             }
@@ -62,6 +61,13 @@ class BGScene extends Phaser.Scene {
 
     blockHit(ball,block) {
         block.destroy();
+
+        if(this.block.children.size == 0){
+            this.scene.restart();
+        }
+
+        console.log(this.block.children.size);
+       
     }
     
     playerHit(ball,player) {
