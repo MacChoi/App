@@ -18,7 +18,7 @@ class BGScene extends Phaser.Scene {
 
     create (){
         var config_height = this.game.config.height;
-        this.physics.world.setBoundsCollision(true, true, true, false);
+        this.physics.world.setBoundsCollision(true, true, true, true);
         this.physics.world.on("worldbounds", function (body) {
             if (body) {
                 if (body.gameObject.texture.key === 'ball') {
