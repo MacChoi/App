@@ -13,24 +13,59 @@ class JoystickScene extends Phaser.Scene{
     }
   
     create(){
-        var button = this.add.image(1000, 1800, 'button').setScale(3);
-        button.setInteractive();
-        button.setTint(0x44ff44);
-        button.on('pointerover', function () {
-            button.setAlpha(0.5);
-        });
+        // var button = this.add.image(1000, 1800, 'button').setScale(3);
+        // button.setInteractive();
+        // button.setTint(0x44ff44);
+        // button.on('pointerover', function () {
+        //     button.setAlpha(0.1);
+        // });
     
-        button.on('pointerout', function () {
-            button.setAlpha(1);
-        });
+        // button.on('pointerout', function () {
+        //     button.setAlpha(1);
+        // });
 
-        this.joystick= new VirtualJoystick({
+        // button.on('pointerup', function () {
+        //     alert("click");
+        // });
+
+        this.joystick1= new VirtualJoystick({
             container	: document.getElementById('container'),
             mouseSupport	: true,
-            limitStickTravel: true,
-            stickRadius	: 50
+            strokeStyle	: 'cyan',
+            // limitStickTravel: true,
+            stickRadius	: 120	
         });
-     
+
+        this.joystick1.addEventListener('touchStartValidation', function(event){
+            var touch	= event.changedTouches[0];
+            if( touch.pageX >= window.innerWidth/2 )	return false;
+            return true
+        });
+
+        // one on the right of the screen
+        this.joystick2	= new VirtualJoystick({
+            container	: document.body,
+            strokeStyle	: 'orange',
+            limitStickTravel: true,
+            stickRadius	: 0		
+	    });
+        this.joystick2.addEventListener('touchStartValidation', function(event){
+            var touch	= event.changedTouches[0];
+            if( touch.pageX < window.innerWidth/2 )	
+            return false;
+        });
+
+        this.joystick2.addEventListener('touchStart', function(){
+            console.log('fire')
+        })
+
+        // this.joystick2.addEventListener('touchStart', function(){
+        //     console.log('down')
+        // })
+        // this.joystick2.addEventListener('touchEnd', function(){
+        //     console.log('up')
+        // })
+      
         // scene.input.keyboard.on('keyup_LEFT', this.moveLeft, this);
         // scene.input.keyboard.on('keyup_RIGHT', this.moveRight, this);
         // scene.input.keyboard.on('keyup_UP', this.moveUp, this);
@@ -41,7 +76,7 @@ class JoystickScene extends Phaser.Scene{
     }
 
     update(){
-        var joystick=this.joystick;
+        var joystick=this.joystick1;
         // console.log(
         // ' dx:'+joystick.deltaX()
         // + ' dy:'+joystick.deltaY()
@@ -59,7 +94,6 @@ class JoystickScene extends Phaser.Scene{
     onKeyup (event){
         let code = event.keyCode;
         if (code === Phaser.Input.Keyboard.KeyCodes.A){}
-        
         eventsCenter.emit("keyup", event);
     }
 }
