@@ -41,9 +41,7 @@ class BGScene extends Phaser.Scene {
         .setCollideWorldBounds(true)
         .setBounce(1)
         .setVelocity(-300, -150);
-        this.ball.body.setCollideWorldBounds(true);
-        this.ball.body.onWorldBounds = true;
-        
+    
         this.block = this.physics.add.staticGroup({
             key: 'block',
             frameQuantity: 45,

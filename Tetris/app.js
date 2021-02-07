@@ -1,25 +1,23 @@
-// import BGScene from "./scenes/BGScene.js";
-
 var config = {
     type: Phaser.AUTO,
     parent: 'phaser',
-    title: "ARKABOID",
+    title: "OMOK",
     version: "0.0.1",
     backgroundColor: '#000000',
-    physics: {
-        default: 'arcade',
-        arcade: {
-            //debug: true,
-        }
-    },
-    scene: [BGScene],
+    scene: [GameScene,JoystickScene],
     scale: {
         mode: Phaser.Scale.FIT,
         parent: 'phaser',
-        width:177,
-        height: 215,
+        width:1200,
+        height: 2000,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: true,
+        }
+    },
 };
 var game = new Phaser.Game(config);
