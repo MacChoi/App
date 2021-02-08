@@ -8,9 +8,7 @@ class JoystickScene extends Phaser.Scene{
         this.virtualJoystick =0;
     }
 
-    preload(){
-        this.load.image('button', './lib/joystick/button.png');
-    }
+    preload(){}
   
     create(){
         // var button = this.add.image(1000, 1800, 'button').setScale(3);
@@ -32,8 +30,8 @@ class JoystickScene extends Phaser.Scene{
             container	: document.getElementById('container'),
             mouseSupport	: true,
             strokeStyle	: 'cyan',
-            // limitStickTravel: true,
-            stickRadius	: 120	
+            limitStickTravel: true,
+            stickRadius	: 20	
         });
 
         this.joystick1.addEventListener('touchStartValidation', function(event){

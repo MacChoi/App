@@ -1,4 +1,4 @@
-class CheckStone{
+class CheckTile{
     constructor(scene,px,py){
         this.scene = scene;
         this.px = px;

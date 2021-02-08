@@ -1,4 +1,5 @@
-var config = {
+const eventsCenter = new Phaser.Events.EventEmitter();
+const config = {
     type: Phaser.AUTO,
     parent: 'phaser',
     title: "OMOK",
@@ -8,7 +9,7 @@ var config = {
     scale: {
         mode: Phaser.Scale.FIT,
         parent: 'phaser',
-        width:1200,
+        width: 1000,
         height: 2000,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -16,8 +17,8 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            // debug: true,
+            debug: true,
         }
     },
 };
-var game = new Phaser.Game(config);
+const game = new Phaser.Game(config);
