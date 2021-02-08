@@ -12,6 +12,8 @@ class GameScene extends Phaser.Scene{
         this.tRotate = 0;
         this.isRotate = false;
         this.checkSpeed = 1000;
+
+        this.indexCheckArray =0;
     }
 
     preload(){
@@ -31,12 +33,12 @@ class GameScene extends Phaser.Scene{
 
         Phaser.Actions.PlaceOnRectangle(this.tGroup.getChildren(), rect);
         this.tContainer = this.add.container(0,0);
-        // this.destroyContainer= this.add.container(0,0);
+        this.destroyContainer= this.add.container(0,0);
        
         this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));
        
         eventsCenter.on('keyup', this.onKeyCode, this);
-        // this.moveDownTile(this.startX,this.startY);
+        this.moveDownTile(this.startX,this.startY);
     }
  
     onKeyCode (event){
@@ -51,13 +53,15 @@ class GameScene extends Phaser.Scene{
                 this.tContainer.setPosition(this.tContainer.x,this.tContainer.y+= this.tHeight );
             break;
             case Phaser.Input.Keyboard.KeyCodes.UP:
-                this.scene.restart();
-                // this.tContainer.setPosition(this.tContainer.x,this.tContainer.y-= this.tHeight );
+                this.tContainer.setPosition(this.tContainer.x,this.tContainer.y-= this.tHeight );
             break;
             case Phaser.Input.Keyboard.KeyCodes.SPACE:
                 this.isRotate =false;
                 this.rotateTile();
             break;
+            case Phaser.Input.Keyboard.KeyCodes.A:
+                this.checkTile();
+            break;   
         }
     }
     
@@ -69,7 +73,8 @@ class GameScene extends Phaser.Scene{
         this.tContainer.each(function(obj){
             obj.destroy();
         }.bind(this));
-        this.tContainer.setPosition(tx,ty);
+        var y= type == 0? this.tWidth:0;
+        this.tContainer.setPosition(tx,ty +y );
         this.color = Phaser.Display.Color.HSVColorWheel()[50 * type].color;
         for (var j = 0; j < 4; j++) {
             for (var i = 0; i < 4; i++) {
@@ -78,37 +83,37 @@ class GameScene extends Phaser.Scene{
                 sprite.setTint(this.color);
                 this.tContainer.add(sprite);
 
-                this.physics.add.collider(sprite, this.tGroup,this.onTileHit,null,this);
-                this.physics.add.collider(sprite, this.tBoundGroup,this.onTileBoundHit,null,this);
+                // this.physics.add.collider(sprite, this.tGroup,this.onTileHit,null,this);
+                // this.physics.add.collider(sprite, this.tBoundGroup,this.onTileBoundHit,null,this);
             }
         }
     }
 
     onTileHit(tile,tGroup){
-        console.log("onTileHit ",tGroup.y)
+        console.log("onTileHit ",tile.x,tGroup.x)
         this.tContainer.x= this.pX;
         this.tContainer.y= this.pY;
         if(this.isRotate){
             this.tRotate = this.tRotate > 0 ?this.tRotate-1:3;
             this.newTile(this.tContainer.x,this.tContainer.y,this.tType);
         }else{
-            // this.isHit =true;
+            this.isHit =true;
             // if(tGroup.y <=100){
             //     alert("Game Over!!" +this.pY);
-            //     this.tileAllContainer.each(function(obj){
+            //     this.destroyContainer.each(function(obj){
             //         obj.destroy();
             //     }.bind(this));
             // }else{
-            //     this.addTile();
-            //     this.tween.stop();
-                // this.pX = this.startX;
-                // this.pY = this.startY;
+                this.addTile();
+                this.tween.stop();
+                this.pX = this.startX;
+                this.pY = this.startY;
              
-            //     this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));
-            //     var y = this.tType == 0 ? this.tHeight : 0;
-            //     this.tContainer.setPosition(this.startX,this.startY + y );
-            //     this.moveDownTile(this.startX,this.startY);  
-            //     this.isHit = false;
+                this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));
+                var y = this.tType == 0 ? this.tHeight : 0;
+                this.tContainer.setPosition(this.startX,this.startY + y );
+                this.moveDownTile(this.startX,this.startY);  
+                this.isHit = false;
             // }
         }
     }
@@ -118,7 +123,7 @@ class GameScene extends Phaser.Scene{
             var sprite = this.physics.add.sprite(this.tContainer.x+obj.x,this.tContainer.y+obj.y, "tile");
             sprite.setTint(this.color);
             this.tGroup.add(sprite);
-            this.tileAllContainer.add(sprite);
+            this.destroyContainer.add(sprite);
             this.physics.add.collider(sprite, this.tGroup,this.onTileHit,null,this);
         }.bind(this));
     }
@@ -140,8 +145,42 @@ class GameScene extends Phaser.Scene{
         })
     }
 
-    update(){
-        this.pX = this.tContainer.x;
-        this.pY = this.tContainer.y;
+    isTile(x,y){
+        var rect = this.add.rectangle(x-10,y-10,20,20).setStrokeStyle(10,0x00ff00);
+        var overlapRect = this.physics.overlapRect(x-10,y-10,20,20);
+        if(overlapRect.length>1)return true;
+        return false;
+    } 
+
+    checkTile(){
+        var obj = this.tContainer.list[this.indexCheckArray];
+        var x = this.tContainer.x + obj.x;
+        var y = this.tContainer.y + obj.y;
+        var rect = this.add.rectangle(x,y,obj.width,obj.height).setStrokeStyle(10,0x00ff00);
+    
+        this.tweens.add({
+            targets:rect,
+            x:x,
+            y:y,
+            duration:this.checkSpeed,
+            onComplete:function(tween,tergets){
+                rect.destroy();
+                var obj = this.tContainer.list[this.indexCheckArray];
+                var x = this.tContainer.x +obj.x;
+                var y = this.tContainer.y +obj.y;
+                if(this.isTile(x,y)){
+                    this.tContainer.setPosition(this.startX,this.startY);
+                    return
+                }
+                
+                if(this.indexCheckArray < this.tContainer.list.length-1){ 
+                    this.indexCheckArray++;
+                    this.checkTile(x,y);
+                    
+                }else{
+                    this.indexCheckArray=0;
+                }
+            }.bind(this)
+        })
     }
 }
