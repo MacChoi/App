@@ -5,13 +5,14 @@ class GameScene extends Phaser.Scene{
             active:true
         });
         this.startX=300;
-        this.startY=0;
+        this.startY=-100;
         this.tWidth = 100;
         this.tHeight = 100;
         this.tType = 0;
         this.tRotate = 0;
         this.isRotate = false;
-        this.checkSpeed = 1000;
+        this.isDown= false;
+        this.checkSpeed = 100;
 
         this.indexCheckArray =0;
     }
@@ -26,18 +27,17 @@ class GameScene extends Phaser.Scene{
     }
 
     create(){
-        const rect = new Phaser.Geom.Rectangle(0, 0, game.scale.baseSize.width, game.scale.baseSize.height);
+        const rect = new Phaser.Geom.Rectangle(0, -200, game.scale.baseSize.width, game.scale.baseSize.height +200);
         this.tGroup = this.physics.add.group({ 
             key: 'tile', frameQuantity: 60
         });
-
         Phaser.Actions.PlaceOnRectangle(this.tGroup.getChildren(), rect);
+        this.destroyGroup= this.add.group(0,0);
         this.tContainer = this.add.container(0,0);
-        this.destroyContainer= this.add.container(0,0);
-       
-        this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));
-       
+
         eventsCenter.on('keyup', this.onKeyCode, this);
+        
+        this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));
         this.moveDownTile(this.startX,this.startY);
     }
  
@@ -61,13 +61,10 @@ class GameScene extends Phaser.Scene{
                 }.bind(this));
             break;
             case Phaser.Input.Keyboard.KeyCodes.DOWN:
-                this.tContainer.setPosition(this.tContainer.x,this.tContainer.y+= this.tHeight );
+      
             break;
-            case Phaser.Input.Keyboard.KeyCodes.UP:
-                this.tContainer.setPosition(this.tContainer.x,this.tContainer.y-= this.tHeight );
-            break;
+ 
             case Phaser.Input.Keyboard.KeyCodes.A:
-                this.isRotate =false;
                 this.rotateTile();
             break;
             case Phaser.Input.Keyboard.KeyCodes.SPACE:
@@ -80,66 +77,44 @@ class GameScene extends Phaser.Scene{
         this.tType = type;
         this.tContainer.x = tx;
         this.tContainer.y = ty;
-        var json = this.cache.json.get(""+type);
+        var json = this.cache.json.get(""+this.tType);
         this.tContainer.each(function(obj){
             obj.destroy();
         }.bind(this));
-        var y= type == 0? this.tWidth:0;
-        this.tContainer.setPosition(tx,ty +y );
+       
+        this.tContainer.setPosition(tx,ty);
         this.color = Phaser.Display.Color.HSVColorWheel()[50 * type].color;
         for (var j = 0; j < 4; j++) {
             for (var i = 0; i < 4; i++) {
                 if(json.tile[this.tRotate][j][i] == 0)continue;
-                var sprite = this.physics.add.sprite((j*this.tWidth),(i*this.tHeight), "tile");
-                sprite.setTint(this.color);
-                this.tContainer.add(sprite);
-                // this.physics.add.collider(sprite, this.tGroup,this.onTileHit,null,this);
-                // this.physics.add.collider(sprite, this.tBoundGroup,this.onTileBoundHit,null,this);
+                var image = this.add.image((i*this.tWidth),(j*this.tHeight), "tile");
+                image.setTint(this.color);
+                this.tContainer.add(image);
             }
         }
-    }
 
-    onTileHit(tile,tGroup){
-        console.log("onTileHit ",tile.x,tGroup.x)
-        this.tContainer.x= this.pX;
-        this.tContainer.y= this.pY;
-        if(this.isRotate){
-            this.tRotate = this.tRotate > 0 ?this.tRotate-1:3;
-            this.newTile(this.tContainer.x,this.tContainer.y,this.tType);
-        }else{
-            this.isHit =true;
-            // if(tGroup.y <=100){
-            //     alert("Game Over!!" +this.pY);
-            //     this.destroyContainer.each(function(obj){
-            //         obj.destroy();
-            //     }.bind(this));
-            // }else{
-                this.addTile();
-                this.tween.stop();
-                this.pX = this.startX;
-                this.pY = this.startY;
-             
-                this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));
-                var y = this.tType == 0 ? this.tHeight : 0;
-                this.tContainer.setPosition(this.startX,this.startY + y );
-                this.moveDownTile(this.startX,this.startY);  
-                this.isHit = false;
-            // }
-        }
+        this.checkTile(tx,ty,
+            function (checksum){
+                if(checksum>0){
+                    
+                    alert("Game Over!!!");
+                    this.resetGame();
+                }
+        }.bind(this));
     }
 
     addTile(){
         this.tContainer.each(function(obj){
-            var sprite = this.physics.add.sprite(this.tContainer.x+obj.x,this.tContainer.y+obj.y, "tile");
-            sprite.setTint(this.color);
-            this.tGroup.add(sprite);
-            this.destroyContainer.add(sprite);
-            this.physics.add.collider(sprite, this.tGroup,this.onTileHit,null,this);
+            var image = this.physics.add.image(this.tContainer.x+obj.x,this.tContainer.y+obj.y, "tile");
+            image.setTint(this.color);
+
+            this.tGroup.add(image);
+            this.destroyGroup.add(image);       
         }.bind(this));
     }
 
     rotateTile(){
-        this.isRotate = true;
+        console.log("rotateTile ",this.tType);
         this.newTile(this.tContainer.x,this.tContainer.y,this.tType);
         this.tRotate = this.tRotate < 3 ?this.tRotate+1:0;
     }
@@ -150,7 +125,21 @@ class GameScene extends Phaser.Scene{
             y:this.tContainer.y + this.tHeight,
             duration:this.checkSpeed,
             onComplete:function(tween,tergets){
-                this.moveDownTile(this.tContainer.x,this.tContainer.y);
+                this.checkTile(this.tContainer.x,this.tContainer.y + this.tHeight,
+                    function (checksum){
+                        console.log("moveDownTile checksum " + checksum)
+                        if(checksum>0){
+                            this.tween.stop();
+                            this.addTile();
+                            
+                            this.tContainer.setPosition(this.startX,this.startY);
+                            this.tRotate = 0;
+                            this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));      
+                            this.moveDownTile(this.startX,this.startY);
+                        }else{
+                            this.moveDownTile(this.tContainer.x,this.tContainer.y);
+                        }
+                }.bind(this));
             }.bind(this)
         })
     }
@@ -159,5 +148,11 @@ class GameScene extends Phaser.Scene{
         new TweensCheck(this,px,py,this.tContainer.list,function (checksum){
             callback(checksum);
         }.bind(this))
+    }
+
+    resetGame(){
+        this.destroyGroup.children.each(function(item) {
+            item.destroy();
+        }, this);
     }
 }

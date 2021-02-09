@@ -9,9 +9,9 @@ class TweensCheck{
         this.checkSum =0;
         this.callback = callback;
 
-        for(var i = 0; i < this.checkArray.length; i++){
-            this.checkArray[i].body.enable = false;
-        }
+        // for(var i = 0; i < this.checkArray.length; i++){
+        //     this.checkArray[i].body.enable = false;
+        // }
 
         this.check(px,py);
     }
