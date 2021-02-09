@@ -44,10 +44,21 @@ class GameScene extends Phaser.Scene{
     onKeyCode (event){
         switch (event.keyCode) {
             case Phaser.Input.Keyboard.KeyCodes.LEFT:
-                this.tContainer.setPosition(this.tContainer.x-= this.tWidth,this.tContainer.y );
+                this.checkTile(this.tContainer.x- this.tWidth,this.tContainer.y,
+                    function (checksum){
+                        console.log("checksum " + checksum)
+                        if(checksum==0)
+                        this.tContainer.setPosition(this.tContainer.x-= this.tWidth,this.tContainer.y );
+                }.bind(this));
+
             break;
             case Phaser.Input.Keyboard.KeyCodes.RIGHT:
-                this.tContainer.setPosition(this.tContainer.x+= this.tWidth,this.tContainer.y );
+                this.checkTile(this.tContainer.x+ this.tWidth,this.tContainer.y,
+                    function (checksum){
+                        console.log("checksum " + checksum)
+                        if(checksum==0)
+                        this.tContainer.setPosition(this.tContainer.x+= this.tWidth,this.tContainer.y );
+                }.bind(this));
             break;
             case Phaser.Input.Keyboard.KeyCodes.DOWN:
                 this.tContainer.setPosition(this.tContainer.x,this.tContainer.y+= this.tHeight );
@@ -55,12 +66,12 @@ class GameScene extends Phaser.Scene{
             case Phaser.Input.Keyboard.KeyCodes.UP:
                 this.tContainer.setPosition(this.tContainer.x,this.tContainer.y-= this.tHeight );
             break;
-            case Phaser.Input.Keyboard.KeyCodes.SPACE:
+            case Phaser.Input.Keyboard.KeyCodes.A:
                 this.isRotate =false;
                 this.rotateTile();
             break;
-            case Phaser.Input.Keyboard.KeyCodes.A:
-                this.checkTile();
+            case Phaser.Input.Keyboard.KeyCodes.SPACE:
+                this.checkTile(this.tContainer.x,this.tContainer.y,function (checksum){});
             break;   
         }
     }
@@ -82,7 +93,6 @@ class GameScene extends Phaser.Scene{
                 var sprite = this.physics.add.sprite((j*this.tWidth),(i*this.tHeight), "tile");
                 sprite.setTint(this.color);
                 this.tContainer.add(sprite);
-
                 // this.physics.add.collider(sprite, this.tGroup,this.onTileHit,null,this);
                 // this.physics.add.collider(sprite, this.tBoundGroup,this.onTileBoundHit,null,this);
             }
@@ -145,42 +155,9 @@ class GameScene extends Phaser.Scene{
         })
     }
 
-    isTile(x,y){
-        var rect = this.add.rectangle(x-10,y-10,20,20).setStrokeStyle(10,0x00ff00);
-        var overlapRect = this.physics.overlapRect(x-10,y-10,20,20);
-        if(overlapRect.length>1)return true;
-        return false;
-    } 
-
-    checkTile(){
-        var obj = this.tContainer.list[this.indexCheckArray];
-        var x = this.tContainer.x + obj.x;
-        var y = this.tContainer.y + obj.y;
-        var rect = this.add.rectangle(x,y,obj.width,obj.height).setStrokeStyle(10,0x00ff00);
-    
-        this.tweens.add({
-            targets:rect,
-            x:x,
-            y:y,
-            duration:this.checkSpeed,
-            onComplete:function(tween,tergets){
-                rect.destroy();
-                var obj = this.tContainer.list[this.indexCheckArray];
-                var x = this.tContainer.x +obj.x;
-                var y = this.tContainer.y +obj.y;
-                if(this.isTile(x,y)){
-                    this.tContainer.setPosition(this.startX,this.startY);
-                    return
-                }
-                
-                if(this.indexCheckArray < this.tContainer.list.length-1){ 
-                    this.indexCheckArray++;
-                    this.checkTile(x,y);
-                    
-                }else{
-                    this.indexCheckArray=0;
-                }
-            }.bind(this)
-        })
+    checkTile(px,py,callback){
+        new TweensCheck(this,px,py,this.tContainer.list,function (checksum){
+            callback(checksum);
+        }.bind(this))
     }
 }

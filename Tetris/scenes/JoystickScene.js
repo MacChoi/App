@@ -4,27 +4,15 @@ class JoystickScene extends Phaser.Scene{
             key:'JoystickScene',
             active:true
         });
-        
-        this.virtualJoystick =0;
+ 
+        this.delay = 250;
     }
 
     preload(){}
   
     create(){
-        // var button = this.add.image(1000, 1800, 'button').setScale(3);
-        // button.setInteractive();
-        // button.setTint(0x44ff44);
-        // button.on('pointerover', function () {
-        //     button.setAlpha(0.1);
-        // });
-    
-        // button.on('pointerout', function () {
-        //     button.setAlpha(1);
-        // });
-
-        // button.on('pointerup', function () {
-        //     alert("click");
-        // });
+        this.timer = this.time.addEvent({ delay: this.delay,
+             callback: this.onTimerEvent, callbackScope: this, loop: true });
 
         this.joystick1= new VirtualJoystick({
             container	: document.getElementById('container'),
@@ -54,15 +42,15 @@ class JoystickScene extends Phaser.Scene{
         });
 
         this.joystick2.addEventListener('touchStart', function(){
-            console.log('fire')
-        })
+            this.onKeyup({keyCode : Phaser.Input.Keyboard.KeyCodes.A});
+        }.bind(this))
 
-        // this.joystick2.addEventListener('touchStart', function(){
-        //     console.log('down')
-        // })
-        // this.joystick2.addEventListener('touchEnd', function(){
-        //     console.log('up')
-        // })
+        this.joystick2.addEventListener('touchStart', function(){
+            // console.log('down')
+        })
+        this.joystick2.addEventListener('touchEnd', function(){
+            // console.log('up')
+        })
       
         // scene.input.keyboard.on('keyup_LEFT', this.moveLeft, this);
         // scene.input.keyboard.on('keyup_RIGHT', this.moveRight, this);
@@ -73,7 +61,7 @@ class JoystickScene extends Phaser.Scene{
         this.input.keyboard.on('keyup', this.onKeyup, this); 
     }
 
-    update(){
+    onTimerEvent(){
         var joystick=this.joystick1;
         // console.log(
         // ' dx:'+joystick.deltaX()
@@ -94,4 +82,8 @@ class JoystickScene extends Phaser.Scene{
         if (code === Phaser.Input.Keyboard.KeyCodes.A){}
         eventsCenter.emit("keyup", event);
     }
+
+    // update (){
+    //     console.log('Event.progress: ' + this.timer.getProgress().toString().substr(0, 4));
+    // }
 }
