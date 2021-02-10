@@ -135,11 +135,12 @@ class GameScene extends Phaser.Scene{
     }
 
     resetGame(){
-        this.destroyGroup.children.each(
-            function(obj){
-                obj.destroy();
-            }
-        )
+        this.scene.restart();
+        // this.destroyGroup.children.each(
+        //     function(obj){
+        //         obj.destroy();
+        //     }
+        // )
     }
 
     addBlock(){
