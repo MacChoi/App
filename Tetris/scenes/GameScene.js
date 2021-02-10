@@ -6,14 +6,11 @@ class GameScene extends Phaser.Scene{
         });
         this.startX=300;
         this.startY=-100;
-        this.tWidth = 100;
-        this.tHeight = 100;
-        this.tType = 0;
-        this.tRotate = 0;
-        this.isRotate = false;
-        this.isDown= false;
-        this.checkSpeed = 1000;
-        this.indexCheckArray =0;
+        this.blockWidth = 100;
+        this.blockHeight = 100;
+        this.blockType = 0;
+        this.blockRotate = 0;
+        this.checkSpeed = 500;
     }
 
     preload(){
@@ -33,28 +30,34 @@ class GameScene extends Phaser.Scene{
         Phaser.Actions.PlaceOnRectangle(this.addGroup.getChildren(), rect);
 
         this.destroyGroup= this.add.group(0,0);
-        this.tContainer = this.add.container(0,0);
+        this.blockContainer = this.add.container(0,0);
 
         eventsCenter.on('keyup', this.onKeyCode, this);
         
-        this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));
-        // this.moveDownTile(this.startX,this.startY);
-
+        this.newBlock(this.startX,this.startY, Phaser.Math.Between(0, 4));
         this.timer = this.time.addEvent({ delay: this.checkSpeed,
             callback: this.onTimerEvent, callbackScope: this, loop: true });
 
+        this.clearBlockContainer = this.add.container(0,-200);
+        for (let i = 0; i < 9 ; i++) {
+            var image = this.add.image(i * this.blockWidth,0, "tile");
+            image.setAlpha(0.5);
+            this.clearBlockContainer.add(image);
+        }
     }
     
     onTimerEvent(){
-        this.checkTile(this.tContainer.x,this.tContainer.y +this.tHeight,
+        this.checkBlock(this.blockContainer.x,this.blockContainer.y +this.blockHeight,
             function (checksum){
-                if(checksum==0)
-                this.tContainer.setPosition(this.tContainer.x,this.tContainer.y +this.tHeight);
+                if(checksum==0){
+                    this.blockContainer.setPosition(this.blockContainer.x,this.blockContainer.y +this.blockHeight);
+                    this.checkClearBlock(100,1900);
+                }
                 else{
-                    this.addTile();
-                    this.tContainer.setPosition(this.startX,this.startY);
-                    this.tRotate = 0;
-                    this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));      
+                    this.addBlock();
+                    this.blockContainer.setPosition(this.startX,this.startY);
+                    this.blockRotate = 0;
+                    this.newBlock(this.startX,this.startY, Phaser.Math.Between(0, 4));      
                 }
             }.bind(this)
         );
@@ -63,35 +66,34 @@ class GameScene extends Phaser.Scene{
     onKeyCode (event){
         switch (event.keyCode) {
             case Phaser.Input.Keyboard.KeyCodes.LEFT:
-                this.checkTile(this.tContainer.x- this.tWidth,this.tContainer.y,
+                this.checkBlock(this.blockContainer.x- this.blockWidth,this.blockContainer.y,
                     function (checksum){
                         console.log("LEFT checksum " + checksum)
                         if(checksum==0)
-                        this.tContainer.setPosition(this.tContainer.x-= this.tWidth,this.tContainer.y );
+                        this.blockContainer.setPosition(this.blockContainer.x-= this.blockWidth,this.blockContainer.y );
                 }.bind(this));
 
             break;
             case Phaser.Input.Keyboard.KeyCodes.RIGHT:
-                this.checkTile(this.tContainer.x+ this.tWidth,this.tContainer.y,
+                this.checkBlock(this.blockContainer.x+ this.blockWidth,this.blockContainer.y,
                     function (checksum){
+                        console.log("RIGHT checksum " + checksum)
                         if(checksum==0)
-                        this.tContainer.setPosition(this.tContainer.x+= this.tWidth,this.tContainer.y );
+                        this.blockContainer.setPosition(this.blockContainer.x+= this.blockWidth,this.blockContainer.y );
                 }.bind(this));
             break;
             case Phaser.Input.Keyboard.KeyCodes.DOWN:
-                this.checkTile(this.tContainer.x,this.tContainer.y +this.tHeight,
+                this.checkBlock(this.blockContainer.x,this.blockContainer.y +this.blockHeight,
                     function (checksum){
                         if(checksum==0)
-                        this.tContainer.setPosition(this.tContainer.x,this.tContainer.y +this.tHeight);
+                        this.blockContainer.setPosition(this.blockContainer.x,this.blockContainer.y +this.blockHeight);
                 }.bind(this));
             break;
- 
             case Phaser.Input.Keyboard.KeyCodes.A:
-                this.rotateTile();
-            break;
-
-            case Phaser.Input.Keyboard.KeyCodes.SPACE:
-                this.checkTile(this.tContainer.x,this.tContainer.y,function (checksum){});
+                this.rotateBlock(); 
+            break
+            case Phaser.Input.Keyboard.KeyCodes.SPACE: 
+                this.checkClearBlock(100,1900);
             break;   
         }
     }
@@ -102,31 +104,31 @@ class GameScene extends Phaser.Scene{
         for (var j = 0; j < 4; j++) {
             for (var i = 0; i < 4; i++) {
                 if(json.tile[rotate][j][i] == 0)continue;
-                var data = {x:(i*this.tWidth),y:(j*this.tHeight)
-                    , width:this.tWidth,height:this.tHeight}
+                var data = {x:(i*this.blockWidth),y:(j*this.blockHeight)
+                    , width:this.blockWidth,height:this.blockHeight}
                 array.push(data);
             }
         }
         return array;
     }
 
-    newTile(tx,ty,type){
-        this.tType = type;
-        this.tContainer.x = tx;
-        this.tContainer.y = ty;
-        this.tContainer.setPosition(tx,ty);
-        this.tContainer.each(function(obj){
+    newBlock(tx,ty,type){
+        this.blockType = type;
+        this.blockContainer.x = tx;
+        this.blockContainer.y = ty;
+        this.blockContainer.setPosition(tx,ty);
+        this.blockContainer.each(function(obj){
             obj.destroy();
         }.bind(this));
         this.color = Phaser.Display.Color.HSVColorWheel()[65 * type].color;
-        var array=this.getJsonToArray(type,this.tRotate);
+        var array=this.getJsonToArray(type,this.blockRotate);
         array.forEach(function(obj){
             var image = this.add.image(obj.x,obj.y, "tile");
             image.setTint(this.color);
-            this.tContainer.add(image);    
+            this.blockContainer.add(image);    
         }.bind(this));
 
-        this.checkTile(tx,ty,
+        this.checkBlock(tx,ty,
             function (checksum){
                 if(checksum>0){
                     if(ty < 0){
@@ -138,10 +140,10 @@ class GameScene extends Phaser.Scene{
         );
     }
 
-    addTile(){
-        this.tContainer.each(
+    addBlock(){
+        this.blockContainer.each(
             function(obj){
-                var image = this.physics.add.image(this.tContainer.x+obj.x,this.tContainer.y+obj.y, "tile");
+                var image = this.physics.add.image(this.blockContainer.x+obj.x,this.blockContainer.y+obj.y, "tile");
                 image.setTint(this.color);
 
                 this.addGroup.add(image);
@@ -150,27 +152,30 @@ class GameScene extends Phaser.Scene{
         );
     }
 
-    rotateTile(){
-        this.checkRotateTile(
+    rotateBlock(){
+        this.checkRotateBlock(
             function(checksum){
                 if(checksum==0){
-                    this.tRotate = this.tRotate < 3 ?this.tRotate+1:0;
-                    this.newTile(this.tContainer.x,this.tContainer.y,this.tType);
+                    this.blockRotate = this.blockRotate < 3 ?this.blockRotate+1:0;
+                    this.newBlock(this.blockContainer.x,this.blockContainer.y,this.blockType);
                 }
             }.bind(this)
         )
-      }
+    }
 
-    checkRotateTile(callback){
-        var rotate = this.tRotate < 3 ?this.tRotate+1:0;
-        var array=this.getJsonToArray(this.tType,rotate);
-        var container = this.add.container(this.tContainer.x,this.tContainer.y);
+    checkRotateBlock(callback){
+        var rotate = this.blockRotate < 3 ?this.blockRotate+1:0;
+        var array=this.getJsonToArray(this.blockType,rotate);
+        var container = this.add.container(this.blockContainer.x,this.blockContainer.y);
         array.forEach(function(obj){
             var image = this.add.image(obj.x,obj.y, "tile");
+            // image.setAlpha(0.5);
             container.add(image);    
         }.bind(this));
 
-        new TweensCheck(this,this.tContainer.x,this.tContainer.y,container,
+        new TweensCheck(this,this.blockContainer.x,this.blockContainer.y,
+            this.blockWidth/2,this.blockHeight/2,
+            container,
             function (checksum){
                 callback(checksum);
             }.bind(this)
@@ -181,12 +186,40 @@ class GameScene extends Phaser.Scene{
         }, this);
     }
 
-    checkTile(px,py,callback){
-        new TweensCheck(this,px,py,this.tContainer,
+    checkBlock(x,y,callback){
+        new TweensCheck(this,x,y,
+            this.blockWidth/4,this.blockHeight/4,
+            this.blockContainer,
             function (checksum){
                 callback(checksum);
             }.bind(this)
         );
+    }
+
+    checkClearBlock(x,y){
+        // this.clearBlockContainer.each(function(obj){
+        //     this.add.rectangle(x,y,obj.width,obj.height).setStrokeStyle(10,0x00ff00);
+        //     var overlapRect = this.physics.overlapRect(x,y,obj.width,obj.height);
+        //     if(overlapRect.length>0){
+        //         console.log(overlapRect.length)
+        //         overlapRect.forEach(function(obj){
+        //           obj.destroy();
+        //         }.bind(this));
+        //     }
+        // }.bind(this));
+
+
+        new TweensCheck(this,x,y,
+            this.blockWidth/4,this.blockHeight/4,
+            this.clearBlockContainer,
+            function (checksum){
+                if(checksum>0)console.log(checksum)
+                // if(checksum < 9 )
+                // callback(checksum);
+            }.bind(this)
+        );
+
+        if(y>50)this.checkClearBlock(x,y-100);
     }
 
     resetGame(){
