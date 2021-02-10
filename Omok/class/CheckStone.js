@@ -22,7 +22,7 @@ class CheckStone{
     checkStone(px,py){
         var x= (px/this.cellWidth).toFixed() * this.cellWidth;
         var y= (py/this.cellHeight).toFixed() * this.cellHeight;
-        var rect = this.scene.add.rectangle(x,y,20,20).setStrokeStyle(2,0x00ff00);
+        var rect = this.scene.add.rectangle(x,y,20,20)//.setStrokeStyle(2,0x00ff00);
 
         this.scene.tweens.add({
             targets:rect,

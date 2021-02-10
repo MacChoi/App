@@ -12,8 +12,7 @@ class GameScene extends Phaser.Scene{
         this.tRotate = 0;
         this.isRotate = false;
         this.isDown= false;
-        this.checkSpeed = 100;
-
+        this.checkSpeed = 1000;
         this.indexCheckArray =0;
     }
 
@@ -27,18 +26,38 @@ class GameScene extends Phaser.Scene{
     }
 
     create(){
-        const rect = new Phaser.Geom.Rectangle(0, -200, game.scale.baseSize.width, game.scale.baseSize.height +200);
-        this.tGroup = this.physics.add.group({ 
-            key: 'tile', frameQuantity: 60
+        this.addGroup = this.physics.add.group({ 
+            key: 'tile', frameQuantity: 60 
         });
-        Phaser.Actions.PlaceOnRectangle(this.tGroup.getChildren(), rect);
+        const rect = new Phaser.Geom.Rectangle(0, -300, game.scale.baseSize.width, game.scale.baseSize.height +300);
+        Phaser.Actions.PlaceOnRectangle(this.addGroup.getChildren(), rect);
+
         this.destroyGroup= this.add.group(0,0);
         this.tContainer = this.add.container(0,0);
 
         eventsCenter.on('keyup', this.onKeyCode, this);
         
         this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));
-        this.moveDownTile(this.startX,this.startY);
+        // this.moveDownTile(this.startX,this.startY);
+
+        this.timer = this.time.addEvent({ delay: this.checkSpeed,
+            callback: this.onTimerEvent, callbackScope: this, loop: true });
+
+    }
+    
+    onTimerEvent(){
+        this.checkTile(this.tContainer.x,this.tContainer.y +this.tHeight,
+            function (checksum){
+                if(checksum==0)
+                this.tContainer.setPosition(this.tContainer.x,this.tContainer.y +this.tHeight);
+                else{
+                    this.addTile();
+                    this.tContainer.setPosition(this.startX,this.startY);
+                    this.tRotate = 0;
+                    this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));      
+                }
+            }.bind(this)
+        );
     }
  
     onKeyCode (event){
@@ -46,7 +65,7 @@ class GameScene extends Phaser.Scene{
             case Phaser.Input.Keyboard.KeyCodes.LEFT:
                 this.checkTile(this.tContainer.x- this.tWidth,this.tContainer.y,
                     function (checksum){
-                        console.log("checksum " + checksum)
+                        console.log("LEFT checksum " + checksum)
                         if(checksum==0)
                         this.tContainer.setPosition(this.tContainer.x-= this.tWidth,this.tContainer.y );
                 }.bind(this));
@@ -55,104 +74,126 @@ class GameScene extends Phaser.Scene{
             case Phaser.Input.Keyboard.KeyCodes.RIGHT:
                 this.checkTile(this.tContainer.x+ this.tWidth,this.tContainer.y,
                     function (checksum){
-                        console.log("checksum " + checksum)
                         if(checksum==0)
                         this.tContainer.setPosition(this.tContainer.x+= this.tWidth,this.tContainer.y );
                 }.bind(this));
             break;
             case Phaser.Input.Keyboard.KeyCodes.DOWN:
-      
+                this.checkTile(this.tContainer.x,this.tContainer.y +this.tHeight,
+                    function (checksum){
+                        if(checksum==0)
+                        this.tContainer.setPosition(this.tContainer.x,this.tContainer.y +this.tHeight);
+                }.bind(this));
             break;
  
             case Phaser.Input.Keyboard.KeyCodes.A:
                 this.rotateTile();
             break;
+
             case Phaser.Input.Keyboard.KeyCodes.SPACE:
                 this.checkTile(this.tContainer.x,this.tContainer.y,function (checksum){});
             break;   
         }
     }
     
+    getJsonToArray(type,rotate){
+        var array= new Array();
+        var json = this.cache.json.get(""+type);
+        for (var j = 0; j < 4; j++) {
+            for (var i = 0; i < 4; i++) {
+                if(json.tile[rotate][j][i] == 0)continue;
+                var data = {x:(i*this.tWidth),y:(j*this.tHeight)
+                    , width:this.tWidth,height:this.tHeight}
+                array.push(data);
+            }
+        }
+        return array;
+    }
+
     newTile(tx,ty,type){
         this.tType = type;
         this.tContainer.x = tx;
         this.tContainer.y = ty;
-        var json = this.cache.json.get(""+this.tType);
+        this.tContainer.setPosition(tx,ty);
         this.tContainer.each(function(obj){
             obj.destroy();
         }.bind(this));
-       
-        this.tContainer.setPosition(tx,ty);
-        this.color = Phaser.Display.Color.HSVColorWheel()[50 * type].color;
-        for (var j = 0; j < 4; j++) {
-            for (var i = 0; i < 4; i++) {
-                if(json.tile[this.tRotate][j][i] == 0)continue;
-                var image = this.add.image((i*this.tWidth),(j*this.tHeight), "tile");
-                image.setTint(this.color);
-                this.tContainer.add(image);
-            }
-        }
+        this.color = Phaser.Display.Color.HSVColorWheel()[65 * type].color;
+        var array=this.getJsonToArray(type,this.tRotate);
+        array.forEach(function(obj){
+            var image = this.add.image(obj.x,obj.y, "tile");
+            image.setTint(this.color);
+            this.tContainer.add(image);    
+        }.bind(this));
 
         this.checkTile(tx,ty,
             function (checksum){
                 if(checksum>0){
-                    
-                    alert("Game Over!!!");
-                    this.resetGame();
+                    if(ty < 0){
+                        alert("Game Over!!! ");
+                        this.resetGame();
+                    }
                 }
-        }.bind(this));
+            }.bind(this)
+        );
     }
 
     addTile(){
-        this.tContainer.each(function(obj){
-            var image = this.physics.add.image(this.tContainer.x+obj.x,this.tContainer.y+obj.y, "tile");
-            image.setTint(this.color);
+        this.tContainer.each(
+            function(obj){
+                var image = this.physics.add.image(this.tContainer.x+obj.x,this.tContainer.y+obj.y, "tile");
+                image.setTint(this.color);
 
-            this.tGroup.add(image);
-            this.destroyGroup.add(image);       
-        }.bind(this));
+                this.addGroup.add(image);
+                this.destroyGroup.add(image);       
+            }.bind(this)
+        );
     }
 
     rotateTile(){
-        console.log("rotateTile ",this.tType);
-        this.newTile(this.tContainer.x,this.tContainer.y,this.tType);
-        this.tRotate = this.tRotate < 3 ?this.tRotate+1:0;
-    }
-
-    moveDownTile(px,py){
-        this.tween = this.tweens.add({
-            targets:this.tContainer,
-            y:this.tContainer.y + this.tHeight,
-            duration:this.checkSpeed,
-            onComplete:function(tween,tergets){
-                this.checkTile(this.tContainer.x,this.tContainer.y + this.tHeight,
-                    function (checksum){
-                        console.log("moveDownTile checksum " + checksum)
-                        if(checksum>0){
-                            this.tween.stop();
-                            this.addTile();
-                            
-                            this.tContainer.setPosition(this.startX,this.startY);
-                            this.tRotate = 0;
-                            this.newTile(this.startX,this.startY, Phaser.Math.Between(0, 4));      
-                            this.moveDownTile(this.startX,this.startY);
-                        }else{
-                            this.moveDownTile(this.tContainer.x,this.tContainer.y);
-                        }
-                }.bind(this));
+        this.checkRotateTile(
+            function(checksum){
+                if(checksum==0){
+                    this.tRotate = this.tRotate < 3 ?this.tRotate+1:0;
+                    this.newTile(this.tContainer.x,this.tContainer.y,this.tType);
+                }
             }.bind(this)
-        })
+        )
+      }
+
+    checkRotateTile(callback){
+        var rotate = this.tRotate < 3 ?this.tRotate+1:0;
+        var array=this.getJsonToArray(this.tType,rotate);
+        var container = this.add.container(this.tContainer.x,this.tContainer.y);
+        array.forEach(function(obj){
+            var image = this.add.image(obj.x,obj.y, "tile");
+            container.add(image);    
+        }.bind(this));
+
+        new TweensCheck(this,this.tContainer.x,this.tContainer.y,container,
+            function (checksum){
+                callback(checksum);
+            }.bind(this)
+        );
+
+        container.each(function(item) {
+            item.destroy();
+        }, this);
     }
 
     checkTile(px,py,callback){
-        new TweensCheck(this,px,py,this.tContainer.list,function (checksum){
-            callback(checksum);
-        }.bind(this))
+        new TweensCheck(this,px,py,this.tContainer,
+            function (checksum){
+                callback(checksum);
+            }.bind(this)
+        );
     }
 
     resetGame(){
-        this.destroyGroup.children.each(function(item) {
-            item.destroy();
-        }, this);
+        this.destroyGroup.children.each(
+            function(item) {
+                item.destroy();
+            }
+        );
     }
 }
