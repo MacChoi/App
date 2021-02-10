@@ -31,7 +31,7 @@ class TweensCheck{
         var obj = this.container.list[this.indexCheck];
         var x= this.x + obj.x;
         var y= this.y + obj.y;
-        var rect = this.scene.add.rectangle(x,y,obj.width,obj.height).setStrokeStyle(10,0x00ff00);
+        var rect = this.scene.add.rectangle(x,y,obj.width,obj.height)//.setStrokeStyle(10,0x00ff00);
         this.scene.tweens.add({
             targets:rect,
             x:x,

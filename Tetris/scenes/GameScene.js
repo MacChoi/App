@@ -38,10 +38,10 @@ class GameScene extends Phaser.Scene{
         this.timer = this.time.addEvent({ delay: this.checkSpeed,
             callback: this.onTimerEvent, callbackScope: this, loop: true });
 
-        this.clearBlockContainer = this.add.container(0,-200);
+        this.clearBlockContainer = this.add.container(100,1900);
         for (let i = 0; i < 9 ; i++) {
             var image = this.add.image(i * this.blockWidth,0, "tile");
-            image.setAlpha(0.5);
+            image.setAlpha(0.1);
             this.clearBlockContainer.add(image);
         }
     }
@@ -174,7 +174,7 @@ class GameScene extends Phaser.Scene{
         }.bind(this));
 
         new TweensCheck(this,this.blockContainer.x,this.blockContainer.y,
-            this.blockWidth/2,this.blockHeight/2,
+            this.blockWidth/4,this.blockHeight/4,
             container,
             function (checksum){
                 callback(checksum);
@@ -197,29 +197,28 @@ class GameScene extends Phaser.Scene{
     }
 
     checkClearBlock(x,y){
-        // this.clearBlockContainer.each(function(obj){
-        //     this.add.rectangle(x,y,obj.width,obj.height).setStrokeStyle(10,0x00ff00);
-        //     var overlapRect = this.physics.overlapRect(x,y,obj.width,obj.height);
-        //     if(overlapRect.length>0){
-        //         console.log(overlapRect.length)
-        //         overlapRect.forEach(function(obj){
-        //           obj.destroy();
-        //         }.bind(this));
-        //     }
-        // }.bind(this));
-
-
-        new TweensCheck(this,x,y,
+        var check = new TweensCheck(this,x,y,
             this.blockWidth/4,this.blockHeight/4,
             this.clearBlockContainer,
             function (checksum){
-                if(checksum>0)console.log(checksum)
-                // if(checksum < 9 )
-                // callback(checksum);
+                console.log("checkClearBlock ", checksum)
+                if(checksum>8){
+                    var overlap=this.physics.overlapRect(x,y,this.blockWidth*8,this.blockHeight/4);
+                    overlap.forEach(function(obj){  
+                        obj.gameObject.destroy();
+                    }.bind(this));
+                }else if(checksum ==0){
+                    var overlap=this.physics.overlapRect(x,y-this.blockHeight,this.blockWidth*8,this.blockHeight/4);
+                    overlap.forEach(function(obj){  
+                        obj.gameObject.y+=this.blockHeight;
+                    }.bind(this));
+
+                    if(overlap.lenght>0)this.checkClearBlock(x,y);
+                    return;
+                }
             }.bind(this)
         );
-
-        if(y>50)this.checkClearBlock(x,y-100);
+        if(y>50)this.checkClearBlock(x,y-this.blockHeight);
     }
 
     resetGame(){
