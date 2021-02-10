@@ -1,15 +1,16 @@
 const eventsCenter = new Phaser.Events.EventEmitter();
-const config = {
+
+var config = {
     type: Phaser.AUTO,
     parent: 'phaser',
-    title: "OMOK",
+    title: "Tetris",
     version: "0.0.1",
     backgroundColor: '#000000',
     scene: [GameScene,JoystickScene],
     scale: {
         mode: Phaser.Scale.FIT,
         parent: 'phaser',
-        width: 1000,
+        width:1000,
         height: 2000,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -17,8 +18,8 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            // debug: true,
+            //debug: true,  
         }
-    },
+    }
 };
-const game = new Phaser.Game(config);
+var game = new Phaser.Game(config);

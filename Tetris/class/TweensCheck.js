@@ -7,7 +7,7 @@ class TweensCheck{
         this.h = h;
         this.container = container;
         this.indexCheck =0;
-        this.checkSpeed =0;
+        this.checkSpeed =100;
         this.checkSum =0;
         this.callback = callback;
         this.check(x,y);
