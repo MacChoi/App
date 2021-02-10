@@ -11,7 +11,7 @@ class GameScene extends Phaser.Scene{
         this.blockHeight =100;
         this.blockType =0;
         this.blockRotate =0;
-        this.checkSpeed =200;
+        this.checkSpeed =1000;
     }
 
     preload(){
@@ -209,7 +209,7 @@ class GameScene extends Phaser.Scene{
                     overlap.forEach(function(obj){
                         obj.gameObject.y+=this.blockHeight;
                     }.bind(this));
-                    return;
+                 
                 }
             }.bind(this)
         );
