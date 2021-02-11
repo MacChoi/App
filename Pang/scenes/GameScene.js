@@ -15,6 +15,7 @@ class GameScene extends Phaser.Scene{
         this.load.image('player', 'player/0.png');
         this.load.image('harpoon', 'harpoon/1.png');
         this.load.image('ball', 'ball/0.png');
+        this.load.image('rad', 'ball/0.png');
     }
 
     create(){
@@ -31,6 +32,17 @@ class GameScene extends Phaser.Scene{
         this.groupBall = this.add.group();
 
         this.addBall(500,0,5);
+
+        this.particles = this.add.particles('explosion');
+        this.particles.createEmitter({
+            frame: 'red',
+            angle: { start: 0, end: 360, steps: 32 },
+            lifespan: 1000,
+            speed: 400,
+            quantity: 32,
+            scale: { start: 0.3, end: 0 },
+            on: false
+        });
     }
     
     onKeyCode (event){
@@ -67,9 +79,11 @@ class GameScene extends Phaser.Scene{
     harpoonHit(harpoon,targets) {
         if(targets.scale>1)
         this.addBall(targets.x,targets.y,targets.scale-=1);
+
+        this.particles.emitParticleAt(targets.x,targets.y);
         harpoon.destroy();
         targets.destroy();
-     
+        
         if(this.groupBall.children.size == 0)
         this.addBall(500,0,5);
     }
