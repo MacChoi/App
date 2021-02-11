@@ -20,7 +20,6 @@ class GameScene extends Phaser.Scene{
         }
         this.load.setPath('./assets/images');
         this.load.image('tile','/tile/tile.png');
-    
     }
 
     create(){
@@ -36,7 +35,7 @@ class GameScene extends Phaser.Scene{
         this.destroyGroup=this.add.group(0,0);
 
         this.newBlock(this.startX,this.startY,Phaser.Math.Between(0,4));
-        this.time.addEvent({delay:this.checkSpeed,callback:this.onTimerEvent,
+        this.timer = this.time.addEvent({delay:this.checkSpeed,callback:this.onTimerEvent,
             callbackScope:this ,loop:true});
 
         eventsCenter.on('keyup', this.onKeyCode, this);
@@ -135,12 +134,13 @@ class GameScene extends Phaser.Scene{
     }
 
     resetGame(){
-        this.scene.restart();
         // this.destroyGroup.children.each(
         //     function(obj){
         //         obj.destroy();
         //     }
         // )
+
+        window.location.reload();
     }
 
     addBlock(){
