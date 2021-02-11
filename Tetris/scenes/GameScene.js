@@ -69,7 +69,6 @@ class GameScene extends Phaser.Scene{
             case Phaser.Input.Keyboard.KeyCodes.LEFT:
                 this.checkBlock(this.blockContainer.x- this.blockWidth,this.blockContainer.y,
                     function (checksum){
-                        console.log("LEFT checksum " + checksum)
                         if(checksum==0)
                         this.blockContainer.setPosition(this.blockContainer.x-= this.blockWidth,this.blockContainer.y );
                 }.bind(this));
@@ -78,7 +77,6 @@ class GameScene extends Phaser.Scene{
             case Phaser.Input.Keyboard.KeyCodes.RIGHT:
                 this.checkBlock(this.blockContainer.x+ this.blockWidth,this.blockContainer.y,
                     function (checksum){
-                        console.log("RIGHT checksum " + checksum)
                         if(checksum==0)
                         this.blockContainer.setPosition(this.blockContainer.x+= this.blockWidth,this.blockContainer.y );
                 }.bind(this));
@@ -198,7 +196,6 @@ class GameScene extends Phaser.Scene{
             this.blockWidth/4,this.blockHeight/4,
             this.clearBlockContainer,
             function (checksum){
-                console.log("checkClearBlock ", checksum ,y)
                 if(checksum>8){
                     var overlap=this.physics.overlapRect(x,y,this.blockWidth*8,this.blockHeight/4);
                     overlap.forEach(function(obj){  
