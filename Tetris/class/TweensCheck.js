@@ -10,7 +10,7 @@ class TweensCheck{
         this.checkSpeed =100;
         this.checkSum =0;
         this.callback = callback;
-        // this.check(x,y);
+        this.check(x,y);
         this.destroy
         this.container.each(function(obj){
             if(this.isCheck(this.x+obj.x,this.y+obj.y,this.w,this.w)){
