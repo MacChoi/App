@@ -4,8 +4,8 @@ class GameScene extends Phaser.Scene{
             key:'GameScene',
             active:true
         });
-        this.gameWidth = game.config.width;
-        this.gameHeight = game.config.height;
+        this.gameWidth = game.config.width-60;
+        this.gameHeight = game.config.height-60;
         this.countHarpoon = 0;
     }
 
@@ -20,11 +20,12 @@ class GameScene extends Phaser.Scene{
     }
 
     create(){
-        this.physics.world.setBoundsCollision(true, true, true, true);
-        this.gameBounds = new Phaser.Geom.Rectangle(30, 30, this.gameWidth-60, this.gameHeight-60);
+        // this.physics.world.setBoundsCollision(true, true, true, true);
+        this.gameBounds = new Phaser.Geom.Rectangle(30, 30, this.gameWidth, this.gameHeight);
+        
         this.add.image(0, 0, 'bg').setOrigin(0, 0).setScale(5);
 
-        this.player = this.physics.add.sprite(this.gameWidth/2, this.gameHeight-120, 'player').setScale(5);
+        this.player = this.physics.add.sprite(this.gameWidth/2, this.gameHeight-55, 'player').setScale(5);
         this.player.setCollideWorldBounds(true);
         this.player.setImmovable(true);
         this.player.body.customBoundsRectangle = this.gameBounds;
@@ -44,11 +45,22 @@ class GameScene extends Phaser.Scene{
         });
 
         this.particles2 = this.add.particles('explosion2').createEmitter({
-            scale: { start: 0.5, end: 0 },  
+            scale: { start: 0.5, end: 0 }, 
+            on: false 
         });
 
+        var bottomZone = this.add.zone(30, this.gameHeight+20).setOrigin(0, 0).setSize(this.gameWidth, 100);
+        this.physics.world.enable(bottomZone);
+        bottomZone.body.setAllowGravity(false);
+        bottomZone.body.moves = false;
+
+        this.physics.add.overlap(bottomZone, this.groupBall, this.bottomZone, null, this);
     }
-    
+
+    bottomZone(bottomZone,targets){
+        targets.setVelocityY(-600 -(targets.scale * 0.5));
+    }
+
     onKeyCode (event){
         switch (event.keyCode) {
             case Phaser.Input.Keyboard.KeyCodes.LEFT:
@@ -68,23 +80,23 @@ class GameScene extends Phaser.Scene{
         this.particles2.emitParticleAt(this.player.x, this.player.y-120);
 
         this.countHarpoon++;
-        var harpoon=this.physics.add.sprite(this.player.x, this.player.y, 'harpoon').setScale(5);
+        var harpoon=this.physics.add.image(this.player.x, this.player.y-100, 'harpoon').setScale(5);
         harpoon.scaleY =0;
-        var collider=this.physics.add.collider(harpoon, this.groupBall, this.harpoonHit, null, this);
+        this.physics.add.overlap(harpoon, this.groupBall, this.hitHarpoon, null, this);
+        
         this.tweens.add({
             targets:harpoon,
-            y:0,
+            y:350,
             scaleY:5,
             duration:1000,
             onComplete:function(tween,tergets){
                 this.countHarpoon--;
                 harpoon.destroy();
-                this.physics.world.removeCollider(collider);
             }.bind(this)
         })
     }
 
-    harpoonHit(harpoon,targets) {
+    hitHarpoon(harpoon,targets) {
         if(targets.scale>1)
         this.addBall(targets.x,targets.y,targets.scale-=1);
 

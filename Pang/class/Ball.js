@@ -3,15 +3,12 @@ class Ball extends Phaser.Physics.Arcade.Sprite {
 		super(scene,x,y,texture);
         scene.add.existing(this);
         scene.physics.world.enable(this);
-        this.setOrigin(0, 0)
         this.setScale(scale);
         this.setBounce(1,1);
         this.setGravityY(100 / (scale*0.1));
         this.setVelocityX(200 * direction);
         this.setVelocityY(200);
         this.setCollideWorldBounds(true);
-        this.body.setBoundsRectangle(this.gameBounds);
-
         this.body.customBoundsRectangle = scene.gameBounds;
     }
 }
