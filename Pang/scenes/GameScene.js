@@ -15,7 +15,8 @@ class GameScene extends Phaser.Scene{
         this.load.image('player', 'player/0.png');
         this.load.image('harpoon', 'harpoon/1.png');
         this.load.image('ball', 'ball/0.png');
-        this.load.image('rad', 'ball/0.png');
+        this.load.image('explosion1', 'explosion/0.png');
+        this.load.image('explosion2', 'explosion/1.png');
     }
 
     create(){
@@ -33,9 +34,7 @@ class GameScene extends Phaser.Scene{
 
         this.addBall(500,0,5);
 
-        this.particles = this.add.particles('explosion');
-        this.particles.createEmitter({
-            frame: 'red',
+        this.particles1 = this.add.particles('explosion1').createEmitter({
             angle: { start: 0, end: 360, steps: 32 },
             lifespan: 1000,
             speed: 400,
@@ -43,6 +42,11 @@ class GameScene extends Phaser.Scene{
             scale: { start: 0.3, end: 0 },
             on: false
         });
+
+        this.particles2 = this.add.particles('explosion2').createEmitter({
+            scale: { start: 0.5, end: 0 },  
+        });
+
     }
     
     onKeyCode (event){
@@ -61,13 +65,17 @@ class GameScene extends Phaser.Scene{
 
     fireHarpoon(){
         if(this.countHarpoon>2)return;
+        this.particles2.emitParticleAt(this.player.x, this.player.y-120);
+
         this.countHarpoon++;
         var harpoon=this.physics.add.sprite(this.player.x, this.player.y, 'harpoon').setScale(5);
+        harpoon.scaleY =0;
         var collider=this.physics.add.collider(harpoon, this.groupBall, this.harpoonHit, null, this);
         this.tweens.add({
             targets:harpoon,
             y:0,
-            duration:2000,
+            scaleY:5,
+            duration:1000,
             onComplete:function(tween,tergets){
                 this.countHarpoon--;
                 harpoon.destroy();
@@ -80,7 +88,7 @@ class GameScene extends Phaser.Scene{
         if(targets.scale>1)
         this.addBall(targets.x,targets.y,targets.scale-=1);
 
-        this.particles.emitParticleAt(targets.x,targets.y);
+        this.particles1.emitParticleAt(targets.x,targets.y);
         harpoon.destroy();
         targets.destroy();
         
