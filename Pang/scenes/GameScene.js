@@ -49,7 +49,9 @@ class GameScene extends Phaser.Scene{
         this.add.image(0,0,'bg').setOrigin(0,0).setScale(5);
         this.player=this.physics.add.sprite(this.gameWidth/2,this.gameHeight-55).setScale(5);
         this.player.setCollideWorldBounds(true);
-        this.player.body.customBoundsRectangle=this.gameBounds;
+        // this.player.setBoundsRectangle(this.gameBounds);
+
+        // this.player.body.customBoundsRectangle=this.gameBounds;
         this.player.play('idle');
 
         this.particles1 = this.add.particles('explosion1').createEmitter({
