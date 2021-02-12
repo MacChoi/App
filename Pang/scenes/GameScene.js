@@ -11,29 +11,46 @@ class GameScene extends Phaser.Scene{
 
     preload(){
         this.load.setPath('./assets/images');
-        this.load.image('bg', 'bg/bg.png');
-        this.load.image('player', 'player/0.png');
-        this.load.image('harpoon', 'harpoon/1.png');
-        this.load.image('ball', 'ball/0.png');
-        this.load.image('explosion1', 'explosion/0.png');
-        this.load.image('explosion2', 'explosion/1.png');
+        this.load.image('bg','bg/bg.png');
+        this.load.spritesheet('player','player/sheet.png',{frameWidth:31,frameHeight:32});
+
+        this.load.image('harpoon','harpoon/0.png');
+        this.load.image('ball','ball/0.png');
+        this.load.image('explosion1','explosion/0.png');
+        this.load.image('explosion2','explosion/1.png');
+    }
+
+    crateAnimation(){
+        this.anims.create({
+            key:'idle',
+            frames:this.anims.generateFrameNumbers('player',{frames:[7,8]}),
+            frameRate:5,
+            repeat:-1
+        })
+        this.anims.create({
+            key:'fire',
+            frames:this.anims.generateFrameNumbers('player',{frames:[4,5]}),
+            frameRate:5,
+            repeat:-1
+        })
+        this.anims.create({
+            key:'move',
+            frames:this.anims.generateFrameNumbers('player',{frames:[0,1,2,3]}),
+            frameRate:5,
+            repeat:-1
+        })
     }
 
     create(){
-        // this.physics.world.setBoundsCollision(true, true, true, true);
-        this.gameBounds = new Phaser.Geom.Rectangle(30, 30, this.gameWidth, this.gameHeight);
-        
-        this.add.image(0, 0, 'bg').setOrigin(0, 0).setScale(5);
-
-        this.player = this.physics.add.sprite(this.gameWidth/2, this.gameHeight-55, 'player').setScale(5);
-        this.player.setCollideWorldBounds(true);
-        this.player.setImmovable(true);
-        this.player.body.customBoundsRectangle = this.gameBounds;
-
+        this.crateAnimation();
         eventsCenter.on('keyup', this.onKeyCode, this);
-        this.groupBall = this.add.group();
+        this.gameBounds=new Phaser.Geom.Rectangle(30,30,this.gameWidth,this,this.gameHeight);
 
-        this.addBall(500,0,5);
+        this.add.image(0,0,'bg').setOrigin(0,0).setScale(5);
+        this.player=this.physics.add.sprite(this.gameWidth/2,this.gameHeight-55).setScale(5);
+        this.player.setCollideWorldBounds(true);
+        this.player.body.customBoundsRectangle=this.gameBounds;
+        this.player.play('idle');
 
         this.particles1 = this.add.particles('explosion1').createEmitter({
             angle: { start: 0, end: 360, steps: 32 },
@@ -49,41 +66,49 @@ class GameScene extends Phaser.Scene{
             on: false 
         });
 
-        var bottomZone = this.add.zone(30, this.gameHeight+20).setOrigin(0, 0).setSize(this.gameWidth, 100);
+        var bottomZone =this.add.zone(30,this.gameHeight+20).setSize(this.gameWidth,100).setOrigin(0,0);
         this.physics.world.enable(bottomZone);
-        bottomZone.body.setAllowGravity(false);
-        bottomZone.body.moves = false;
+        bottomZone.body.setImmovable(true);
 
-        this.physics.add.overlap(bottomZone, this.groupBall, this.bottomZone, null, this);
+        this.groupBall= this.add.group();
+        this.addBall(500,0,5);
+
+        this.physics.add.overlap(bottomZone,this.groupBall,this.hitBottomZone,null,this);
     }
 
-    bottomZone(bottomZone,targets){
-        targets.setVelocityY(-600 -(targets.scale * 0.5));
+    hitBottomZone(bottomZone,tergets){
+        tergets.setVelocityY(-600-(tergets.scale * 0.5));
     }
 
-    onKeyCode (event){
+    onKeyCode(event){
         switch (event.keyCode) {
             case Phaser.Input.Keyboard.KeyCodes.LEFT:
-                this.player.setVelocityX(-300, 10);
+                this.player.setVelocityX(-300,10);
+                this.player.setFlipX(false);
+                this.player.play('move');
             break;
             case Phaser.Input.Keyboard.KeyCodes.RIGHT:
-                this.player.setVelocityX(300, 10);
-               break;
+                this.player.setVelocityX(300,10);
+                this.player.setFlipX(true);
+                this.player.play('move');
+            break;
             case Phaser.Input.Keyboard.KeyCodes.A:
+                this.player.setVelocityX(0,0);
+                this.player.play('fire');
                 this.fireHarpoon();
-            break  
+            break;
         }
     }
 
     fireHarpoon(){
         if(this.countHarpoon>2)return;
-        this.particles2.emitParticleAt(this.player.x, this.player.y-120);
-
         this.countHarpoon++;
-        var harpoon=this.physics.add.image(this.player.x, this.player.y-100, 'harpoon').setScale(5);
-        harpoon.scaleY =0;
-        this.physics.add.overlap(harpoon, this.groupBall, this.hitHarpoon, null, this);
+        this.particles2.emitParticleAt(this.player.x,this.player.y-120);
         
+        var harpoon=this.physics.add.image(this.player.x,this.player.y-100,'harpoon').setScale(5);
+        harpoon.scaleY=0;
+        this.physics.add.overlap(harpoon,this.groupBall,this.hitHarpoon,null,this);
+
         this.tweens.add({
             targets:harpoon,
             y:350,
@@ -96,20 +121,16 @@ class GameScene extends Phaser.Scene{
         })
     }
 
-    hitHarpoon(harpoon,targets) {
-        if(targets.scale>1)
-        this.addBall(targets.x,targets.y,targets.scale-=1);
-
+    hitHarpoon(harpoon,targets){
+        if(targets.scale>1)this.addBall(targets.x,targets.y,targets.scale-=1);
         this.particles1.emitParticleAt(targets.x,targets.y);
         harpoon.destroy();
         targets.destroy();
-        
-        if(this.groupBall.children.size == 0)
-        this.addBall(500,0,5);
+        if(this.groupBall.children.size==0)this.addBall(500,0,5);
     }
 
     addBall(x,y,scale){
-        this.groupBall.add(new Ball(this,x,y,"ball",1,scale));
-        this.groupBall.add(new Ball(this,x,y,"ball",-1,scale));
+        this.groupBall.add(new Ball(this,x,y,'ball',1,scale));
+        this.groupBall.add(new Ball(this,x,y,'ball',-1,scale));
     }
 }
