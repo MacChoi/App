@@ -52,7 +52,7 @@ class GameScene extends Phaser.Scene{
             mon.play('mon_idle');
             mon.setGravityY(100);
             this.groupMon.add(mon);
-            this.player.body.checkCollision.up=false;
+            mon.body.checkCollision.up=false;
             this.physics.add.collider(mon,this.layer);
 
             mon.on(Phaser.Animations.Events.ANIMATION_REPEAT, function () {
@@ -72,7 +72,7 @@ class GameScene extends Phaser.Scene{
                     mon.setVelocityX(mon.flipX == true ?100:-100);
                     mon.setFlipX(flipX[Phaser.Math.Between(0,1)]);
                     if(mon.anims.getName() == 'mon_jump'){
-                        if(this.player.body.blocked.down)mon.setVelocityY(-120);
+                        if(mon.body.blocked.down)mon.setVelocityY(-120);
                     }
                 }
             }, this);
@@ -103,7 +103,7 @@ class GameScene extends Phaser.Scene{
             x:flipX == true ?x-100:x+100,
             y:y,
             duration:1000,
-            onComplete:function(tween,tergets){
+            onComplete:function(tween,targets){
                 bubble.destroy();
             }.bind(this)
         })
@@ -122,14 +122,15 @@ class GameScene extends Phaser.Scene{
                 this.player.play('player_move');
             break;
             case Phaser.Input.Keyboard.KeyCodes.UP:
-                if(!this.player.body.blocked.down)return;
-                this.player.setVelocityY(-120);
-                this.player.play('player_jump');
+                if(this.player.body.blocked.down){
+                    this.player.setVelocityY(-120);
+                    this.player.play('player_jump');
+                }
             break;
             case Phaser.Input.Keyboard.KeyCodes.A:
                 this.player.setVelocityX(0);
                 this.player.play('player_fire');
-               this.fireBubble(this.player.x,this.player.y,this.player.flipX);
+                this.fireBubble(this.player.x,this.player.y,this.player.flipX);
             break;
         }
     }
