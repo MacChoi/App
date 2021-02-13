@@ -57,7 +57,9 @@ class GameScene extends Phaser.Scene{
 
             mon.on(Phaser.Animations.Events.ANIMATION_REPEAT, function () {
                 if(!mon.anims)return;
+                mon.body.checkCollision.up=false;
                 if (mon.anims.getName() == 'mon_locked'){
+                    mon.body.checkCollision.up=true;
                     mon.setGravityX(Phaser.Math.Between(-50, 50));
                 }else if (mon.anims.getName() == 'mon_die'){
                     if(mon.body.blocked.down){
