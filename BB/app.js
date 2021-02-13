@@ -9,15 +9,15 @@ const config = {
     scale: {
         mode: Phaser.Scale.FIT,
         parent: 'phaser',
-        width: 768,
-        height: 1024,
+        width: 390,
+        height: 300,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
     physics: {
         default: 'arcade',
         arcade: {
-            // debug: true,
+            debug: true,
         }
     },
 };

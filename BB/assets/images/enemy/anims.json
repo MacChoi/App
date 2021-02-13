@@ -1,11 +1,17 @@
 {
     "anims": [
         {
-            "key": "player_idle",
+            "key": "mon_idle",
             "type": "frame",
             "frames": [
                 {
-                    "key": "player",
+                    "key": "enemy",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "enemy",
                     "frame": "2",
                     "duration": 0,
                     "visible": false
@@ -23,17 +29,79 @@
             "hideOnComplete": false
         },
         {
-            "key": "player_move",
+            "key": "mon_move",
             "type": "frame",
             "frames": [
                 {
-                    "key": "player",
+                    "key": "enemy",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "enemy",
                     "frame": "2",
                     "duration": 0,
                     "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1.5,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat":-1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "mon_jump",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "enemy",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
                 },
                 {
-                    "key": "player",
+                    "key": "enemy",
+                    "frame": "2",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1.5,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "mon_locked",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "enemy",
+                    "frame": "3",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "enemy",
+                    "frame": "4",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "enemy",
                     "frame": "3",
                     "duration": 0,
                     "visible": false
@@ -51,58 +119,30 @@
             "hideOnComplete": false
         },
         {
-            "key": "player_jump",
+            "key": "mon_die",
             "type": "frame",
             "frames": [
                 {
-                    "key": "player",
-                    "frame": "3",
+                    "key": "enemy",
+                    "frame": "5",
                     "duration": 0,
                     "visible": false
                 },
                 {
-                    "key": "player",
-                    "frame": "4",
+                    "key": "enemy",
+                    "frame": "6",
+                    "duration": 0,
+                    "visible":false
+                },
+                {
+                    "key": "enemy",
+                    "frame": "7",
                     "duration": 0,
                     "visible": false
                 },
                 {
-                    "key": "player",
-                    "frame": "3",
-                    "duration": 0,
-                    "visible": false
-                }
-            ],
-            
-            "frameRate": 10,
-            "duration": 1.5,
-            "skipMissedFrames": true,
-            "delay": 0,
-            "repeat": -1,
-            "repeatDelay": 0,
-            "yoyo": false,
-            "showOnStart": false,
-            "hideOnComplete": false
-        },
-        {
-            "key": "player_fire",
-            "type": "frame",
-            "frames": [
-                {
-                    "key": "player",
-                    "frame": "3",
-                    "duration": 0,
-                    "visible": false
-                },
-                {
-                    "key": "player",
-                    "frame": "4",
-                    "duration": 0,
-                    "visible": false
-                },
-                {
-                    "key": "player",
-                    "frame": "3",
+                    "key": "enemy",
+                    "frame": "8",
                     "duration": 0,
                     "visible": false
                 }
