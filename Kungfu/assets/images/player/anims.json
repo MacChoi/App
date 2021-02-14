@@ -1,0 +1,199 @@
+{
+    "anims": [
+        {
+            "key": "player_idle",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "player",
+                    "frame": "3",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1.5,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "player_move",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "player",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "2",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "3",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1.5,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "player_jump",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "player",
+                    "frame": "11",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "11",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "11",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1.5,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "player_kick",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "player",
+                    "frame": "9",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "8",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "7",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "8",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "2",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1.5,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "player_kick2",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "player",
+                    "frame": "11",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "12",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "12",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "11",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "5",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1.5,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 0,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        }
+    ],
+    "globalTimeScale": 1
+}
