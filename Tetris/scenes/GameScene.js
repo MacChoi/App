@@ -90,7 +90,7 @@ class GameScene extends Phaser.Scene{
             break;
             case Phaser.Input.Keyboard.KeyCodes.A:
                 this.rotateBlock(); 
-            break  
+            break 
         }
     }
     
