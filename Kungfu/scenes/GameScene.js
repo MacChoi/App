@@ -114,10 +114,7 @@ class GameScene extends Phaser.Scene{
             targets:enemy,
             x:enemy.flipX == true ?120:140,
             duration:1000
-        });
-
-        this.physics.add.overlap(enemy,this.player,this.hitEnemyPlayer,null,this);
-        
+        });        
         enemy.on(Phaser.Animations.Events.ANIMATION_REPEAT, function () {
             if(enemy.y > this.gameHeight){
                 this.tweens.add({
@@ -131,6 +128,8 @@ class GameScene extends Phaser.Scene{
                 this.addEnemy(flipX[Phaser.Math.Between(0,1)])
             }
         }.bind(this));
+
+        this.physics.add.overlap(enemy,this.player,this.hitEnemyPlayer,null,this);
     }
 
     hitEnemyPlayer(enemy,player){
