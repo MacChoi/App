@@ -15,7 +15,6 @@ class GameScene extends Phaser.Scene{
         this.load.image('bg', './assets/images/bg/0.png');
 
         this.load.setPath('./assets/sound');
-       
         this.load.audio('combo1','player/0.mp3');
         this.load.audio('combo2','player/1.mp3');
         this.load.audio('combo3','player/2.mp3');
@@ -58,7 +57,6 @@ class GameScene extends Phaser.Scene{
         ], { resetOnMatch: true , maxKeyDelay: 500});
 
         this.input.keyboard.on('keycombomatch', function (keyCombo, keyboardEvent) {
-            console.log('keycombomatch Code entered! ' + keyCombo.keyCodes);
             var combo=new String(keyCombo.keyCodes).replaceAll('\,','');
             this.player.stop();
             if(this.player_tweens)this.player_tweens.stop();
