@@ -17,8 +17,8 @@ class GameScene extends Phaser.Scene{
         this.player.setCollideWorldBounds(true);
         this.player.body.customBoundsRectangle=this.bounds;
         
-        this.cameras.main.setSize(this.width, this.height+200);
-        this.cameras.main.startFollow(this.player);
+        // this.cameras.main.setSize(this.width, this.height+200);
+        // this.cameras.main.startFollow(this.player);
 
         eventsCenter.on('keyup', this.onKeyCode, this);
 
