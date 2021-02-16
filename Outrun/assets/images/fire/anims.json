@@ -1,0 +1,56 @@
+{
+    "anims": [
+        {
+            "key": "fire_idle",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "fire",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "fire",
+                    "frame": "2",
+                    "duration": 0,
+                    "visible": false
+                },{
+                    "key": "fire",
+                    "frame": "3",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "fire",
+                    "frame": "4",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "fire",
+                    "frame": "5",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "fire",
+                    "frame": "6",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 20,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        }
+    ],
+    "globalTimeScale": 1
+}

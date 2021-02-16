@@ -95,45 +95,29 @@ class GameScene extends Phaser.Scene{
     onCombo2(){
         this.sound_combo2.play();
         this.player.play('player_combo2');
-        this.tweens.timeline({
-            tweens: [
-                {
-                    targets:this.player,
-                    y:this.player.y-100,
-                    duration:1000,
-                },
-                {
-                    targets:this.player,
-                    y:this.player.y,
-                    duration:100,
-                    onComplete:function(tween,targets){
-                        this.player.play('player_idle');
-                    }.bind(this)
-                }
-            ]
-        });               
+        this.player_tweens=this.tweens.add({
+            targets:this.player,
+            y:this.player.y-70,
+            duration:1000,
+            yoyo:true,
+            onComplete:function(tween,targets){
+                this.player.play('player_idle');
+            }.bind(this)
+        });              
     }
 
     onCombo3(){
         this.sound_combo3.play();
         this.player.play('player_combo3');
-        this.tweens.timeline({
-            tweens: [
-                {
-                    targets:this.player,
-                    y:this.player.y-70,
-                    duration:1000,
-                },
-                {
-                    targets:this.player,
-                    y:this.player.y,
-                    duration:200,
-                    onComplete:function(tween,targets){
-                        this.player.play('player_idle');
-                    }.bind(this)
-                }
-            ]
-        }); 
+        this.player_tweens=this.tweens.add({
+            targets:this.player,
+            y:this.player.y-70,
+            duration:1000,
+            yoyo:true,
+            onComplete:function(tween,targets){
+                this.player.play('player_idle');
+            }.bind(this)
+        });
     }
 
     onFire(){
@@ -175,22 +159,14 @@ class GameScene extends Phaser.Scene{
             break;
             case Phaser.Input.Keyboard.KeyCodes.UP:
                 this.player.play('player_jump');
-                this.player_tweens=this.tweens.timeline({
-                    tweens: [
-                        {
-                            targets:this.player,
-                            y:this.player.y-70,
-                            duration:500,
-                        },
-                        {
-                            targets:this.player,
-                            y:this.player.y,
-                            duration:300,
-                            onComplete:function(tween,targets){
-                                this.player.play('player_idle');
-                            }.bind(this)
-                        }
-                    ]
+                this.player_tweens=this.tweens.add({
+                    targets:this.player,
+                    y:this.player.y-70,
+                    duration:500,
+                    yoyo:true,
+                    onComplete:function(tween,targets){
+                        this.player.play('player_idle');
+                    }.bind(this)
                 });
             break;
             case Phaser.Input.Keyboard.KeyCodes.A:
