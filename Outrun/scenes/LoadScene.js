@@ -8,9 +8,9 @@ class LoadScene extends Phaser.Scene{
 
     preload(){
         LoadFileText.progress(this);
-
+        
         this.load.image('bg', './assets/images/bg/0.png');
-        Player.preload(); 
+        Player.preload(this); 
     }
 
     create(){

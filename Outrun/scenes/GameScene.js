@@ -21,6 +21,16 @@ class GameScene extends Phaser.Scene{
         this.cameras.main.startFollow(this.player);
 
         eventsCenter.on('keyup', this.onKeyCode, this);
+
+        this.myCanvas = this.textures.createCanvas('myCanvas', this.width, this.height);
+        this.context = this.myCanvas.context;
+        // this.context.setTransform(1, 1, 1, 1, 0, 0);
+        // this.context.rotate(40 * Math.PI / 180);
+      
+        this.context.fillStyle = '#ff0000';
+        this.context.fillRect(10,10 , 200, 256);
+        this.myCanvas.refresh()
+        this.add.image(200, 100, 'myCanvas');
     }
 
     onKeyCode(event){
