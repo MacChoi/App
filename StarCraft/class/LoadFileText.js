@@ -9,7 +9,7 @@ class LoadFileText {
             text: 'Loading...',
             style: {
                 font: '20px monospace',
-                fill: '#ffffff'
+                fill: '#00ff00'
             }
         });
         loadingText.setOrigin(0.5, 0.5);
@@ -20,7 +20,7 @@ class LoadFileText {
             text: '0%',
             style: {
                 font: '18px monospace',
-                fill: '#ffffff'
+                fill: '#00ff00'
             }
         });
         percentText.setOrigin(0.5, 0.5);
@@ -31,7 +31,7 @@ class LoadFileText {
             text: '',
             style: {
                 font: '18px monospace',
-                fill: '#ffffff'
+                fill: '#00ff00'
             }
         });
         

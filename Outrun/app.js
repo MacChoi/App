@@ -10,7 +10,7 @@ const config = {
         mode: Phaser.Scale.FIT,
         parent: 'phaser',
         width: 500,
-        height: 390,
+        height: 300,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
@@ -19,9 +19,6 @@ const config = {
         arcade: {
             // debug: true,
         }
-    },
-    dom: {
-        createContainer: true
-    },
+    }
 };
 const game = new Phaser.Game(config);

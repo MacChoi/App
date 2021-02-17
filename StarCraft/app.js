@@ -20,8 +20,5 @@ const config = {
             // debug: true,
         }
     },
-    dom: {
-        createContainer: true
-    },
 };
 const game = new Phaser.Game(config);

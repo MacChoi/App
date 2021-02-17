@@ -8,7 +8,7 @@ class GameScene extends Phaser.Scene{
         this.height = game.config.height;
         this.playerStartX=this.width/2;
         this.playerStartY=this.height-10;
-        this.bounds=new Phaser.Geom.Rectangle(50,0,this.width,this,this.width);
+        this.bounds=new Phaser.Geom.Rectangle(50,0,this.width,this,this.height);
     }
 
     preload(){
