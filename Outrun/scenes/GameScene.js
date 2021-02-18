@@ -25,7 +25,6 @@ class GameScene extends Phaser.Scene{
     }
     
     onKeyCode(event){
-        if (this.player.anims.getName() != 'player_idle')return;
         switch (event.keyCode) {
             case Phaser.Input.Keyboard.KeyCodes.LEFT:
                 this.player.play('player_left');
