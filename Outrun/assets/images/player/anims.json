@@ -9,14 +9,20 @@
                     "frame": "1",
                     "duration": 0,
                     "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "2",
+                    "duration": 0,
+                    "visible": false
                 }
             ],
             
             "frameRate": 10,
-            "duration": 1.5,
-            "skipMissedFrames": true,
+            "duration": 1,
+            "skipMissedFrames": false,
             "delay": 0,
-            "repeat": 0,
+            "repeat": -1,
             "repeatDelay": 0,
             "yoyo": false,
             "showOnStart": false,

@@ -5,7 +5,7 @@ class GameScene extends Phaser.Scene{
         });
         this.bounds=new Phaser.Geom.Rectangle(0,0,this.width/2,this,this.height);
     }
-
+ 
     create(){
         eventsCenter.on('keyup', this.onKeyCode, this);
         this.width = this.game.config.width;
@@ -22,7 +22,6 @@ class GameScene extends Phaser.Scene{
 
         this.player = Player.create(this,this.width/2,240);
         this.player.setCollideWorldBounds(true);
-        this.player.body.setSize(150, 30)
     }
     
     onKeyCode(event){

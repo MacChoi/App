@@ -5,8 +5,14 @@ class Player extends Phaser.GameObjects.Sprite{
         scene.load.animation('anims_'+this.name.toLowerCase() , this.name.toLowerCase() +'/anims.json');
     }
 
-    static create(scene,x,y){ 
-        return scene.physics.add.sprite(x,y,new Player(scene,x,y,this.name.toLowerCase() ))
-        .setScale(2).play(this.name.toLowerCase()+'_idle');
+    static create(scene,x,y){
+        var sprite = scene.physics.add.sprite(x,y)
+        .play('player_idle').setScale(2);
+
+        sprite.on(Phaser.Animations.Events.ANIMATION_UPDATE, function (anim, frame, sprite, frameKey) {
+            sprite.body.setSize(sprite.width,sprite.height)
+        }, this);
+        
+        return sprite;
     }
 }
