@@ -1,0 +1,45 @@
+{ "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"map.json"
+        }
+    },
+ "height":8,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+         "height":8,
+         "id":1,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":9,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":2,
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.4.3",
+ "tileheight":30,
+ "tilesets":[
+        {
+              "firstgid":1,
+              "image":" ",
+              "imageheight":90,
+              "imagewidth":30,
+              "name":"map",
+              "tileheight":30,
+              "tilewidth":30
+        }],
+ "tilewidth":30,
+ "type":"map",
+ "version":1.4,
+ "width":9
+}

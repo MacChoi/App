@@ -44,14 +44,11 @@ class GameScene extends Phaser.Scene{
     create(){
         this.crateAnimation();
         eventsCenter.on('keyup', this.onKeyCode, this);
-        this.gameBounds=new Phaser.Geom.Rectangle(30,30,this.gameWidth,this,this.gameHeight);
+        this.gameBounds=new Phaser.Geom.Rectangle(30,30,this.gameWidth,this.gameHeight);
 
         this.add.image(0,0,'bg').setOrigin(0,0).setScale(5);
         this.player=this.physics.add.sprite(this.gameWidth/2,this.gameHeight-55).setScale(5);
         this.player.setCollideWorldBounds(true);
-        // this.player.setBoundsRectangle(this.gameBounds);
-
-        // this.player.body.customBoundsRectangle=this.gameBounds;
         this.player.play('idle');
 
         this.particles1 = this.add.particles('explosion1').createEmitter({

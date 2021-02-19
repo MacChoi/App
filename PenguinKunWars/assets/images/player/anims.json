@@ -1,0 +1,83 @@
+{
+    "anims": [
+        {
+            "key": "player_idle",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "player",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": false,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "player_left",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "player",
+                    "frame": "2",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "player_right",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "player",
+                    "frame": "3",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "player",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": true,
+            "showOnStart": false,
+            "hideOnComplete": false
+        }
+    ],
+    "globalTimeScale": 1
+}

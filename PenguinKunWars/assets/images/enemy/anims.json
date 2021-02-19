@@ -1,0 +1,27 @@
+{
+    "anims": [
+        {
+            "key": "enemy_idle",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "enemy",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": false,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        }
+    ],
+    "globalTimeScale": 1
+}
