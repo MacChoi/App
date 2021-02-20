@@ -1,11 +1,10 @@
-const eventsCenter = new Phaser.Events.EventEmitter();
 const config = {
     type: Phaser.AUTO,
     parent: 'phaser',
     title: "Star Craft Remake Code",
     version: "0.0.1",
     backgroundColor: '#000000',
-    scene: [LogoScene,PreloadScene],
+    scene: [LogoScene,GameScene],
     scale: {
         mode: Phaser.Scale.FIT,
         parent: 'phaser',
@@ -21,4 +20,8 @@ const config = {
         }
     },
 };
-const game = new Phaser.Game(config);
+
+const GAME = new Phaser.Game(config);
+const EventEmitter = new Phaser.Events.EventEmitter();
+const WIDTH = GAME.config.width;
+const HEIGHT = GAME.config.height;

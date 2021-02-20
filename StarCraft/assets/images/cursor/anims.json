@@ -1,0 +1,200 @@
+{
+    "anims": [
+        {
+            "key": "cursor_idle",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "cursor",
+                    "frame": "0",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "1",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "2",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "3",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "4",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": false,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "cursor_click",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "cursor",
+                    "frame": "20",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "21",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },{
+            "key": "cursor_drag",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "cursor",
+                    "frame": "5",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": 1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "cursor_overlap",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "cursor",
+                    "frame": "6",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "7",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "8",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "9",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "10",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "11",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "12",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "13",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "14",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "15",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "16",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "17",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "19",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "19",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        }
+    ],
+    "globalTimeScale": 1
+}

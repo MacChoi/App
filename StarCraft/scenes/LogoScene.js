@@ -7,7 +7,13 @@ class LogoScene extends Phaser.Scene{
     }
 
     preload(){
+        LoadFile.progress(this,function(){
+            this.scene.start('GameScene');
+        }.bind(this));
         this.load.image('logo', './assets/images/logo/1.png');
+        this.load.image('bg', './assets/images/bg/1.png');
+
+        Cursor.preload(this);
     }
 
     create(){

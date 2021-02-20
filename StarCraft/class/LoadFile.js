@@ -1,5 +1,5 @@
-class LoadFileText {
-    static progress(scene){
+class LoadFile {
+    static progress(scene,callback){
         scene.width = scene.game.config.width;
         scene.height = scene.game.config.height;
 
@@ -45,12 +45,10 @@ class LoadFileText {
         });
         
         scene.load.on('complete', function () {
-            console.log('complete')
             loadingText.destroy();
             percentText.destroy();
             assetText.destroy();
-
-            scene.scene.remove('PreloadScene');
+            callback();
         }.bind(this));      
     }
 }
