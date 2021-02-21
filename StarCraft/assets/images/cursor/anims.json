@@ -306,6 +306,118 @@
             "yoyo": false,
             "showOnStart": false,
             "hideOnComplete": false
+        },
+        {
+            "key": "cursor_leftUp",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "cursor",
+                    "frame": "28",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "29",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "cursor_leftDown",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "cursor",
+                    "frame": "24",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "25",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "cursor_rightUp",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "cursor",
+                    "frame": "32",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "33",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
+        },
+        {
+            "key": "cursor_rightDown",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "cursor",
+                    "frame": "36",
+                    "duration": 0,
+                    "visible": false
+                },
+                {
+                    "key": "cursor",
+                    "frame": "37",
+                    "duration": 0,
+                    "visible": false
+                }
+            ],
+            
+            "frameRate": 10,
+            "duration": 1,
+            "skipMissedFrames": true,
+            "delay": 0,
+            "repeat": -1,
+            "repeatDelay": 0,
+            "yoyo": false,
+            "showOnStart": false,
+            "hideOnComplete": false
         }
     ],
     "globalTimeScale": 1

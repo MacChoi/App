@@ -21,8 +21,8 @@ class GameScene extends Phaser.Scene{
     }
 
     create(){
-        Cursor.create(this,100,100);
-        Cursor.setZone(this,0,0);
         Map.create(this,0,0);
+        this.cameras.main.setSize(WIDTH, HEIGHT);
+        // this.cameras.main.startFollow(Cursor.sprite);
     }
 }
