@@ -21,8 +21,15 @@ class GameScene extends Phaser.Scene{
     }
 
     create(){
+        EventEmitter.on('moveCursorCamera', this.moveCursorCamera, this);
         Map.create(this,0,0);
         this.cameras.main.setSize(WIDTH, HEIGHT);
         // this.cameras.main.startFollow(Cursor.sprite);
+    }
+
+    moveCursorCamera(x,y){
+        console.log(x,y)
+        this.cameras.main.scrollX+=x;
+        this.cameras.main.scrollY+=y;
     }
 }
