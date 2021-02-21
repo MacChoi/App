@@ -4,7 +4,7 @@ const config = {
     title: "Star Craft Remake Code",
     version: "0.0.1",
     backgroundColor: '#000000',
-    scene: [LogoScene,GameScene],
+    scene: [TitleScene,GameScene],
     scale: {
         mode: Phaser.Scale.FIT,
         parent: 'phaser',
@@ -16,7 +16,7 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            // debug: true,
+            debug: true,
         }
     },
 };

@@ -11,8 +11,7 @@ class LoadFile {
                 font: '20px monospace',
                 fill: '#00ff00'
             }
-        });
-        loadingText.setOrigin(0.5, 0.5);
+        }).setOrigin(0.5, 0.5);
         
         var percentText = scene.make.text({
             x: scene.width / 2,
@@ -22,9 +21,8 @@ class LoadFile {
                 font: '18px monospace',
                 fill: '#00ff00'
             }
-        });
-        percentText.setOrigin(0.5, 0.5);
-        
+        }).setOrigin(0.5, 0.5);
+       
         var assetText = scene.make.text({
             x: scene.width / 2,
             y: scene.height / 2 + 280,
@@ -33,9 +31,8 @@ class LoadFile {
                 font: '18px monospace',
                 fill: '#00ff00'
             }
-        });
-        
-        assetText.setOrigin(0.5, 0.5);
+        }).setOrigin(0.5, 0.5);
+    
         scene.load.on('progress', function (value) {
             percentText.setText(parseInt(value * 100) + '%');
         });
