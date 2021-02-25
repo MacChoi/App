@@ -19,7 +19,7 @@ class TimerScene extends Phaser.Scene{
             callback: this.onTimerEvent, callbackScope: this, loop: true });
         
         this.graphics = this.add.graphics();
-        this.graphics.lineStyle(2, 0xffffff, 1);
+        this.graphics.fillStyle(0xffffff, 1);
         this.graphics.fillRect(10, 10, 10, 10);
         this.graphics.generateTexture("rect");
       
