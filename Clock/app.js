@@ -1,6 +1,6 @@
 const config = {
     type: Phaser.AUTO,
-    title: "Time Timer",
+    title: "Clock",
     backgroundColor: '#ffffff',
     scene: [ClockScene],
     scale: {

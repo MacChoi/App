@@ -11,7 +11,7 @@ const list =[
   {title:"Tetris",img:"Tetris/Tetris.PNG",url:"Tetris/index.html"},
   {title:"Omok",img:"Omok/Omok.PNG",url:"Omok/index.html"},
   {title:"Arkanoid",img:"Arkanoid/Arkanoid.png",url:"Arkanoid/index.html"},
-  {title:"Clock",img:"Clock/Clock.png",url:"Clock/index.html"},
+  {title:"Clock",img:"Clock/Clock.PNG",url:"Clock/index.html"},
   {title:"TimeTimer",img:"TimeTimer/TimeTimer.png",url:"TimeTimer/index.html"},
   {title:"Digital Clock",img:"DigitalClock/DigitalClock.png",url:"DigitalClock/index.html"},
   {title:"Analog Clock",img:"AnalogClock/AnalogClock.png",url:"AnalogClock/index.html"},
