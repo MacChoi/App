@@ -1,4 +1,5 @@
 const list =[
+  {title:"FlappyBird",img:"FlappyBird/FlappyBird.PNG",url:"FlappyBird/index.html"},
   {title:"StarCraft",img:"StarCraft/assets/images/logo/1.png",url:"StarCraft/index.html"},
   {title:"PenguinKunWars",img:"PenguinKunWars/PenguinKunWars.PNG",url:"PenguinKunWars/index.html"},
   {title:"Outrun",img:"Outrun/Outrun.PNG",url:"Outrun/index.html"},
