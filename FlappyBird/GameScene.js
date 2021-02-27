@@ -64,8 +64,8 @@ class GameScene extends Phaser.Scene{
         var block1 =this.physics.add.sprite(WIDTH,randomY-HEIGHT-randomHeight,'block').setScale(5).setFlipY(true);
         var block2 =this.physics.add.sprite(WIDTH,randomY,'block').setScale(5);
         
-        this.blockGroup.add(block1)
-        this.blockGroup.add(block2)
+        this.blockGroup.add(block1);
+        this.blockGroup.add(block2);
 
         this.tweens.add({
             targets:block1,
