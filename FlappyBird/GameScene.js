@@ -15,28 +15,31 @@ class GameScene extends Phaser.Scene{
             .setOrigin(0, 0);
 
         this.player=this.physics.add.sprite(200,HEIGHT/2,'player').setScale(5);
-        this.player.setGravityY(10);
+        this.player.setGravityY(200);
         this.player.setCollideWorldBounds(true);
 
         this.delay = 3000;
         this.timer = this.time.addEvent({ delay: this.delay,
             callback: this.onTimerEvent, callbackScope: this, loop: true });
     
-        this.input.on('pointerdown', function (pointer) {    
-            this.tweens.timeline({
+        this.input.on('pointerdown', function (pointer) {
+            if(this.player_tweens)this.player_tweens.stop();
+            this.player.setVelocity(0,-150);
+            this.player_tweens = this.tweens.timeline({
                 tweens: [
                     {
                         targets:this.player,
-                        y:this.player.y-50,
                         angle:-30,
                         duration:300,
+                        onComplete:function(tween,targets){
+                            this.player.setVelocity(0,0);
+                        }.bind(this)
                     },
                     {
                         targets:this.player,
                         angle:30,
                         duration:500,
-                        onComplete:function(tween,targets){ 
-                        }.bind(this)
+                        
                     }
                 ]
             });
