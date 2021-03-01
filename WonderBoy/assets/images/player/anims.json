@@ -80,13 +80,13 @@
                 }
             ],
             
-            "frameRate": 10,
-            "duration": 1,
+            "frameRate": 2,
+            "duration": 10,
             "skipMissedFrames": true,
             "delay": 0,
             "repeat": 0,
             "repeatDelay": 0,
-            "yoyo": true,
+            "yoyo": false,
             "showOnStart": false,
             "hideOnComplete": false
         }

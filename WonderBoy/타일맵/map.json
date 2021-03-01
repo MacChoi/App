@@ -1,4 +1,12 @@
-{ 
+{ "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"map.json"
+        }
+    },
  "height":13,
  "infinite":false,
  "layers":[
@@ -36,8 +44,17 @@
          "visible":true,
          "x":0,
          "y":0
-        }
-       ],
+        }, 
+        {
+         "id":3,
+         "image":"WonderBoy\/assets\/images\/bg\/bg.png",
+         "name":"Image Layer 1",
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
  "nextlayerid":6,
  "nextobjectid":7,
  "orientation":"orthogonal",
@@ -52,89 +69,42 @@
          "imageheight":32,
          "imagewidth":64,
          "margin":0,
-         "name":"map",
+         "name":"tile",
          "spacing":0,
          "tilecount":2,
          "tileheight":32,
          "tiles":[
-              {
-                     "id":0,
-                     "objectgroup":
-                        {
-                         "draworder":"index",
-                         "name":"",
-                         "objects":[
-                                {
-                                 "height":31.3333333333333,
-                                 "id":3,
-                                 "name":"",
-                                 "rotation":0,
-                                 "type":"",
-                                 "visible":true,
-                                 "width":31,
-                                 "x":0.666666666666669,
-                                 "y":3.99680288865056e-15
-                                }],
-                         "opacity":1,
-                         "type":"objectgroup",
-                         "visible":true,
-                         "x":0,
-                         "y":0
-                        },
-                     "properties":[
-                            {
-                             "name":"collides",
-                             "type":"bool",
-                             "value":true
-                            }]
-                    }, 
+                {
+                 "id":0,
+                 "objectgroup":
                     {
-                     "id":1,
-                     "objectgroup":
-                        {
-                         "draworder":"index",
-                         "name":"",
-                         "objects":[
-                                {
-                                 "height":0,
-                                 "id":1,
-                                 "name":"",
-                                 "polygon":[
-                                        {
-                                         "x":0,
-                                         "y":0
-                                        }, 
-                                        {
-                                         "x":30,
-                                         "y":-17
-                                        }, 
-                                        {
-                                         "x":30,
-                                         "y":0
-                                        }],
-                                 "rotation":0,
-                                 "type":"",
-                                 "visible":true,
-                                 "width":0,
-                                 "x":2,
-                                 "y":31
-                                }],
-                         "opacity":1,
-                         "type":"objectgroup",
-                         "visible":true,
-                         "x":0,
-                         "y":0
-                        },
-                     "properties":[
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
                             {
-                             "name":"collides",
-                             "type":"bool",
-                             "value":true
-                            }]
-                    }],
+                             "height":31.3333333333333,
+                             "id":3,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":31,
+                             "x":0.666666666666669,
+                             "y":3.99680288865056e-15
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }],
          "tilewidth":32
-        }
-       ],
+        }, 
+        {
+         "firstgid":3,
+         "source":"bg2.json"
+        }],
  "tilewidth":32,
  "type":"map",
  "version":1.4,
