@@ -3,7 +3,7 @@ class GameScene extends Phaser.Scene{
         super({
             key:'GameScene',
         });
-        this.speed =200;
+        this.speed =150;
         this.countFlag=0;
     }
 

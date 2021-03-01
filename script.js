@@ -1,4 +1,5 @@
 const list =[
+  {title:"WonderBoy",img:"WonderBoy/WonderBoy.png",url:"WonderBoy/index.html"},
   {title:"RallyX",img:"RallyX/RallyX.png",url:"RallyX/index.html"},
   {title:"FlappyBird",img:"FlappyBird/FlappyBird.PNG",url:"FlappyBird/index.html"},
   {title:"Trex",img:"Trex/Trex.PNG",url:"Trex/index.html"},

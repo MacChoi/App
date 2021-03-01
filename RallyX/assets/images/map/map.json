@@ -4,7 +4,7 @@
           "export":
              {
               "format":"json",
-              "target":"RallyX  map.json"
+              "target":"map.json"
              }
          },
       "height":64,
@@ -185,11 +185,8 @@
               "tilecount":1,
               "tileheight":11,
               "tilewidth":8
-             }, 
-             {
-              "firstgid":2690,
-              "source":"flag.json"
-             }],
+             } 
+             ],
       "tilewidth":24,
       "type":"map",
       "version":1.4,
