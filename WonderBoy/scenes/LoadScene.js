@@ -12,7 +12,7 @@ class LoadScene extends Phaser.Scene{
         }.bind(this));
         
         this.load.setPath('./assets/images');
-        this.load.image('title', 'title/title.png');
+        this.load.image('title', 'title/title.PNG');
         this.load.image('bg', 'bg/bg.png');
         this.load.image('bg2', 'bg/bg2.png');
         
