@@ -22,8 +22,8 @@ class LottoScene extends Phaser.Scene{
             var y = Phaser.Math.Between(300, 600);
             var ball=this.physics.add.image(x, y, 'ball', frames[i]);
             ball.setCollideWorldBounds(true)
-            ball.setVelocityX(Phaser.Math.Between(200, 500));
-            ball.setVelocityY(Phaser.Math.Between(200, 500));
+            ball.setVelocityX(Phaser.Math.Between(-1000, 1000));
+            ball.setVelocityY(Phaser.Math.Between(-1000, 1000));
             ball.setBounceX(1);
             ball.setBounceY(1);
             ball.body.customBoundsRectangle= customBounds;
