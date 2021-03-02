@@ -14,7 +14,7 @@ class LottoScene extends Phaser.Scene{
         this.bg=this.add.image(WIDTH/2,HEIGHT/2,'bg');
 
         var balls = this.add.group();
-        var customBounds = new Phaser.Geom.Rectangle(0, 0, WIDTH, HEIGHT-200);
+        var customBounds = new Phaser.Geom.Rectangle(0, 0, WIDTH, HEIGHT-300);
         var atlasTexture = this.textures.get('ball');
         var frames = atlasTexture.getFrameNames();
         for (var i = 0; i < frames.length; i++){
