@@ -7,7 +7,7 @@ class LottoScene extends Phaser.Scene{
     preload(){
         this.load.setPath('./assets/images');
         this.load.atlas('ball','ball/sprites.png','ball/sprites.json');
-        this.load.image('bg', 'bg/1.png');
+        this.load.image('bg', 'bg/1.PNG');
     }
 
     create(){
