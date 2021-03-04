@@ -1,0 +1,12 @@
+{ 
+    "pack": {
+        "files": [
+            {
+                "type": "bitmapFont",
+                "key": "desyrel",
+                "textureURL": "assets/fonts/bitmap/desyrel.png",
+                "fontDataURL": "assets/fonts/bitmap/desyrel.xml"
+            }
+        ]
+    }
+}

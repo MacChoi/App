@@ -1,7 +1,7 @@
 {
     "anims": [
         {
-            "key": "idle",
+            "key": "cursor_idle",
             "type": "frame",
             "frames": [
                 {
@@ -47,7 +47,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "click",
+            "key": "cursor_click",
             "type": "frame",
             "frames": [
                 {
@@ -74,7 +74,7 @@
             "showOnStart": false,
             "hideOnComplete": false
         },{
-            "key": "drag",
+            "key": "cursor_drag",
             "type": "frame",
             "frames": [
                 {
@@ -96,7 +96,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "overlap",
+            "key": "cursor_overlap",
             "type": "frame",
             "frames": [
                 {
@@ -196,7 +196,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "top",
+            "key": "cursor_top",
             "type": "frame",
             "frames": [
                 {
@@ -224,7 +224,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "bottom",
+            "key": "cursor_bottom",
             "type": "frame",
             "frames": [
                 {
@@ -252,7 +252,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "left",
+            "key": "cursor_left",
             "type": "frame",
             "frames": [
                 {
@@ -280,7 +280,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "right",
+            "key": "cursor_right",
             "type": "frame",
             "frames": [
                 {
@@ -308,7 +308,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "leftUp",
+            "key": "cursor_leftUp",
             "type": "frame",
             "frames": [
                 {
@@ -336,7 +336,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "leftDown",
+            "key": "cursor_leftDown",
             "type": "frame",
             "frames": [
                 {
@@ -364,7 +364,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "rightUp",
+            "key": "cursor_rightUp",
             "type": "frame",
             "frames": [
                 {
@@ -392,7 +392,7 @@
             "hideOnComplete": false
         },
         {
-            "key": "rightDown",
+            "key": "cursor_rightDown",
             "type": "frame",
             "frames": [
                 {

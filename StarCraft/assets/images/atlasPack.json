@@ -1,0 +1,13 @@
+{ 
+    "pack": {
+        "path": "assets/images",
+        "defaultType": "atlas",
+        "files": [
+            {
+                "key": "cursor",
+                "atlasURL": "cursor/sprites.json",
+                "textureURL": "cursor/sprites.png"
+            }
+        ]
+    }
+}

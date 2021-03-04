@@ -1,0 +1,12 @@
+{
+    "pack": {
+        "path": "assets/images",
+        "defaultType": "image",
+        "files": [
+            {
+                "key": "bg",
+                "url": "map/1.png"
+            }
+        ]
+    }
+}

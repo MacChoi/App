@@ -1,27 +1,25 @@
-const config = {
+const CONFIG = {
     type: Phaser.AUTO,
-    parent: 'phaser',
-    title: "Star Craft Remake Code",
-    version: "0.0.1",
     backgroundColor: '#000000',
-    scene: [TitleScene,GameScene],
+    scene: {
+        preload:function(){
+            this.load.sceneFile('IntroScene', 'scenes/IntroScene.js');
+        }
+    },
     scale: {
         mode: Phaser.Scale.FIT,
-        parent: 'phaser',
-        width: 1280,
-        height: 720,
+        width: 1920,
+        height: 1080,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    pixelArt: true,
     physics: {
         default: 'arcade',
         arcade: {
-            // debug: true,
+            debug: true,
         }
-    },
+    }
 };
-
-const GAME = new Phaser.Game(config);
-const EventEmitter = new Phaser.Events.EventEmitter();
+const GAME = new Phaser.Game(CONFIG);
 const WIDTH = GAME.config.width;
 const HEIGHT = GAME.config.height;
+const EMITTER = new Phaser.Events.EventEmitter();

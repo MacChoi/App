@@ -1,0 +1,12 @@
+{ 
+    "pack": {
+        "path": "assets/images",
+        "defaultType": "json",
+        "files": [
+            {
+                "key": "Cursor",
+                "url": "cursor/anims.json"
+            }
+        ]
+    }
+}

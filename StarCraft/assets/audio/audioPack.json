@@ -1,0 +1,12 @@
+{
+    "pack": {
+        "path": "assets/audio",
+        "defaultType": "audio",
+        "files": [
+            {
+                "key": "sound",
+                "url": "sound/1.mp3"
+            }
+        ]
+    }
+}

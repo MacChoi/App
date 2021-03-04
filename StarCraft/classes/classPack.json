@@ -1,0 +1,12 @@
+{
+    "pack": {
+        "path": "classes",
+        "defaultType": "script",
+        "files": [
+            {
+                "key": "Cursor",
+                "url": "Cursor.js"
+            }
+        ]
+    }
+}

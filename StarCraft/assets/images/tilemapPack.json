@@ -1,0 +1,12 @@
+{ 
+    "pack": {
+        "path": "assets/images",
+        "defaultType": "tilemapTiledJSON",
+        "files": [
+            {
+                "key": "map",
+                "url": "map/sprites.json"
+            }
+        ]
+    }
+}

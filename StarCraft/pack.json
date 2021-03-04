@@ -1,0 +1,26 @@
+{ 
+    "pack": {
+        "files": [
+            {
+                "type": "pack",
+                "key": "imagePack",
+                "url": "assets/images/imagePack.json"
+            },
+            {
+                "type": "pack",
+                "key": "atlasPack",
+                "url": "assets/images/atlasPack.json"
+            },
+            {
+                "type": "pack",
+                "key": "animPack",
+                "url": "assets/images/animPack.json"
+            },
+            {
+                "type": "pack",
+                "key": "classPack",
+                "url": "classes/classPack.json"
+            }
+        ]
+    }
+}
