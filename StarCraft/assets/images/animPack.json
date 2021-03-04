@@ -6,6 +6,10 @@
             {
                 "key": "Cursor",
                 "url": "cursor/anims.json"
+            },
+            {
+                "key": "Marine",
+                "url": "marine/anims.json"
             }
         ]
     }

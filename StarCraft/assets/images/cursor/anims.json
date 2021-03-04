@@ -1,38 +1,28 @@
 {
     "anims": [
         {
-            "key": "idle",
+            "key": "Cursor_idle",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "0",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "0"
                 },
                 {
                     "key": "cursor",
-                    "frame": "1",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "1"
                 },
                 {
                     "key": "cursor",
-                    "frame": "2",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "2"
                 },
                 {
                     "key": "cursor",
-                    "frame": "3",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "3"
                 },
                 {
                     "key": "cursor",
-                    "frame": "4",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "4"
                 }
             ],
             
@@ -47,20 +37,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "click",
+            "key": "Cursor_click",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "20",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "20"
                 },
                 {
                     "key": "cursor",
-                    "frame": "21",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "21"
                 }
             ],
             
@@ -74,14 +60,12 @@
             "showOnStart": false,
             "hideOnComplete": false
         },{
-            "key": "drag",
+            "key": "Cursor_drag",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "5",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "5"
                 }
             ],
             
@@ -96,92 +80,64 @@
             "hideOnComplete": false
         },
         {
-            "key": "overlap",
+            "key": "Cursor_overlap",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "6",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "6"
                 },
                 {
                     "key": "cursor",
-                    "frame": "7",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "7"
                 },
                 {
                     "key": "cursor",
-                    "frame": "8",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "8"
                 },
                 {
                     "key": "cursor",
-                    "frame": "9",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "9"
                 },
                 {
                     "key": "cursor",
-                    "frame": "10",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "10"
                 },
                 {
                     "key": "cursor",
-                    "frame": "11",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "11"
                 },
                 {
                     "key": "cursor",
-                    "frame": "12",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "12"
                 },
                 {
                     "key": "cursor",
-                    "frame": "13",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "13"
                 },
                 {
                     "key": "cursor",
-                    "frame": "14",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "14"
                 },
                 {
                     "key": "cursor",
-                    "frame": "15",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "15"
                 },
                 {
                     "key": "cursor",
-                    "frame": "16",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "16"
                 },
                 {
                     "key": "cursor",
-                    "frame": "17",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "17"
                 },
                 {
                     "key": "cursor",
-                    "frame": "19",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "19"
                 },
                 {
                     "key": "cursor",
-                    "frame": "19",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "19"
                 }
             ],
             
@@ -196,20 +152,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "top",
+            "key": "Cursor_top",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "30",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "30"
                 },
                 {
                     "key": "cursor",
-                    "frame": "31",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "31"
                 }
             ],
             
@@ -224,20 +176,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "bottom",
+            "key": "Cursor_bottom",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "22",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "22"
                 },
                 {
                     "key": "cursor",
-                    "frame": "23",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "23"
                 }
             ],
             
@@ -252,20 +200,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "left",
+            "key": "Cursor_left",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "26",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "26"
                 },
                 {
                     "key": "cursor",
-                    "frame": "27",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "27"
                 }
             ],
             
@@ -280,20 +224,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "right",
+            "key": "Cursor_right",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "34",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "34"
                 },
                 {
                     "key": "cursor",
-                    "frame": "35",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "35"
                 }
             ],
             
@@ -308,20 +248,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "leftUp",
+            "key": "Cursor_leftUp",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "28",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "28"
                 },
                 {
                     "key": "cursor",
-                    "frame": "29",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "29"
                 }
             ],
             
@@ -336,20 +272,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "leftDown",
+            "key": "Cursor_leftDown",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "24",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "24"
                 },
                 {
                     "key": "cursor",
-                    "frame": "25",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "25"
                 }
             ],
             
@@ -364,20 +296,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "rightUp",
+            "key": "Cursor_rightUp",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "32",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "32"
                 },
                 {
                     "key": "cursor",
-                    "frame": "33",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "33"
                 }
             ],
             
@@ -392,20 +320,16 @@
             "hideOnComplete": false
         },
         {
-            "key": "rightDown",
+            "key": "Cursor_rightDown",
             "type": "frame",
             "frames": [
                 {
                     "key": "cursor",
-                    "frame": "36",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "36"
                 },
                 {
                     "key": "cursor",
-                    "frame": "37",
-                    "duration": 0,
-                    "visible": false
+                    "frame": "37"
                 }
             ],
             

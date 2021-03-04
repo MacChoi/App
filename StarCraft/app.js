@@ -15,9 +15,10 @@ const CONFIG = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            // debug: true,
         }
-    }
+    },
+    pixelArt: true,
 };
 const GAME = new Phaser.Game(CONFIG);
 const WIDTH = GAME.config.width;

@@ -6,6 +6,10 @@
             {
                 "key": "bg",
                 "url": "map/1.png"
+            },
+            {
+                "key": "ui",
+                "url": "ui/1.png"
             }
         ]
     }
