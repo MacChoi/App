@@ -6,6 +6,10 @@
             {
                 "key": "Cursor",
                 "url": "Cursor.js"
+            },
+            {
+                "key": "Marine",
+                "url": "Marine.js"
             }
         ]
     }

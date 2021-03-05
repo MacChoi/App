@@ -18,8 +18,8 @@ class IntroScene extends Phaser.Scene{
             y: HEIGHT-70,
             text: '0%',
             style: {
-                font: '40px monospace',
-                fill: '#ff00ff'
+                font: '40px Arial',
+                fill: '#000000'
             }
         }).setOrigin(0.5, 0.5).setDepth(1);
         this.graphics = this.add.graphics();
@@ -37,7 +37,7 @@ class IntroScene extends Phaser.Scene{
 
         this.load.on('complete', function () {
             this.percentText.setText(100 + '% load complete' );
-            // this.scene.start('GameScene');
+            this.scene.start('GameScene');
         }.bind(this));
 
         this.load.pack('pack', 'pack.json');
