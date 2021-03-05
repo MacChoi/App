@@ -9,7 +9,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
         this.scene = scene;
         this.setScale(3).setDepth(1).play('Cursor_idle');
         this.on(Phaser.Animations.Events.ANIMATION_UPDATE, function (anim, frame, sprite, frameKey) {
-            this.body.setSize(sprite.width,sprite.height)
+            this.body.setSize(sprite.width,sprite.height);
         }, this); 
 
         this.color = 0x00ff00;

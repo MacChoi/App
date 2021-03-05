@@ -26,7 +26,7 @@ class Marine extends Phaser.GameObjects.Sprite {
         if(this.tweens)this.tweens.stop();
         var angle = Phaser.Math.Angle.Between(pointer.x, pointer.y,this.x, this.y);
         var reverseAngle = Phaser.Math.Angle.Reverse(angle + Math.PI / 2);
-        var rotation = angle - Math.PI / 2;
+        // var rotation = angle - Math.PI / 2;
         var distance = Phaser.Math.Distance.Between(pointer.x, pointer.y,this.x, this.y);
         var rads = Math.round(Phaser.Math.RadToDeg(reverseAngle));
         rads=rads-(rads%22.5);

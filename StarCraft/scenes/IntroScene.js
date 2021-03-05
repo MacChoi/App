@@ -10,8 +10,8 @@ class IntroScene extends Phaser.Scene{
         var onCompleteImage = function(){
             this.add.image(WIDTH/2, HEIGHT/2, 'title').setScale(5);
         }
-        this.load.once('complete', onCompleteImage, this);
         this.load.image('title', 'assets/images/title/1.png');
+        this.load.once('complete', onCompleteImage, this);
         this.load.start();
         this.percentText = this.make.text({
             x: WIDTH / 2,
