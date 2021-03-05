@@ -24,7 +24,6 @@ class Cursor extends Phaser.GameObjects.Sprite {
         scene.input.on('pointermove', function (pointer) {
             this.setPosition(pointer.x, pointer.y);
             if (this.isDown==true){
-                this.isDrag = true;
                 this.play('Cursor_drag');
                 this.graphics.clear();
                 this.graphics.lineStyle(this.thickness, this.color, this.alpha);
@@ -34,14 +33,14 @@ class Cursor extends Phaser.GameObjects.Sprite {
 
         scene.input.on('pointerdown', function (pointer) {
             this.isDown = true;
-            this.isDrag = false;
         }.bind(this));
     
         scene.input.on('pointerup', function (pointer) {
             this.setScale(3);
             this.isDown = false;
             this.graphics.clear();
-            if(this.isDrag){
+            var distance = Phaser.Math.Distance.Between(pointer.downX, pointer.downY, pointer.x, pointer.y);
+            if(distance > 20){
                 this.play('Cursor_idle');
                 EMITTER.emit("pointerDrag", {x:pointer.downX, y:pointer.downY, width:pointer.x - pointer.downX, height:pointer.y - pointer.downY});
             }else{
