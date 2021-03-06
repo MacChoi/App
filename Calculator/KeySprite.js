@@ -14,5 +14,8 @@ class KeySprite extends Phaser.GameObjects.Sprite {
             this.setTint(0x00ff00);
             EMITTER.emit("keydown", {num:this.num});
         });
+        this.on('pointerup', function (event) {
+            this.clearTint();
+        });
     }
 }
