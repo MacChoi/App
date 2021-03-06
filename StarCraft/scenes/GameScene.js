@@ -12,5 +12,7 @@ class GameScene extends Phaser.Scene {
         
         new Cursor(this,50,50);
         new Marine(this,750,350);
+
+        console.log(eval("1+2*10"));
     }
 }
