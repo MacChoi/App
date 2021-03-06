@@ -42,6 +42,7 @@ class IntroScene extends Phaser.Scene{
 
         this.load.pack('pack', 'pack.json');
         this.load.sceneFile('GameScene', 'scenes/GameScene.js');
+        this.load.sceneFile('UIScene', 'scenes/UIScene.js');
     }
 
     create(){

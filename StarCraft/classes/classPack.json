@@ -4,6 +4,10 @@
         "defaultType": "script",
         "files": [
             {
+                "key": "Button",
+                "url": "Button.js"
+            },
+            {
                 "key": "Cursor",
                 "url": "Cursor.js"
             },

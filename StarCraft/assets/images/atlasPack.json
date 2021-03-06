@@ -4,6 +4,11 @@
         "defaultType": "atlas",
         "files": [
             {
+                "key": "button",
+                "atlasURL": "button/sprites.json",
+                "textureURL": "button/sprites.png"
+            },
+            {
                 "key": "cursor",
                 "atlasURL": "cursor/sprites.json",
                 "textureURL": "cursor/sprites.png"

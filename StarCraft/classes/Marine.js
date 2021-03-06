@@ -37,17 +37,17 @@ class Marine extends Phaser.GameObjects.Sprite {
         else this.setFlipX(false);
         this.play('move_' + rads);
         
-        this.tweens=this.scene.tweens.add({
-            targets: this,
-            x:pointer.x,
-            y:pointer.y,
-            duration: distance *5,
-            onUpdate: function (tween) {
-            }.bind(this),
-            onComplete: function (tween) {
-                this.play('idle_'+rads);
-            }.bind(this),
-        });
+        // this.tweens=this.scene.tweens.add({
+        //     targets: this,
+        //     x:pointer.x,
+        //     y:pointer.y,
+        //     duration: distance *5,
+        //     onUpdate: function (tween) {
+        //     }.bind(this),
+        //     onComplete: function (tween) {
+        //         this.play('idle_'+rads);
+        //     }.bind(this),
+        // });
     }
 
     onPointerDrag(pointer){
