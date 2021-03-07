@@ -1,16 +1,31 @@
-class Unit extends Phaser.GameObjects.Sprite {
+class Unit extends Phaser.Physics.Arcade.Sprite {
     constructor (scene,x,y,key) {
         super(scene,x,y,key);
         scene.add.existing(this,true);
-        scene.physics.world.enable(this);
+        scene.physics.add.existing(this);
+        
         this.scene = scene;
         this.setScale(3);
+        this.setCollideWorldBounds(true);
+        this.setImmovable(true);
+        GameScene.group.add(this);
+        scene.physics.add.collider(this,GameScene.group);
+        scene.physics.add.overlap(this,GameScene.group,this.onOverlap,null,this);
+
         this.previous={x:this.x,y:this.y};
         this.degree = 0;
+        this.state='idle';
+        this.target = new Phaser.Math.Vector2();
+
         this.on(Phaser.Animations.Events.ANIMATION_UPDATE, function (animation, frame, gameObject) {
             this.degree = this.getAngle(this,this.previous);
+            if(this.previous.degree != this.degree){
+                this.play(this.state + '_' +this.degree);
+            }
             this.body.setSize(this.width,this.height);
-            this.previous={x:this.x,y:this.y};
+            this.previous={x:this.x,y:this.y,degree:this.degree};
+
+            this.moveToReset();
         }.bind(this), this);
 
         EMITTER.on('pointerUp', this.onPointerup, this);
@@ -23,6 +38,13 @@ class Unit extends Phaser.GameObjects.Sprite {
         ]
         this.makeAnimation(table_frames);
         this.play('idle_0');
+    }
+
+    onOverlap(unit){
+        if(unit.body.blocked.down){
+          
+        }
+        console.log('onOverlap',unit.body.blocked.down)
     }
 
     onPointerup(pointer){}
@@ -39,7 +61,6 @@ class Unit extends Phaser.GameObjects.Sprite {
                     frames.push(table_frames[i][1][k] + start_frame);
                 }
                 start_frame+=1;            
-                // console.log(table_frames[i][0]+j ,frames)
                 this.anims.create({
                     key: table_frames[i][0]+j,
                     frames: this.anims.generateFrameNumbers('marine', { frames: frames }),
@@ -51,7 +72,7 @@ class Unit extends Phaser.GameObjects.Sprite {
     }
 
     getAngle(p1,p2){
-        // if(p1.x == p2.x & p1.y == p2.y)return this.degree;
+        if(p1.x == p2.x & p1.y == p2.y)return this.degree;
         var angle = Phaser.Math.Angle.Between(p1.x, p1.y,p2.x, p2.y);
         var reverseAngle = Phaser.Math.Angle.Reverse(angle + Math.PI / 2);
         var degree = Math.round(Phaser.Math.RadToDeg(reverseAngle));
@@ -64,8 +85,31 @@ class Unit extends Phaser.GameObjects.Sprite {
         return degree;
     }
 
-    aniPlay(key){
+    setState(key,x,y){
+        this.state=key;
         this.play(key+"_"+this.degree);
-        console.log(key+"_"+this.degree)
+    }
+    
+    moveTo(x,y){
+        this.target.x = x;
+        this.target.y = y;
+        this.scene.physics.moveToObject(this, this.target, 200);
+    }
+
+    moveToReset(){
+        var distance = Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y);
+        if(this.body.speed < 200 |distance > 50){
+            this.scene.physics.moveToObject(this, this.target, this.body.speed);
+            if (distance < this.width*3 | this.body.speed < 10){
+                this.setVelocity(0,0);
+                this.setState('idle',this.x, this.y);
+            }
+        }
+    }
+
+    getDirFromAngle(){
+        var tx = Math.cos(this.degree);
+        var ty = Math.sin(this.degree);
+        return {tx,ty}
     }
 }

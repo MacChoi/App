@@ -87,7 +87,7 @@
         "defaultType": "bitmapFont",
         "files": [
             {
-                "key": "desyrel",
+                "key": "font",
                 "textureURL": "font.png",
                 "fontDataURL": "font.xml"
             }
