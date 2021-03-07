@@ -1,25 +1,95 @@
 { 
-    "pack": {
+    "class": {
+        "path": "classes",
+        "defaultType": "script",
         "files": [
             {
-                "type": "pack",
-                "key": "imagePack",
-                "url": "assets/images/imagePack.json"
+                "key": "Cursor",
+                "url": "UI/Cursor.js"
             },
             {
-                "type": "pack",
-                "key": "atlasPack",
-                "url": "assets/images/atlasPack.json"
+                "key": "Button",
+                "url": "UI/Button.js"
             },
             {
-                "type": "pack",
-                "key": "animPack",
-                "url": "assets/images/animPack.json"
+                "key": "Marine",
+                "url": "Uint/Marine.js"
+            }
+        ]
+    },
+    "image": {
+        "path": "assets/images",
+        "defaultType": "image",
+        "files": [
+            {
+                "key": "bg",
+                "url": "map/1.png"
             },
             {
-                "type": "pack",
-                "key": "classPack",
-                "url": "classes/classPack.json"
+                "key": "ui",
+                "url": "ui/1.png"
+            }
+        ]
+    },
+    "atlas": {
+        "path": "assets/images",
+        "defaultType": "atlas",
+        "files": [
+            {
+                "key": "button",
+                "atlasURL": "button/sprites.json",
+                "textureURL": "button/sprites.png"
+            },
+            {
+                "key": "cursor",
+                "atlasURL": "cursor/sprites.json",
+                "textureURL": "cursor/sprites.png"
+            },
+            {
+                "key": "marine",
+                "atlasURL": "marine/sprites.json",
+                "textureURL": "marine/sprites.png"
+            }
+        ]
+    },
+    "anims": {
+        "path": "assets/images",
+        "defaultType": "json",
+        "files": [
+            {
+                "key": "Cursor",
+                "url": "cursor/anims.json"
+            },
+            {
+                "key": "Marine",
+                "url": "marine/anims.json"
+            }
+        ]
+    },
+    "tileMap": {
+        "path": "assets/images",
+        "defaultType": "tilemapTiledJSON",
+        "files": [
+            {
+                "type":"tilemapTiledJSON",
+                "key": "map",
+                "url": "map/map.json"
+            },
+            {
+                "type":"image",
+                "key": "tiles",
+                "url": "map/map.png"
+            }
+        ]
+    },
+    "font": {
+        "path": "assets/font",
+        "defaultType": "bitmapFont",
+        "files": [
+            {
+                "key": "desyrel",
+                "textureURL": "font.png",
+                "fontDataURL": "font.xml"
             }
         ]
     }

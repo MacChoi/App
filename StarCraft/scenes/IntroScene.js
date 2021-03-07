@@ -2,17 +2,27 @@ class IntroScene extends Phaser.Scene{
     constructor(){
         super({
             key:'IntroScene',
+            // active:true
+        });
+    }
+    preload(){
+        this.load.image('title', 'assets/images/title/1.png');
+    }
+
+    create(){
+        this.title=this.add.image(WIDTH/2, HEIGHT/2, 'title').setScale(5);
+    }
+}
+
+class ProgressScene extends Phaser.Scene{
+    constructor(){
+        super({
+            key:'ProgressScene',
             active:true
         });
     }
-
     preload(){
-        var onCompleteImage = function(){
-            this.add.image(WIDTH/2, HEIGHT/2, 'title').setScale(5);
-        }
-        this.load.image('title', 'assets/images/title/1.png');
-        this.load.once('complete', onCompleteImage, this);
-        this.load.start();
+        this.load.pack('pack','pack.json');
         this.percentText = this.make.text({
             x: WIDTH / 2,
             y: HEIGHT-70,
@@ -31,27 +41,26 @@ class IntroScene extends Phaser.Scene{
         }.bind(this));
         
         this.load.on('fileprogress', function (file) {
-            // console.log('Loading asset : ' + file.type);
-            this.percentText.setText(this.percent + ' ' + file.key);
+            // console.log('Loading asset : ' + this.percent + ' ' + file.type + ' : ' + file.key);
+            this.percentText.setText('Loading asset : ' + this.percent + ' ' + file.type + ' : ' + file.key);
         }.bind(this));
 
         this.load.on('complete', function () {
-            this.percentText.setText(100 + '% load complete' );
-            this.scene.start('GameScene');
+            this.percentText.setText(100 + '% Loading complete' );
         }.bind(this));
-
-        this.load.pack('pack', 'pack.json');
-        this.load.sceneFile('GameScene', 'scenes/GameScene.js');
-        this.load.sceneFile('UIScene', 'scenes/UIScene.js');
     }
 
     create(){
-        this.input.on('pointerdown', function (pointer) {
-            this.scene.start('GameScene');
-            this.graphics.destroy();
-            this.percentText.destroy();
-            this.textures.remove('title');
-            this.scene.destroy('IntroScene');
-        }, this);
+        this.scene.start('GameScene');
+        this.scene.start('UIScene');
+        this.release();
+    }
+
+    release(){
+        this.graphics.destroy();
+        this.percentText.destroy();
+        this.scene.get('IntroScene').title.destroy();
+        this.textures.remove('title');
+        this.scene.destroy('IntroScene');
     }
 }

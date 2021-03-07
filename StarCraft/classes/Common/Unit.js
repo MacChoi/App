@@ -1,17 +1,20 @@
-class Marine extends Phaser.GameObjects.Sprite {
+class Unit extends Phaser.GameObjects.Sprite {
     constructor (scene,x,y,key) {
         super(scene,x,y,key);
         scene.add.existing(this,true);
         scene.physics.world.enable(this);
+        this.scene = scene;
+        this.setScale(3);
+        this.previous={x:this.x,y:this.y};
+        this.degree = 0;
+        this.on(Phaser.Animations.Events.ANIMATION_UPDATE, function (animation, frame, gameObject) {
+            this.degree = this.getAngle(this,this.previous);
+            this.body.setSize(this.width,this.height);
+            this.previous={x:this.x,y:this.y};
+        }.bind(this), this);
 
         EMITTER.on('pointerUp', this.onPointerup, this);
         EMITTER.on('pointerDrag', this.onPointerDrag, this);
-
-        this.scene = scene;
-        this.setScale(3).setDepth(1);
-        this.on(Phaser.Animations.Events.ANIMATION_UPDATE, function (animation, frame, gameObject) {
-            this.body.setSize(this.width,this.height);
-        }.bind(this), this);
 
         const table_frames=[
             ['idle_',[1]],
@@ -22,37 +25,8 @@ class Marine extends Phaser.GameObjects.Sprite {
         this.play('idle_0');
     }
 
-    onPointerup(pointer){
-        if(this.tweens)this.tweens.stop();
-        var angle = Phaser.Math.Angle.Between(pointer.x, pointer.y,this.x, this.y);
-        var reverseAngle = Phaser.Math.Angle.Reverse(angle + Math.PI / 2);
-        // var rotation = angle - Math.PI / 2;
-        var distance = Phaser.Math.Distance.Between(pointer.x, pointer.y,this.x, this.y);
-        var rads = Math.round(Phaser.Math.RadToDeg(reverseAngle));
-        rads=rads-(rads%22.5);
-        if(rads>180){
-            this.setFlipX(true);
-            rads = 180-(rads-180);
-        }
-        else this.setFlipX(false);
-        this.play('move_' + rads);
-        
-        // this.tweens=this.scene.tweens.add({
-        //     targets: this,
-        //     x:pointer.x,
-        //     y:pointer.y,
-        //     duration: distance *5,
-        //     onUpdate: function (tween) {
-        //     }.bind(this),
-        //     onComplete: function (tween) {
-        //         this.play('idle_'+rads);
-        //     }.bind(this),
-        // });
-    }
-
-    onPointerDrag(pointer){
-        // console.log(pointer)
-    }
+    onPointerup(pointer){}
+    onPointerDrag(pointer){}
 
     makeAnimation(table_frames){
         const angle_chunk = 22.5;
@@ -74,5 +48,24 @@ class Marine extends Phaser.GameObjects.Sprite {
                 });
             }  
         }
+    }
+
+    getAngle(p1,p2){
+        // if(p1.x == p2.x & p1.y == p2.y)return this.degree;
+        var angle = Phaser.Math.Angle.Between(p1.x, p1.y,p2.x, p2.y);
+        var reverseAngle = Phaser.Math.Angle.Reverse(angle + Math.PI / 2);
+        var degree = Math.round(Phaser.Math.RadToDeg(reverseAngle));
+        degree=degree-(degree%22.5);
+        if(degree>180){
+            this.setFlipX(true);
+            degree = 180-(degree-180);
+        }
+        else this.setFlipX(false);
+        return degree;
+    }
+
+    aniPlay(key){
+        this.play(key+"_"+this.degree);
+        console.log(key+"_"+this.degree)
     }
 }

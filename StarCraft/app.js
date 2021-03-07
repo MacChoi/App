@@ -1,11 +1,7 @@
 const CONFIG = {
     type: Phaser.AUTO,
     backgroundColor: '#000000',
-    scene: {
-        preload:function(){
-            this.load.sceneFile('IntroScene', 'scenes/IntroScene.js');
-        }
-    },
+    scene: [IntroScene,ProgressScene,GameScene,UIScene],
     scale: {
         mode: Phaser.Scale.FIT,
         width: 1920,
