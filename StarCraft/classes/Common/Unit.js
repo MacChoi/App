@@ -4,6 +4,7 @@ class Unit extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this,true);
         scene.physics.add.existing(this);
         
+        this.moveSpeed =200;
         this.scene = scene;
         this.setScale(3);
         this.setCollideWorldBounds(true);
@@ -23,7 +24,9 @@ class Unit extends Phaser.Physics.Arcade.Sprite {
                 this.play(this.state + '_' +this.degree);
             }
             this.body.setSize(this.width,this.height);
-            this.previous={x:this.x,y:this.y,degree:this.degree};
+            this.previous={x:this.x,y:this.y,
+                degree:this.degree
+            };
 
             this.moveToReset();
         }.bind(this), this);
@@ -41,10 +44,9 @@ class Unit extends Phaser.Physics.Arcade.Sprite {
     }
 
     onOverlap(unit){
-        if(unit.body.blocked.down){
-          
-        }
-        console.log('onOverlap',unit.body.blocked.down)
+        // console.log(unit);
+        // const circle = new Phaser.Geom.Circle(unit.x, unit.y, 20);
+        // Phaser.Actions.PlaceOnCircle(GameScene.group.getChildren(), circle);
     }
 
     onPointerup(pointer){}
@@ -93,16 +95,22 @@ class Unit extends Phaser.Physics.Arcade.Sprite {
     moveTo(x,y){
         this.target.x = x;
         this.target.y = y;
-        this.scene.physics.moveToObject(this, this.target, 200);
+        this.scene.physics.moveToObject(this, this.target, this.moveSpeed);
     }
 
     moveToReset(){
-        var distance = Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y);
-        if(this.body.speed < 200 |distance > 50){
-            this.scene.physics.moveToObject(this, this.target, this.body.speed);
-            if (distance < this.width*3 | this.body.speed < 10){
+        var distance = Math.round(Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y));
+        if(this.body.speed <= this.moveSpeed |distance > 50){
+            if (distance < this.width*3 | this.body.speed < 20){
                 this.setVelocity(0,0);
                 this.setState('idle',this.x, this.y);
+                this.setBounce(0,0);
+                this.body.speed=0;
+                this.isMoving=true;
+                this.scene.physics.moveToObject(this, this.target, this.body.speed);     
+            }else {
+                this.setBounce(1,1);
+                this.scene.physics.moveToObject(this, this.target, this.body.speed);
             }
         }
     }

@@ -12,6 +12,10 @@
                 "url": "UI/Button.js"
             },
             {
+                "key": "Resource",
+                "url": "UI/Resource.js"
+            },
+            {
                 "key": "Marine",
                 "url": "Uint/Marine.js"
             }
@@ -26,7 +30,7 @@
                 "url": "map/1.png"
             },
             {
-                "key": "ui",
+                "key": "uiBg",
                 "url": "ui/1.png"
             }
         ]
@@ -49,6 +53,11 @@
                 "key": "marine",
                 "atlasURL": "marine/sprites.json",
                 "textureURL": "marine/sprites.png"
+            },
+            {
+                "key": "ui",
+                "atlasURL": "ui/sprites.json",
+                "textureURL": "ui/sprites.png"
             }
         ]
     },
