@@ -10,7 +10,7 @@ class MainScene extends Phaser.Scene {
     preload(){
         this.load.image('tube', 'tube.png');
 
-        this.load.spritesheet('nixie', 'nixie3.png', { frameWidth: 70, frameHeight: 116 });
+        this.load.spritesheet('nixie', 'nixie.png', { frameWidth: 70, frameHeight: 116 });
     }
 
     create(){
