@@ -41,7 +41,7 @@ class ProgressScene extends Phaser.Scene{
         }.bind(this));
         
         this.load.on('fileprogress', function (file) {
-            console.log('Loading asset : ' + this.percent + ' ' + file.type + ' : ' + file.key);
+            // console.log('Loading asset : ' + this.percent + ' ' + file.type + ' : ' + file.key);
             this.percentText.setText('Loading asset : ' + this.percent + ' ' + file.type + ' : ' + file.key);
         }.bind(this));
 
