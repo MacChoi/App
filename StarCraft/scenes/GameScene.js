@@ -7,6 +7,8 @@ class GameScene extends Phaser.Scene {
         });
     }
     create(){
+        this.cameras.main.setBounds(0, 0, 3200, 600).setName('main');
+        
         GameScene.group = this.physics.add.group();
         GameScene.graphics = this.add.graphics();
         this.bg = this.add.image(WIDTH/2, HEIGHT/2, 'bg').setScale(5);

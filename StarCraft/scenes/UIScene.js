@@ -7,6 +7,8 @@ class UIScene extends Phaser.Scene {
 
     create(){
         var gameScene=this.scene.get('GameScene');
+        this.minimap = gameScene.cameras.add(20, HEIGHT-350, WIDTH*0.2, HEIGHT*0.3).setZoom(0.2).setName('mini');
+        
         var ui=this.add.sprite(0, 0, 'uiBg').setScale(5);
         Phaser.Display.Align.In.BottomCenter(ui, gameScene.bg);
         this.setButton(WIDTH-290,HEIGHT-300);

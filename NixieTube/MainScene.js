@@ -1,15 +1,6 @@
 class MainScene extends Phaser.Scene {
-    static group;
-    static graphics;
-    constructor(){
-        super({
-            key:'MainScene',
-        });
-    }
-
     preload(){
         this.load.image('tube', 'tube.png');
-
         this.load.spritesheet('nixie', 'nixie.png', { frameWidth: 70, frameHeight: 116 });
     }
 
@@ -28,20 +19,17 @@ class MainScene extends Phaser.Scene {
 
             this.numbers.push(this.add.image(i * 80 + 40, HEIGHT/2, 'nixie', '10').setTint(0xff0000));
             this.numbers[i].setAlpha(0.5);
+            this.numbers[i].setTintFill(0xff0000, 0xffff00, 0xff0000, 0xff0000,0xff0000);
             this.tweens.add({
                 targets: this.numbers[i],
                 alpha:1,    
                 duration:100,
                 yoyo:true,
                 repeat:-1,
-                onUpdate: function (tween){
-                    this.numbers[i].setBlendMode(Phaser.BlendModes.SCREEN);
-                    this.numbers[i].setTintFill(0xff0000, 0xffff00, 0xff0000, 0xff0000,0xff0000);
-                }.bind(this)
             });
         }
       
-        this.timer = this.time.addEvent({ delay: this.delay,
+        this.timer = this.time.addEvent({ delay: 1000,
             callback: this.onTimerEvent, callbackScope: this, loop: true });
     }
 
