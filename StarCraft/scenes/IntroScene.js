@@ -6,6 +6,10 @@ class IntroScene extends Phaser.Scene{
         });
     }
     preload(){
+        // this.input.on('pointerdown', function (pointer) {
+        //     window.promptEvent.prompt();
+        // }, this);
+
         this.load.image('title', 'assets/images/title/1.png');
     }
 
