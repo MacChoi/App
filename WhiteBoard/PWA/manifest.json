@@ -1,0 +1,22 @@
+{
+    "short_name": "App",
+    "name": "",
+    "icons": [
+      {
+        "src": "./images/icon_192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "./images/icon_512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "display_override": ["window-control-overlay", "minimal-ui"],
+    "scope": "/",
+    "theme_color": "#ffffff"
+}

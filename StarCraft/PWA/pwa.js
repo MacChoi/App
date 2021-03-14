@@ -42,10 +42,7 @@ window.addEventListener('beforeinstallprompt', function (event) {
     if (window.matchMedia('(display-mode: standalone)').matches) {
         console.log('display-mode is standalone');
     } else {
-        var result = confirm("addToHomeScreen?");
-        if(result){
-            addToHomeScreen();
-        }
+    
     }
 });
 
@@ -53,9 +50,9 @@ function addToHomeScreen() {
     window.promptEvent.prompt();
     window.promptEvent.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt')
+        console.log('User accepted')
       } else {
-        console.log('User dismissed the A2HS prompt')
+        console.log('User dismissed')
       }
     })
 }

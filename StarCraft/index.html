@@ -1,10 +1,18 @@
 <html>
     <title>StarCraft</title>
     <head>
-        <link rel="manifest" href="ProgressiveWebApp/manifest.json">
-        <link rel="icon" href="ProgressiveWebApp/images/icon-192.png" sizes="192x192" />
-        <link rel="icon" href="ProgressiveWebApp/images/icon-512.png" sizes="512x512" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="PWA/manifest.json">
+        
+        <!-- pwa safari fix -->
+        <link rel="apple-touch-icon" sizes="192x192" href="PWA/images/images/icons-192.png">
+        <link rel="apple-touch-icon" sizes="512x512" href="PWA/images/images/icons-512.png">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-title" content="앱 이름" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+        <meta name="description" content="사이트 설명" />
+        <meta name="theme-color" content="#ffffff" />
+        
     </head>
     <body>
     </body>
@@ -15,4 +23,4 @@
 <script type="text/javascript" src="scenes/UIScene.js"></script>
 <script type="text/javascript" src="scenes/GameScene.js"></script>
 <script type="text/javascript" src="app.js"></script>
-<script type="text/javascript" src="ProgressiveWebApp/pwa.js"></script>
+<script type="text/javascript" src="PWA/pwa.js"></script>

@@ -14,12 +14,12 @@
       }
     ],
     "start_url": "/",
-    "background_color": "#3367D6",
+    "background_color": "#ffffff",
     "display": "standalone",
     "display_override": ["window-control-overlay", "minimal-ui"],
 
     "scope": "/",
-    "theme_color": "#3367D6",
+    "theme_color": "#ffffff",
     "shortcuts": [
       {
         "name": "How's weather today?",

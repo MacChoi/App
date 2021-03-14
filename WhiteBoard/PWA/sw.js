@@ -1,8 +1,15 @@
-var cacheName = 'starcraft-phaser-v1';
+var CACHE_NAME = 'starcraft-phaser-v1';
 var filesToCache = [
   '/',
   '/index.html',
-  '/assets/images/title/1.png',
+  '/libray/phaser.min.js',
+  '/MainScene.js',
+  '/assets/images/brush.png',
+  '/manifest.json',
+  '/PWA/pwa.js',
+  '/PWA/sw.js',
+  '/PWA/images/icon_192x192.png',
+  '/PWA/images/icons_512x512.png',
 ];
 
 self.addEventListener('install', function(event) {
@@ -11,18 +18,7 @@ self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.keys().then(function(keyList) {
             return Promise.all(keyList.map(function(key) {
-                if (key !== cacheName) {
-                    console.log('app removing old cache', key);
-                    return caches.delete(key);
-                }
-            }));
-        })
-    );
-
-    event.waitUntil(
-        caches.keys().then(function(keyList) {
-            return Promise.all(keyList.map(function(key) {
-                if (key !== cacheName) {
+                if (key !== CACHE_NAME) {
                     console.log('app removing old cache', key);
                     return caches.delete(key);
                 }
@@ -46,11 +42,6 @@ self.addEventListener("fetch", (event) => {
                 .then((cache) => cache.match("/offline.html"))
         )
     );
-
-    const url = new URL(event.request.url);
-    // if (url.origin == location.origin && url.pathname == '/dog.svg') {
-    //     event.respondWith(caches.match('/cat.svg'));
-    // }
 });
 
 // self.addEventListener('fetch', event => {

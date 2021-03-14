@@ -1,0 +1,22 @@
+<html>
+    <title>White Board</title>
+    <body></body>
+</html>
+<script type="text/javascript" src="library/phaser.min.js"></script>
+<script type="text/javascript" src="PWA/pwa.js"></script>
+<script type="text/javascript" src="MainScene.js"></script>
+<script>
+const WIDTH = window.innerWidth;
+const HEIGHT = window.innerHeight;
+const CONFIG = {
+    backgroundColor: 0xffffff,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        width: WIDTH,
+        height: HEIGHT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    scene:[PWAScene,MainScene]
+};
+var GAME = new Phaser.Game(CONFIG);
+</script>
