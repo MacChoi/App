@@ -1,24 +1,24 @@
 var CACHE_NAME = 'starcraft-phaser-v1';
 var filesToCache = [
-    'App/WhiteBoard/serviceWorker.js',
-    'App/WhiteBoard/index.html',
-    'App/WhiteBoard/libray/phaser.min.js',
-    'App/WhiteBoard/MainScene.js',
-    'App/WhiteBoard/assets/images/brush.png',
-    'App/WhiteBoard/manifest.json',
-    'App/WhiteBoard/PWA/pwa.js',
-    'App/WhiteBoard/PWA/images/icon_192x192.png',
-    'App/WhiteBoard/PWA/images/icons_512x512.png',
+    'serviceWorker.js',
+    'index.html',
+    'libray/phaser.min.js',
+    'MainScene.js',
+    'assets/images/brush.png',
+    'manifest.json',
+    'PWA/pwa.js',
+    'PWA/images/icon_192x192.png',
+    'PWA/images/icons_512x512.png',
 ];
 
 self.addEventListener('install', function(e) {
     // self.skipWaiting();
     console.log('app install');
-    e.waitUntil(
-        caches.open(filesToCache).then(cache => {
-            return cache.addAll(filesToCache);
-        })
-    );
+    // e.waitUntil(
+    //     caches.open(filesToCache).then(cache => {
+    //         return cache.addAll(filesToCache);
+    //     })
+    // );
 });
 
 self.addEventListener('activate', event => {
