@@ -15,11 +15,11 @@ self.addEventListener('install', function(e) {
     // self.skipWaiting();
     console.log('app install');
     e.waitUntil(
-        // caches.open(CACHE_NAME).then((cache) => {
-        //     console.log("Service Worker: Caching Files",cache);
-        //     return cache.addAll(filesToCache);
-        // })
-        // .then(() => self.skipWaiting())
+        caches.open(CACHE_NAME).then((cache) => {
+            console.log("Service Worker: Caching Files",cache);
+            return cache.addAll(filesToCache);
+        })
+        .then(() => self.skipWaiting())
     );
 });
 
