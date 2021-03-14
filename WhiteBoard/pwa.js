@@ -1,8 +1,8 @@
 const request = async (url) => {
-    var link = document.createElement('link'); 
-    link.rel = "manifest"; 
-    link.href = "manifest.json"; 
-    document.getElementsByTagName('head')[0].appendChild(link);
+    // var link = document.createElement('link'); 
+    // link.rel = "manifest"; 
+    // link.href = "manifest.json"; 
+    // document.getElementsByTagName('head')[0].appendChild(link);
 
     const response = await fetch(url);
     const manifest = await response.json();
@@ -80,7 +80,6 @@ window.addEventListener('beforeinstallprompt', function (event) {
     } else {
     
     }
-    alert('beforeinstallprompt')
 });
 
 function addToHomeScreen() {
