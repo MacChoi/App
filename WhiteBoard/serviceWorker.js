@@ -1,23 +1,25 @@
-var CACHE_NAME = 'starcraft-phaser-v1';
+var CACHE_NAME = 'whiteboard-phaser-v1';
 var filesToCache = [
-    'serviceWorker.js',
-    'index.html',
-    'libray/phaser.min.js',
-    'MainScene.js',
-    'assets/images/brush.png',
-    'manifest.json',
-    'PWA/pwa.js',
-    'PWA/images/icon_192x192.png',
-    'PWA/images/icons_512x512.png',
+    '/libray/phaser.min.js',
+    '/index.html',
+    '/MainScene.js',
+    '/assets/images/brush.png',
+    '/PWA/manifest.json',
+    '/PWA/pwa.js',
+    '/PWA/serviceWorker.js',
+    '/PWA/images/icon_192x192.png',
+    '/PWA/images/icons_512x512.png',
 ];
 
 self.addEventListener('install', function(e) {
     // self.skipWaiting();
     console.log('app install');
     e.waitUntil(
-        caches.open(filesToCache).then(cache => {
-            return cache.addAll(filesToCache);
-        })
+        // caches.open(CACHE_NAME).then((cache) => {
+        //     console.log("Service Worker: Caching Files",cache);
+        //     return cache.addAll(filesToCache);
+        // })
+        // .then(() => self.skipWaiting())
     );
 });
 
@@ -47,13 +49,3 @@ self.addEventListener('fetch', function(e) {
         })
     );
 });
-
-// self.addEventListener('fetch', event => {
-//     const url = new URL(event.request.url);
-
-//     // // serve the cat SVG from the cache if the request is
-//     // // same-origin and the path is '/dog.svg'
-//     // if (url.origin == location.origin && url.pathname == '/dog.svg') {
-//     //     event.respondWith(caches.match('/cat.svg'));
-//     // }
-// });
