@@ -3,12 +3,12 @@
     "name": "White Board App",
     "icons": [
       {
-        "src": "/images/icons/icon_192x192.png",
+        "src": "assets/images/icons/icon_192x192.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "/images/icons/icon_512x512.png",
+        "src": "assets/images/icons/icon_512x512.png",
         "type": "image/png",
         "sizes": "512x512"
       }
