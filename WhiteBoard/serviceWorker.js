@@ -4,9 +4,9 @@ var filesToCache = [
     '/index.html',
     '/MainScene.js',
     '/assets/images/brush.png',
-    '/PWA/manifest.json',
-    '/PWA/pwa.js',
-    '/PWA/serviceWorker.js',
+    '/manifest.json',
+    '/pwa.js',
+    '/serviceWorker.js',
     '/PWA/images/icon_192x192.png',
     '/PWA/images/icons_512x512.png',
 ];
