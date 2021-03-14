@@ -13,10 +13,10 @@
         "sizes": "512x512"
       }
     ],
-    "start_url": "/App/WhiteBoard",
+    "start_url": "./App/WhiteBoard/index.html",
     "background_color": "#ffffff",
     "display": "standalone",
     "display_override": ["window-control-overlay", "minimal-ui"],
-    "scope": "/",
+    "scope": "./App/WhiteBoard/index.html",
     "theme_color": "#ffffff"
 }

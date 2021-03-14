@@ -32,7 +32,7 @@ const request = async (url) => {
         document.getElementsByTagName('head')[0].appendChild(meta);
     });    
 }
-request('manifest.json');
+request('./manifest.json');
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
