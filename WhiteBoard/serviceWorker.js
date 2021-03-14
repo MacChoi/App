@@ -7,8 +7,8 @@ var filesToCache = [
     '/manifest.json',
     '/pwa.js',
     '/serviceWorker.js',
-    '/images/icons/icon_192x192.png',
-    '/images/icons/icons_512x512.png',
+    '/assets/images/icons/icon_192x192.png',
+    '/assets/images/icons/icons_512x512.png',
 ];
 
 self.addEventListener('install', function(e) {
