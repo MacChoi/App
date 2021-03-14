@@ -1,14 +1,14 @@
 var CACHE_NAME = 'starcraft-phaser-v1';
 var filesToCache = [
-  './index.html',
-  './libray/phaser.min.js',
-  './MainScene.js',
-  './assets/images/brush.png',
-  './manifest.json',
-  './PWA/pwa.js',
-  './PWA/sw.js',
-  './PWA/images/icon_192x192.png',
-  './PWA/images/icons_512x512.png',
+  '/index.html',
+  '/libray/phaser.min.js',
+  '/MainScene.js',
+  '/assets/images/brush.png',
+  '/manifest.json',
+  '/PWA/pwa.js',
+  '/PWA/sw.js',
+  '/PWA/images/icon_192x192.png',
+  '/PWA/images/icons_512x512.png',
 ];
 
 self.addEventListener('install', function(event) {
@@ -33,16 +33,18 @@ self.addEventListener('activate', event => {
     })
 });
 
-// 요청에 실패하면 오프라인 페이지 표시
-self.addEventListener("fetch", (event) => {
-    if ("navigate" !== event.request.mode) return;
-
-    event.respondWith(
-        fetch(event.request).catch(() =>
-            caches
-                .open(CACHE_NAME)
-                .then((cache) => cache.match("/offline.html"))
-        )
+self.addEventListener('fetch', function(e) {
+    e.respondWith(
+        caches.match(e.request).then(function(r) {
+            console.log('[Service Worker] Fetching resource: '+e.request.url);
+            return r || fetch(e.request).then(function(response) {
+                        return caches.open(cacheName).then(function(cache) {
+                console.log('[Service Worker] Caching new resource: '+e.request.url);
+                cache.put(e.request, response.clone());
+                return response;
+                });
+            });
+        })
     );
 });
 

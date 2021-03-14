@@ -5,7 +5,7 @@
 const request = async (url) => {
     var link = document.createElement('link'); 
     link.rel = "manifest"; 
-    link.href = "PWA/manifest.json"; 
+    link.href = "manifest.json"; 
     document.getElementsByTagName('head')[0].appendChild(link);
 
     const response = await fetch(url);
@@ -36,7 +36,7 @@ const request = async (url) => {
         document.getElementsByTagName('head')[0].appendChild(meta);
     });    
 }
-request('PWA/manifest.json');
+request('manifest.json');
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
