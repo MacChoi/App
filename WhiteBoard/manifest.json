@@ -13,7 +13,7 @@
         "sizes": "512x512"
       }
     ],
-    "start_url": "/",
+    "start_url": "/App/WhiteBoard",
     "background_color": "#ffffff",
     "display": "standalone",
     "display_override": ["window-control-overlay", "minimal-ui"],
