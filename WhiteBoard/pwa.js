@@ -101,7 +101,7 @@ class PWAScene extends Phaser.Scene {
     }
 
     preload (){
-        this.load.image('icon', 'PWA/images/icon_192x192.png');
+        this.load.image('icon', 'assets/images/icons/icon_192x192.png');
     }
 
     release(){
