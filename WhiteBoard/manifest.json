@@ -1,21 +1,21 @@
 {
-    "short_name": "App",
-    "name": "",
+    "short_name": "WhiteBoard",
+    "name": "White Board App",
     "icons": [
       {
-        "src": "PWA/images/icon_192x192.png",
+        "src": "/images/icons/icon_192x192.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "PWA/images/icon_512x512.png",
+        "src": "/images/icons/icon_512x512.png",
         "type": "image/png",
         "sizes": "512x512"
       }
     ],
     "start_url": "https://macchoi.github.io/App/WhiteBoard/index.html",
-    "background_color": "#ffffff",
+    "background_color": "#000000",
     "display": "standalone",
     "display_override": ["window-control-overlay", "minimal-ui"],
-    "theme_color": "#ffffff"
+    "theme_color": "#000000"
 }

@@ -6,7 +6,7 @@ class MainScene extends Phaser.Scene {
         });
     }
     preload(){
-        this.load.image('brush', 'assets/images/brush.png');
+        this.load.image('brush', 'assets/images/brush/1.png');
     }
     create(){
         var rt = this.add.renderTexture(0, 0, WIDTH, HEIGHT);
@@ -17,7 +17,7 @@ class MainScene extends Phaser.Scene {
 
         this.input.on('pointermove', function (pointer) {
             if (pointer.isDown){
-                var points = pointer.getInterpolatedPosition(3);
+                var points = pointer.getInterpolatedPosition(30);
                 points.forEach(function (p) {
                     rt.draw(brush, p.x - 16, p.y - 16, 1, 0x000000);
                 });
