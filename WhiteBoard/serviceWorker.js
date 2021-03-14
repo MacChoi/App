@@ -6,7 +6,6 @@ var filesToCache = [
     '/assets/images/brush.png',
     '/manifest.json',
     '/pwa.js',
-    '/serviceWorker.js',
     '/assets/images/icons/icon_192x192.png',
     '/assets/images/icons/icons_512x512.png',
 ];
