@@ -17,7 +17,7 @@ class MainScene extends Phaser.Scene {
 
         this.input.on('pointermove', function (pointer) {
             if (pointer.isDown){
-                var points = pointer.getInterpolatedPosition(30);
+                var points = pointer.getInterpolatedPosition(10);
                 points.forEach(function (p) {
                     rt.draw(brush, p.x - 16, p.y - 16, 1, 0x000000);
                 });
