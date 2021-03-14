@@ -36,7 +36,7 @@ request('PWA/manifest.json');
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/serviceWorker.js', {scope: '/WhiteBoard'}).then(function(registration) {
+        navigator.serviceWorker.register('WhiteBoard/serviceWorker.js', {scope: '/WhiteBoard'}).then(function(registration) {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
         
             registration.installing; // the installing worker, or undefined
