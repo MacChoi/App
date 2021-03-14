@@ -3,10 +3,10 @@
 // console.log(json);
 
 const request = async (url) => {
-    var link = document.createElement('link'); 
-    link.rel = "manifest"; 
-    link.href = "manifest.json"; 
-    document.getElementsByTagName('head')[0].appendChild(link);
+    // var link = document.createElement('link'); 
+    // link.rel = "manifest"; 
+    // link.href = "manifest.json"; 
+    // document.getElementsByTagName('head')[0].appendChild(link);
 
     const response = await fetch(url);
     const manifest = await response.json();
@@ -36,11 +36,11 @@ const request = async (url) => {
         document.getElementsByTagName('head')[0].appendChild(meta);
     });    
 }
-request('manifest.json');
+request('PWA/manifest.json');
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js', {scope: '/WhiteBoard'}).then(function(registration) {
+        navigator.serviceWorker.register('WhiteBoard/PWA/sw.js', {scope: '/WhiteBoard'}).then(function(registration) {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
         
             registration.installing; // the installing worker, or undefined

@@ -14,11 +14,11 @@ var filesToCache = [
 self.addEventListener('install', function(event) {
     // self.skipWaiting();
     console.log('app install');
-    event.waitUntil(
-        caches.open(filesToCache).then(cache => {
-            return cache.addAll(filesToCache);
-        })
-    );
+    // event.waitUntil(
+    //     caches.open(filesToCache).then(cache => {
+    //         return cache.addAll(filesToCache);
+    //     })
+    // );
 });
 
 self.addEventListener('activate', event => {

@@ -18,7 +18,10 @@ self.addEventListener('install', function(event) {
             }));
         })
     );
+});
 
+self.addEventListener('activate', event => {
+    console.log('now ready to handle fetches!');
     event.waitUntil(
         caches.keys().then(function(keyList) {
             return Promise.all(keyList.map(function(key) {
@@ -29,10 +32,6 @@ self.addEventListener('install', function(event) {
             }));
         })
     );
-});
-
-self.addEventListener('activate', event => {
-    console.log('now ready to handle fetches!');
 });
 
 // 요청에 실패하면 오프라인 페이지 표시

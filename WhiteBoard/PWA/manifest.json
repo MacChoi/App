@@ -3,12 +3,12 @@
     "name": "",
     "icons": [
       {
-        "src": "PWA/images/icon_192x192.png",
+        "src": "images/icon_192x192.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "PWA/images/icon_512x512.png",
+        "src": "images/icon_512x512.png",
         "type": "image/png",
         "sizes": "512x512"
       }
