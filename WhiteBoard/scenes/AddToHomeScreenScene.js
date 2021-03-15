@@ -46,10 +46,10 @@ class AddToHomeScreenScene extends Phaser.Scene {
         var close = this.add.text(icon.width + 90, icon.height-50, 'Close', { font: '20px Courier', fill: '#000000' }).setShadow(1, 1, '#ffffff');
         
         this.setButton(AddtoHomeScreen,()=>{
-            addToHomeScreen();
+            this.onAddToHomeScreen();
         });
         this.setButton(close,()=>{
-            this.release();
+            this.onRelease();
         });
 
     }
