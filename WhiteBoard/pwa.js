@@ -1,13 +1,11 @@
 const request = async (url) => {
-    var link = document.createElement('link'); 
-    link.rel = "manifest"; 
-    link.href = "manifest.json"; 
-    document.getElementsByTagName('head')[0].appendChild(link);
-
     const response = await fetch(url);
     const manifest = await response.json();
+    
     // pwa safari fix
     const apple_link=[
+        {"rel":"shortcut icon","sizes":"","href":"#"},
+        {"rel":"manifest","sizes":"","href":"manifest.json"},
         {"rel":"apple-touch-icon","sizes":"192x192","href":manifest.icons[0].src},
         {"rel":"apple-touch-icon","sizes":"512x512","href":manifest.icons[1].src}
     ]
@@ -18,11 +16,13 @@ const request = async (url) => {
         link.href = element.href; 
         document.getElementsByTagName('head')[0].appendChild(link);
     });
+
     const apple_mata=[
+        {"name":"viewport","content":"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"},
         {"name":"apple-mobile-web-app-capable","content":"yes"},
         {"name":"apple-mobile-web-app-title","content":manifest.short_name},
         {"name":"description","content":manifest.name},
-        {"name":"apple-mobile-web-app-status-bar-style","content":manifest.background_color},
+        {"name":"apple-mobile-web-app-status-bar-style","content":"black-translucent"},
         {"name":"theme-color","content":manifest.background_color},
     ]
     apple_mata.forEach(element => {
@@ -78,7 +78,7 @@ window.addEventListener('beforeinstallprompt', function (event) {
     if (window.matchMedia('(display-mode: standalone)').matches) {
         console.log('display-mode is standalone');
     } else {
-    
+        this.scene.start('PWAScene');
     }
 });
 

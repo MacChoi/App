@@ -1,14 +1,15 @@
 <html>
     <title>White Board</title>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> -->
         <!-- <link rel="manifest" href="manifest.json">    -->
     </head>
     <body></body>
 </html>
 <script type="text/javascript" src="library/phaser.min.js"></script>
-<script type="text/javascript" src="pwa.js"></script>
 <script type="text/javascript" src="MainScene.js"></script>
+<script type="text/javascript" src="pwa.js"></script>
+
 <script>
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -19,7 +20,7 @@ const CONFIG = {
         mode: Phaser.Scale.FIT,
         width: WIDTH,
         height: HEIGHT,
-        autoCenter: Phaser.Scale.CENTER_BOTH
+        autoCenter: Phaser.Scale.CENTER_TOP
     },
     scene:[PWAScene,MainScene]
 };

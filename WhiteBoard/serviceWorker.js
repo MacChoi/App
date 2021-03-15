@@ -1,24 +1,24 @@
 var CACHE_NAME = 'whiteboard-phaser-v1';
 var filesToCache = [
-    '/libray/phaser.min.js',
+    '/assets/images/icons/icon_192x192.png',
+    '/assets/images/icons/icons_512x512.png',
     '/index.html',
+    '/libray/phaser.min.js',
     '/MainScene.js',
     '/assets/images/brush.png',
     '/manifest.json',
     '/pwa.js',
-    '/assets/images/icons/icon_192x192.png',
-    '/assets/images/icons/icons_512x512.png',
 ];
 
 self.addEventListener('install', function(e) {
     // self.skipWaiting();
     console.log('app install');
     e.waitUntil(
-        // caches.open(CACHE_NAME).then((cache) => {
-        //     console.log("Service Worker: Caching Files",cache);
-        //     return cache.addAll(filesToCache);
-        // })
-        // .then(() => self.skipWaiting())
+        caches.open(CACHE_NAME).then((cache) => {
+            // console.log("Service Worker: Caching Files",cache);
+            // return cache.addAll(filesToCache);
+        })
+        .then(() => self.skipWaiting())
     );
 });
 
