@@ -1,6 +1,8 @@
 var CACHE_NAME = 'whiteboard-phaser-v1';
 var filesToCache = [
     '/favicon.ico',
+    '/assets/images/icons/favicon-32x32.png',
+    '/assets/images/icons/favicon-96x96.png',
     '/assets/images/icons/icon_192x192.png',
     '/assets/images/icons/icons_512x512.png',
     '/index.html',
