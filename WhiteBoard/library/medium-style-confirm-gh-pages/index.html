@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medium Style Confirm | Bitwiser.in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/msc-style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta name="keywords" content="medium, confirm, coding, web development">
+    <meta name="description" content="Medium.com styled confirm dialog.">
+    <style>
+    body {
+      font-family: 'Bitter', serif;
+      font-size: 1em;
+      color: #444;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/">Bitwiser.in</a></h1>
+        <nav class="pull-right">
+            <ul>
+                <li><a href="https://github.com/brijeshb42/medium-style-confirm">github</a></li>
+                <li><a href="/blurt/">blurt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="content">
+        <h1><a href="/medium-style-confirm/">medium-style-confirm</a></h1>
+        <div class="demo msc-action">
+            <div>
+                <iframe src="https://ghbtns.com/github-btn.html?user=brijeshb42&repo=medium-style-confirm&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+                <iframe src="https://ghbtns.com/github-btn.html?user=brijeshb42&repo=medium-style-confirm&type=fork&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-text="medium.com style confirm dialog" data-via="brijeshb42" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+            <h3>All three: <code>mscAlert</code>,<code>mscPrompt</code> and <code>mscConfirm</code> support similar APIs as shown for <code>mscConfirm</code></h3>
+            <h2>mscConfirm</h2>
+            <p><button id="demo1">Simplest</button> <code>mscConfirm(title, okCallback)</code></p>
+            <div>
+                <pre>mscConfirm("Delete?",function(){
+  alert("Post deleted");
+});</pre>
+            </div>
+            <hr>
+            <p><button id="demo2">With subtitle</button> <code>mscConfirm(title, subtitle, okCallback)</code></p>
+            <div>
+                <pre>mscConfirm("Delete", "Are you sure you want to delete this post?", function(){
+  alert("Post deleted");
+});</pre>
+            </div>
+            <hr>
+            <p><button id="demo3">All arguments</button> <code>mscConfirm(title, subtitle, okCallback, cancelCallback)</code></p>
+            <div>
+                <pre>mscConfirm("Delete", "Are you sure you want to delete this post?", function(){
+  alert("Post deleted");
+},
+function() {
+  alert('Cancelled');
+});</pre>
+            </div>
+            <hr>
+            <p><button id="demo4">As an object</button> <code>mscConfirm(object)</code></p>
+            <div>
+                <pre>mscConfirm({
+  title: 'License',
+
+  subtitle: 'Do you accept the licese agreement?',  // default: ''
+
+  okText: 'I Agree',    // default: OK
+
+  cancelText: 'I Dont', // default: Cancel,
+
+  dismissOverlay: true, // default: false, closes dialog box when clicked on overlay.
+
+  onOk: function() {
+    alert('Awesome.');
+  },
+
+  onCancel: function() {
+    alert('Sad face :( .');
+  }
+});</pre>
+            </div>
+            <hr>
+            <h2>mscPrompt</h2>
+            <p><button id="demo5">As an object</button> <code>mscPrompt(object)</code></p>
+            <div>
+                <pre>mscPrompt({
+  title: 'Subscribe',
+
+  subtitle: 'Enter your email to subscribe to the newsletter',  // default: ''
+
+  okText: 'Subscribe',    // default: OK
+
+  cancelText: 'Cancel', // default: Cancel,
+
+  placeholder: 'Your email here', // default: empty, placeholder for input text box
+
+  onOk: function(val) {
+    mscAlert("Your email: "+val+" has subscribed to the newsletter.");
+  },
+
+  onCancel: function() {
+    mscAlert(":( You cancelled on me.");
+  }
+});</pre>
+            </div>
+            <hr>
+            <h2>mscAlert</h2>
+            <p><button id="demo6">Simplest</button> <code>mscAlert(title)</code></p>
+            <div>
+                <pre>mscAlert("Hello World");</pre>
+            </div>
+            <p><button id="demo7">As an object</button> <code>mscAlert(object)</code></p>
+            <div>
+                <pre>mscAlert({
+  title: 'Done',
+
+  subtitle: 'You have subscribed to the mailing list.',  // default: ''
+
+  okText: 'Close',    // default: OK
+
+});</pre>
+            </div>
+            <p><button id="demo8">With new lines and carriage returns</button> <code>mscAlert(object)</code></p>
+            <div>
+                <pre>mscAlert({
+  title: 'Done',
+
+  subtitle: 'You have been registered successfully. \n Your reg. ID is 4321',  // default: ''
+
+  okText: 'Close',    // default: OK
+
+});</pre>
+            </div>
+        </div>
+        <hr>
+        <div class="usage">
+            <h3>All three: <code>mscAlert</code>,<code>mscPrompt</code> and <code>mscConfirm</code> support similar APIs as shown for <code>mscConfirm</code></h3>
+            <h2>Usage</h2>
+            <ul>
+                <li>Install via bower: <code>bower install medium-style-confirm</code>.</li>
+            </ul>
+            <hr>
+            <ul>
+                <li>OR</li>
+                <li>Download <a href="/medium-style-confirm/css/msc-style.css" target="_blank">msc-style.css</a> and <a href="/medium-style-confirm/js/msc-script.js" target="_blank">msc-script.js</a>.</li>
+                <li>Include <code>msc-style.css</code> in html as <pre>&lt;link rel="stylesheet" href="msc-style.css"&gt;</pre> just before ending <code>head</code> tag.</li>
+                <li>Include <code>msc-script.js</code> in html as <pre>&lt;script src="msc-script.js"&gt;</pre> just before ending <code>body</code> tag.</li>
+                <li>Call the code <code>mscConfirm(), mscAlert() or mscPrompt()</code> function as shown in demo.</li>
+            </ul>
+        </div>
+    </section>
+    <section class="content"><div id="disqus_thread"></div></section>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47902363-1', 'bitwiser.in');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+    </script>
+    <script src="js/msc-script.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var demobtn = document.querySelector("#demo1");
+        demobtn.addEventListener("click", function() {
+          mscConfirm("Delete?",function(){
+            mscAlert("Post deleted");
+          });
+        });
+        var demobtn1 = document.querySelector("#demo2");
+        demobtn1.addEventListener("click", function() {
+          mscConfirm("Delete", "Are you sure you want to delete this post?", function(){
+            mscAlert("Post deleted");
+          });
+        });
+        var demobtn2 = document.querySelector("#demo3");
+        demobtn2.addEventListener("click", function() {
+          mscConfirm("Delete", "Are you sure you want to delete this post?", function(){
+            mscAlert("Post deleted");
+          },
+          function() {
+            mscAlert('Cancelled');
+          });
+        });
+        var demobtn3 = document.querySelector("#demo4");
+        demobtn3.addEventListener("click", function() {
+          mscConfirm({
+            title: 'License',
+            subtitle: 'Do you accept the licese agreement?',
+            okText: 'I Agree',
+            cancelText: 'I Dont',
+            dismissOverlay: true,
+            onOk: function() {
+                mscAlert('Awesome.');
+            },
+            onCancel: function() {
+                mscAlert('Sad face :( .');
+            }
+          });
+        });
+        var demobtn4 = document.querySelector("#demo5");
+        demobtn4.addEventListener("click", function() {
+            mscPrompt({
+                title: 'Subscribe',
+                subtitle: 'Enter your email to subscribe to the newsletter',
+                placeholder: 'Your email here', // default: empty, placeholder for input text box
+                okText: 'Subscribe',    // default: OK
+                cancelText: 'Cancel', // default: Cancel
+                onOk: function(val) {
+                    mscAlert({
+                        title: "Done",
+                        subtitle: "Your email: "+val+" has subscribed to the newsletter."
+                    });
+                },
+                onCancel: function() {
+                    mscAlert(":( You cancelled on me.");
+                }
+            });
+        });
+        var demobtn5 = document.querySelector("#demo7");
+        demobtn5.addEventListener("click", function() {
+            mscAlert({
+                title: 'Done',
+                subtitle: 'You have subscribed to the mailing list.',  // default: ''
+                okText: 'Close',    // default: OK
+                dismissOverlay: true
+            });
+        });
+        var demobtn6 = document.querySelector("#demo6");
+        demobtn6.addEventListener("click", function() {
+            mscAlert("Hello world");
+        });
+
+        var demobtn7 = document.querySelector("#demo8");
+        demobtn7.addEventListener('click', function() {
+            mscAlert({
+              title: 'Done',
+
+              subtitle: 'You have been registered successfully. \n Your reg. ID is 4321', // default: ''
+
+              okText: 'Close',    // default: OK
+
+            });
+        });
+    });
+    var disqus_shortname = 'bitwiser'; // required: replace example with your forum shortname
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+</body>
+</html>

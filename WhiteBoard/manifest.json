@@ -1,5 +1,5 @@
 {
-    "short_name": "WhiteBoard",
+  "short_name": "WhiteBoard",
     "name": "White Board App",
     "icons": [
       {
@@ -17,5 +17,5 @@
     "background_color": "#000000",
     "display": "standalone",
     "display_override": ["window-control-overlay", "minimal-ui"],
-    "theme_color": "#000000"
+    "theme_color": "#000000" 
 }

@@ -1,14 +1,11 @@
 <html>
     <title>White Board</title>
-    <head>
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> -->
-        <!-- <link rel="manifest" href="manifest.json">    -->
-    </head>
     <body></body>
 </html>
 <script type="text/javascript" src="library/phaser.min.js"></script>
-<script type="text/javascript" src="MainScene.js"></script>
 <script type="text/javascript" src="pwa.js"></script>
+<script type="text/javascript" src="scenes/AddToHomeScreenScene.js"></script>
+<script type="text/javascript" src="scenes/MainScene.js"></script>
 
 <script>
 const WIDTH = window.innerWidth;
@@ -20,9 +17,30 @@ const CONFIG = {
         mode: Phaser.Scale.FIT,
         width: WIDTH,
         height: HEIGHT,
-        autoCenter: Phaser.Scale.CENTER_TOP
+        autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene:[PWAScene,MainScene]
+    scene:[MainScene]
 };
 var GAME = new Phaser.Game(CONFIG);
+
+window.onload = function(){
+    // resize();
+    // window.addEventListener("resize", resize, false);
+}
+
+function resize() {
+    var canvas = document.querySelector("canvas");
+    var windowWidth = window.innerWidth;
+    var windowHeight = window.innerHeight;
+    var windowRatio = windowWidth / windowHeight;
+    var gameRatio = GAME.config.width / GAME.config.height;
+    if(windowRatio < gameRatio){
+        canvas.style.width = windowWidth + "px";
+        canvas.style.height = (windowWidth / gameRatio) + "px";
+    }
+    else{
+        canvas.style.width = (windowHeight * gameRatio) + "px";
+        canvas.style.height = windowHeight + "px";
+    }
+}
 </script>

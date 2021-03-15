@@ -9,6 +9,7 @@ class MainScene extends Phaser.Scene {
         this.load.image('brush', 'assets/images/brush/1.png');
     }
     create(){
+        this.resizeContainer = this.add.container(0, 0);
         var rt = this.add.renderTexture(0, 0, WIDTH, HEIGHT);
         var brush = this.textures.getFrame('brush');
         this.input.on('pointerdown', function (pointer) {
@@ -29,5 +30,16 @@ class MainScene extends Phaser.Scene {
         clear.on('pointerup', function (pointer) {
             rt.clear();
         }.bind(this));
+
+        // this.scale.on('resize', this.onResize);
+        // this.scale.on("orientationchange", this.onResize);
+    }
+
+    onResize(changes){
+        // console.table("onResize",GAME)
+        // let resize = ths.scene.scale.width *.95 / this.headerText.width;
+        // this.resizeContainer.setScale(resize);
+
+        // console.table("onResize",this.scale.width,resize)
     }
 }

@@ -2,10 +2,12 @@ const request = async (url) => {
     const response = await fetch(url);
     const manifest = await response.json();
     
-    // pwa safari fix
     const apple_link=[
+        {"rel":"icon","sizes":"32x32","href":"assets/images/icons/favicon-32x32.png"},
+        {"rel":"icon","sizes":"96x96","href":"assets/images/icons/favicon-96x96.png"},
         {"rel":"shortcut icon","sizes":"","href":"#"},
         {"rel":"manifest","sizes":"","href":"manifest.json"},
+        // pwa safari
         {"rel":"apple-touch-icon","sizes":"192x192","href":manifest.icons[0].src},
         {"rel":"apple-touch-icon","sizes":"512x512","href":manifest.icons[1].src}
     ]
@@ -72,88 +74,11 @@ if ('serviceWorker' in navigator) {
 }
 
 window.addEventListener('beforeinstallprompt', function (event) {
-    console.log('beforeinstallprompt triggered');
+    console.log('beforeinstallprompt triggered',window.matchMedia('(display-mode: standalone)').media );
     event.preventDefault();
-    window.promptEvent = event;
+    window.addToHomeScreenEvent = event;
     if (window.matchMedia('(display-mode: standalone)').matches) {
-        console.log('display-mode is standalone');
     } else {
-        this.scene.start('PWAScene');
+        new AddToHomeScreenScene(GAME);
     }
 });
-
-function addToHomeScreen() {
-    window.promptEvent.prompt();
-    window.promptEvent.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted')
-      } else {
-        console.log('User dismissed')
-      }
-    })
-}
-
-class PWAScene extends Phaser.Scene {
-    constructor(){
-        super({
-            key:'PWAScene',
-        });
-    }
-
-    preload (){
-        this.load.image('icon', 'assets/images/icons/icon_192x192.png');
-    }
-
-    release(){
-        this.textures.remove('icon');
-        this.scene.stop('PWAScene');
-        this.scene.destroy('PWAScene');
-    }
-
-    create(){
-        const WIDTH = GAME.config.width;
-        const HEIGHT = GAME.config.height;
-
-        var graphics = this.add.graphics();
-        graphics.fillStyle(0xcccccc);
-        graphics.fillRoundedRect(0, 0, WIDTH/2, 192, 32);
-        graphics.fillPath();
-
-        const makeGraphics = this.make.graphics();
-        makeGraphics.fillStyle(0xffffff);
-        makeGraphics.fillRoundedRect(0, 0, 192, 192, 32);
-        makeGraphics.fillPath();
-        const mask = makeGraphics.createGeometryMask();
-        var icon=this.add.image(0,0,'icon').setOrigin(0).setMask(mask);
-        var AddtoHomeScreen = this.add.text(icon.width + 10, 40, 'Add to Home Screen', { font: '20px Courier', fill: '#000000' }).setShadow(1, 1, '#ffffff');
-        var close = this.add.text(icon.width + 90, icon.height-50, 'Close', { font: '20px Courier', fill: '#000000' }).setShadow(1, 1, '#ffffff');
-        
-        this.setButton(AddtoHomeScreen,()=>{
-            addToHomeScreen();
-        });
-        this.setButton(close,()=>{
-            this.release();
-        });
-    }
-
-    setButton(btn,callback){
-        const color = 0xcccccc;
-        const donw_alpha = 1;
-        btn.setInteractive();
-        btn.on('pointerover', function (event) {
-            btn.setTint(color);
-            btn.setAlpha(donw_alpha);
-        });
-        btn.on('pointerout', function (event) {
-            btn.clearTint();
-            btn.setAlpha(1);
-        });
-        btn.on('pointerdown', function (event) {
-            btn.setTint(color);
-            btn.setAlpha(donw_alpha);
-        });
-        btn.on('pointerup', function (event) {
-            callback();
-        });
-    }
-}
