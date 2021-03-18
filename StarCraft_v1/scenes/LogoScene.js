@@ -48,7 +48,7 @@ class ProgressScene extends Phaser.Scene{
 
     preload(){
         var fileslist='';
-        this.load.pack('pack','/pack.json');
+        this.load.pack('pack','/StarCraft_v1/pack.json');
         this.load.on('fileprogress', function (file) {
             // console.log(file.url);
             fileslist+=file.url + ',\n'
