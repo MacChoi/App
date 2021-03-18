@@ -1,0 +1,72 @@
+{ 
+    "scene": {
+        "path": "scenes",
+        "defaultType": "script",
+        "files": [
+            {
+                "key":"HomeScene",
+                "url": "HomeScene.js"
+            },
+            {
+                "key":"MainScens",
+                "url": "MainScene.js"
+            } 
+        ]
+    },
+    "class": {
+        "path": "classes",
+        "defaultType": "script",
+        "files": [
+            {
+                "key": "Button",
+                "url": "UI/Button.js"
+            }
+        ]
+    },
+    "image": {
+        "path": "assets/images",
+        "defaultType": "image",
+        "files": [
+            {
+                "key": "logo",
+                "url": "logo/logo.png"
+            },
+            {
+                "key": "bar",
+                "url": "logo/bar.png"
+            },
+            {
+                "key": "icon",
+                "url": "logo/icon.png"
+            },
+            {
+                "key": "menu",
+                "url": "logo/menu.png"
+            },
+            {
+                "key": "menu_bg",
+                "url": "logo/menu_bg.png"
+            },
+            {
+                "key": "planet",
+                "url": "logo/planet.png"
+            } 
+        ]
+    },
+    "atlas": {
+        "path": "assets/images",
+        "defaultType": "atlas",
+        "files": [
+            {
+                "key": "galaxy",
+                "atlasURL": "home/sprites2.json",
+                "textureURL": "home/sprites2.png"
+            },
+            {
+                "key": "satellite",
+                "atlasURL": "home/sprites3.json",
+                "textureURL": "home/sprites3.png"
+            }
+        ]
+    }   
+}

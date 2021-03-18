@@ -13,13 +13,28 @@ const HEIGHT = window.innerHeight;
 const CONFIG = {
     type: Phaser.AUTO,
     backgroundColor: 0xffffff,
+    canvasStyle: `display: block; width: 100%; height: 100%; margin:0`,
+
     scale: {
         mode: Phaser.Scale.FIT,
         width: WIDTH,
         height: HEIGHT,
         autoCenter: Phaser.Scale.CENTER_BOTH
+        
     },
     scene:[MainScene]
 };
 var GAME = new Phaser.Game(CONFIG);
+window.sizeChanged = () => {
+    if (GAME.isBooted) {
+        setTimeout(() => {
+            GAME.scale.resize(window.innerWidth, window.innerHeight);
+            GAME.canvas.setAttribute(
+                'style',
+                `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight}px;`,
+            );
+        }, 100);
+    }
+};
+window.onresize = () => window.sizeChanged();
 </script>

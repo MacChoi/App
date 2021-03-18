@@ -5,7 +5,7 @@ const request = async (url) => {
     const apple_link=[
         {"rel":"icon","sizes":"32x32","href":"assets/images/icons/favicon-32x32.png"},
         {"rel":"icon","sizes":"96x96","href":"assets/images/icons/favicon-96x96.png"},
-        {"rel":"shortcut icon","sizes":"","href":"#"},
+        // {"rel":"shortcut icon","sizes":"","href":"#"},
         {"rel":"manifest","sizes":"","href":"manifest.json"},
         // pwa safari
         {"rel":"apple-touch-icon","sizes":"192x192","href":manifest.icons[0].src},

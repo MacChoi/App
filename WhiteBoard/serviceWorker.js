@@ -14,7 +14,7 @@ var filesToCache = [
 ];
 
 self.addEventListener('install', function(e) {
-    // self.skipWaiting();
+    self.skipWaiting();
     console.log('app install');
     e.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
