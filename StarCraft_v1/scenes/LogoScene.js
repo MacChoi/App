@@ -15,9 +15,11 @@ class LogoScene extends Phaser.Scene {
 
     create(){
         this.bg=this.add.tileSprite(0, 0, WIDTH , HEIGHT, 'bg').setOrigin(0, 0);
-        this.title=this.add.image(WIDTH/2, HEIGHT/2,'title').setScale(1);
-        this.progress=this.add.tileSprite(WIDTH/2, HEIGHT/2 + 30, 100 , 1, 'progress').setScale(3);
+        this.title=this.add.image(0, 0,'title').setScale(1.5);
+        this.progress=this.add.tileSprite(0, 0, 200 , 1, 'progress');
         this.scene.add('ProgressScene',new ProgressScene() ,true);
+    
+        this.onResize();
     }
 
     onResize(e){

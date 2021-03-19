@@ -4,6 +4,7 @@ const CONFIG = {
     type: Phaser.AUTO,
     backgroundColor: '#000000',
     scale: {
+        mode: Phaser.Scale.ScaleModes.NONE,
         width: WIDTH,
         height: HEIGHT,
     },
