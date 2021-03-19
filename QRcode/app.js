@@ -9,7 +9,8 @@ const CONFIG = {
         width: WIDTH,
         height: HEIGHT,
     },
-    scene: [QRScene]
+    scene: [QRScene],
+    pixelArt: true,
 };
 const GAME = new Phaser.Game(CONFIG);
 const EMITTER = new Phaser.Events.EventEmitter();
