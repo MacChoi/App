@@ -1,0 +1,21 @@
+<html>
+    <title>QRCode</title>
+    <head>
+        <link rel="manifest" href="manifest.json">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            body {margin: 0;padding: 0;}
+        </style>
+    </head>
+    <body>
+        <div id="phaser"></div>
+        <div id="qrcode" style="position:absolute; top:70; left:10;"> </div>
+        <input type="text" id="urlText" value="http://" style="position:absolute; top:40; left:10;"/>   
+    </body>
+</html>
+<script type="text/javascript" src="lib/phaser.min.js"></script>
+<script type="text/javascript" src="lib/qrcode.min.js"></script>
+<script type="text/javascript" src="pwa.js"></script>
+
+<script type="text/javascript" src="scenes/QRScene.js"></script>
+<script type="text/javascript" src="app.js"></script>

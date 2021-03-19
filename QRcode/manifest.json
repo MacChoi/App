@@ -1,0 +1,21 @@
+{
+  "short_name": "QRcode",
+    "name": "QRcode App",
+    "icons": [
+      {
+        "src": "assets/images/icons/icon_192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "assets/images/icons/icon_310x310.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "https://macchoi.github.io/App/QRcode/index.html",
+    "background_color": "#000000",
+    "display": "standalone",
+    "display_override": ["window-control-overlay", "minimal-ui"],
+    "theme_color": "#000000" 
+}
