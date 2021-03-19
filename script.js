@@ -1,4 +1,5 @@
 const list =[
+  {title:"QRcode",img:"QRcode/QRcode.png",url:"QRcode/index.html"},
   {title:"StarCraft_v1",img:"StarCraft_v1/assets/images/logo/logo.png",url:"StarCraft_v1/index.html"},
   {title:"WhiteBoard",img:"WhiteBoard/WhiteBoard.png",url:"WhiteBoard/index.html"},
   {title:"NixieTube",img:"NixieTube/NixieTube.png",url:"NixieTube/index.html"},
