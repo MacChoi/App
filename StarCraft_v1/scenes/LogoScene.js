@@ -57,7 +57,7 @@ class ProgressScene extends Phaser.Scene{
         }.bind(this));
 
         this.load.on('complete', function () { 
-            console.log('',fileslist);  
+            // console.log('',fileslist);  
         }.bind(this));
     }
 

@@ -50,6 +50,10 @@
             {
                 "key": "planet",
                 "url": "logo/planet.png"
+            },
+            {
+                "key": "galaxy",
+                "url": "logo/galaxy.png"
             } 
         ]
     },
@@ -58,7 +62,7 @@
         "defaultType": "atlas",
         "files": [
             {
-                "key": "galaxy",
+                "key": "fight",
                 "atlasURL": "home/sprites2.json",
                 "textureURL": "home/sprites2.png"
             },

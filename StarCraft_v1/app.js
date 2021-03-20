@@ -9,6 +9,7 @@ const CONFIG = {
         height: HEIGHT,
     },
     scene: [LogoScene],
+    pixelArt: true,
 };
 const GAME = new Phaser.Game(CONFIG);
 const EMITTER = new Phaser.Events.EventEmitter();
@@ -18,6 +19,3 @@ window.onresize = () => {
     GAME.scale.resize(WIDTH, HEIGHT);
     EMITTER.emit("onresize", {width:WIDTH, height:HEIGHT});
 };
-
-window.screen.orientation.lock();
-// window.screen.orientation.unlock();
