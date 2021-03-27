@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha - Tests</title>
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/chai/chai.js"></script>
+  <script>
+    window.expect = chai.expect;
+    window.onload = function () {
+      specs.register(mocha);
+    };
+    mocha.setup('bdd');
+  </script>
+  <script src="../test_gen/specs.bundle.js"></script>
+</body>
+</html>

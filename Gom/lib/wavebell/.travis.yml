@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - "8"
+  - "7"
+dist: trusty
+addons:
+  chrome: stable
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+env:
+  - NODE_ENV=testing
+install:
+  - yarn install
+before_script:
+  - export DISPLAY=:99.0
+  - export CHROME_PATH="$(pwd)/chrome-linux/chrome"
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # wait for xvfb to boot
+script:
+  - yarn run test
+after_success:
+  - yarn run coverage
