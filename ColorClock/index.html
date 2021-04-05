@@ -1,0 +1,66 @@
+<html>
+    <title>ColorClock</title>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body></body>
+</html>
+<script type="text/javascript" src="phaser.min.js"></script>
+<script>
+class MainScene extends Phaser.Scene{
+    create(){
+        const FONT_SIZE = 250;
+        var text_0= this.add.text(0, 0,'0').setFontFamily('Arial').setFontSize(FONT_SIZE).setColor('#800000');
+        var text_1= this.add.text(0, 0, '0').setFontFamily('Arial').setFontSize(FONT_SIZE).setColor('#FFD700');
+        var text_2= this.add.text(0, 0, '0').setFontFamily('Arial').setFontSize(FONT_SIZE).setColor('#9ACD32');
+        var text_3= this.add.text(0, 0, '0').setFontFamily('Arial').setFontSize(FONT_SIZE).setColor('#008000');
+        var text_4= this.add.text(0, 0, '0').setFontFamily('Arial').setFontSize(FONT_SIZE).setColor('#0000FF');
+        var text_5= this.add.text(0, 0, '0').setFontFamily('Arial').setFontSize(FONT_SIZE).setColor('#800080');
+        
+        this.group = this.add.group();
+        this.group.add(text_0);
+        this.group.add(text_1);
+        this.group.add(text_2);
+        this.group.add(text_3);
+        this.group.add(text_4);
+        this.group.add(text_5);
+
+        Phaser.Actions.GridAlign(this.group.getChildren(), {
+            cellWidth: 120,
+            x: 100,
+            y: 150
+        });
+    }
+
+    update(){
+        var day = new Date();
+        var hh = day.getHours();
+        hh = hh > 12 ? hh-12 : hh;
+        var mm = day.getMinutes();
+        var ss = day.getSeconds();
+
+        var hhPad = Phaser.Utils.String.Pad(hh, 2, '0', 1);
+        var mmPad = Phaser.Utils.String.Pad(mm, 2, '0', 1);
+        var ssPad = Phaser.Utils.String.Pad(ss, 2, '0', 1);
+        var time= hhPad+mmPad+ssPad;
+
+        for (let i = 0; i < this.group.getChildren().length; i++) {
+            this.group.getChildren()[i].setText(time[i]);
+        }
+    }
+}
+
+const CONFIG = {
+    type: Phaser.AUTO,
+    backgroundColor: '#000000',
+    scene: [MainScene],
+    scale: {
+        mode: Phaser.Scale.FIT,
+        width: 800,
+        height: 480,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    pixelArt: true,
+};
+new Phaser.Game(CONFIG);
+</script>

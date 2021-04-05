@@ -4,10 +4,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style type="text/css">
             body {margin: 0;padding: 0;}
+
+            .canvas{
+                background-color:transparent;
+            }
         </style>
     </head>
-    <body></body>
+    <body>
+        <canvas style="z-index:5;position:relative; left:0px;" height="1215" width="1536" id="canvas_1">캔버스를 지원하지 않는 브라우저 입니다</canvas>
+        
+    </body>
 </html>
 <script type="text/javascript" src="lib/phaser.min.js"></script>
+<script type="text/javascript" src="lib/wavebell/demo/dist/wavebell.js"></script>
+<script type="text/javascript" src="lib/pixi.min.js"></script>
+
 <script type="text/javascript" src="MainScene.js"></script>
 <script type="text/javascript" src="app.js"></script>
+
+
+<script>
+// let app = new PIXI.Application({width: window.innerWidth, height: window.innerHeight});
+// document.body.appendChild(app.view);
+// console.log(app.view)
+// var img = new PIXI.Sprite.from('assets/images/face/1.png');
+// img.width = window.innerWidth;
+// img.height = window.innerHeight;
+// var depthMap = new PIXI.Sprite.from('assets/images/face/2.png');
+// depthMap.width = window.innerWidth;
+// depthMap.height = window.innerHeight;
+
+// app.stage.addChild(img);
+// app.stage.addChild(depthMap);
+// var displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
+// app.stage.filters = [displacementFilter];
+// window.onmousemove = function(e) {
+//   displacementFilter.scale.x = (window.innerWidth / 2 - e.clientX) /20;
+//   displacementFilter.scale.y = (window.innerHeight / 2 - e.clientY) /20;
+// };
+</script>
